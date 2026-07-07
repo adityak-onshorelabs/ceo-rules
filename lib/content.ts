@@ -5,7 +5,7 @@ export const nav = {
   wordmark: "CEO RULES",
   // Root-relative so the nav works from any page.
   links: [
-    { label: "The Wardrobe", href: "/the-wardrobe" },
+    { label: "The Wardrobe", href: "/#wardrobe" },
     { label: "Visit", href: "/#visit" },
   ],
 };
@@ -59,7 +59,7 @@ export const hero = {
   cta: { label: "Visit the Atelier", href: "#visit" },
   scrollHint: "Scroll",
   // Authentic CEO Rules imagery (from their Instagram).
-  image: "/images/IMG_3731.jpg",
+  image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3731.jpg",
   imageAlt: "A jacket taking shape on the form, tape measure across the chest",
 };
 
@@ -74,7 +74,7 @@ export const manifesto = {
   // Education woven in: every section leaves the visitor slightly wiser.
   takeaway:
     "A jacket is built, not sewn. The shoulder is the one line a tailor cannot fake, and the first thing a room reads.",
-  image: "/images/IMG_3726.jpg",
+  image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3726.jpg",
   imageAlt: "A jacket lapel with a folded pocket square",
 };
 
@@ -94,7 +94,7 @@ export const craft = {
     "A scent that stays.",
   ],
   close: "First impressions are made in seconds. We make yours count.",
-  image: "/images/IMG_3738.jpg",
+  image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3738.jpg",
   imageAlt: "Folded silk ties in the house's patterns",
 };
 
@@ -108,6 +108,26 @@ export const heritage = {
   close: "Now the number means something.",
 };
 
+// The Craft (brief §5): mastery shown through visuals, not paragraphs.
+export const mastery = {
+  eyebrow: "The craft",
+  headline: "Most of the work never shows.",
+  lead: "Canvas, not glue. A chest shaped by hand, and stitches you will never see. Mastery is quiet, and mostly hidden inside the jacket.",
+  pieces: [
+    { src: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3727.jpg", alt: "Cloth waiting in the atelier", label: "Fabric" },
+    {
+      src: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3739.jpg",
+      alt: "A hand-basted canvas chest taking shape",
+      label: "Construction",
+    },
+    {
+      src: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3729.jpg",
+      alt: "Working buttonholes and the finish",
+      label: "Finish",
+    },
+  ],
+};
+
 // The wardrobe: the outcome as identity, editorial, never a catalogue (brief §7).
 export const wardrobe = {
   eyebrow: "The wardrobe",
@@ -119,7 +139,7 @@ export const wardrobe = {
     { name: "Sherwanis", line: "For the days you will want to remember." },
     { name: "The finishing", line: "The tie, the square, the things that speak last." },
   ],
-  image: "/images/IMG_3730.jpg",
+  image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3730.jpg",
   imageAlt: "A man in a bespoke checked suit",
 };
 
@@ -141,7 +161,7 @@ export const visit = {
   mapHref:
     "https://www.google.com/maps/search/?api=1&query=CEO+Rules+Shabistan+CHSL+Dr+Ambedkar+Road+Bandra+West+Mumbai",
   whatsapp: { label: "+91 98333 14141", href: "https://wa.me/919833314141" },
-  image: "/images/IMG_3732.jpg",
+  image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3732.jpg",
   imageAlt: "The CEO Rules storefront at night, Bandra",
 };
 
@@ -162,7 +182,7 @@ export const founder = {
   body: "For most of a lifetime he has done the same two things each morning: measure a man, and listen to him. He will steer you away from the loud cloth, toward what your life actually asks for.",
   roles: "Mentor. Teacher. Craftsman. Guide. Storyteller.",
   note: "The word founder never quite fit him.",
-  image: "/images/IMG_3728.jpg",
+  image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3728.jpg",
   imageAlt: "Anis Soomar fitting a jacket at the shoulder",
 };
 
@@ -170,7 +190,7 @@ export const founder = {
 // the reality is heritage and quiet. Told as story, not resolved.
 export const identity = {
   eyebrow: "The name, and the truth",
-  nameImage: "/images/IMG_3736.jpg",
+  nameImage: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3736.jpg",
   nameImageAlt: "Stacked bolts of cloth, edge on",
   heard: "You hear the name before you meet the house.",
   loud: "It sounds like ambition. Like hurry. Like a man in a rush to be seen.",
@@ -179,9 +199,9 @@ export const identity = {
     "What remains is older than the name. Heritage. Patience. A hand that has taken the same measure ten thousand times, and still takes its time.",
   reconcile: "We have never resolved the contradiction. We wear it well.",
   // Images for the 'truth' band.
-  truthImageA: "/images/IMG_3739.jpg",
+  truthImageA: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3739.jpg",
   truthImageAAlt: "A jacket taking shape, hand-basted canvas at the chest",
-  truthImageB: "/images/IMG_3727.jpg",
+  truthImageB: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3727.jpg",
   truthImageBAlt: "Bolts of cloth waiting in the atelier",
   truthCaption: "Chosen by hand. Cut once, and correctly.",
   // Shopfront beat: Anis's own invitation (from Instagram).
@@ -189,6 +209,6 @@ export const identity = {
   placeAccent: "We'll talk presence, over a cup of coffee.",
   // Kept for reuse elsewhere (the transformation payoff):
   // "You arrive successful. You leave significant."
-  image: "/images/IMG_3737.jpg",
+  image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3737.jpg",
   imageAlt: "Inside the CEO Rules store, Bandra",
 };

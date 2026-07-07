@@ -1,28 +1,35 @@
 import { Reveal } from "@/components/Reveal";
-import { Carousel } from "@/components/Carousel";
-import { craft } from "@/lib/content";
+import { Plate } from "@/components/Plate";
+import { mastery } from "@/lib/content";
 
-// Attention to detail, in Anis's own words, with the details as a slow carousel.
+// Brief §5: demonstrate mastery through visuals, not paragraphs. A quiet triptych
+// of fabric, construction, and finish.
 export function Craft() {
   return (
     <section id="craft" data-nav="light" className="section mx-auto max-w-editorial">
       <Reveal as="p" className="eyebrow mb-10">
-        {craft.eyebrow}
+        {mastery.eyebrow}
       </Reveal>
-      <Reveal>
-        <h2 className="t-h1 max-w-[16ch] text-balance text-ink">{craft.headline}</h2>
-      </Reveal>
-      <Reveal delay={0.06}>
-        <p className="mt-6 max-w-measure t-lede text-ink">{craft.lead}</p>
-      </Reveal>
-
-      <div className="mt-12 max-w-[40rem]">
-        <Carousel items={craft.details} label="What the house attends to" />
+      <div className="grid grid-cols-1 gap-x-[clamp(2.5rem,6vw,6rem)] gap-y-6 lg:grid-cols-[1fr_1fr] lg:items-end">
+        <Reveal>
+          <h2 className="t-h1 max-w-[16ch] text-balance text-ink">
+            {mastery.headline}
+          </h2>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <p className="max-w-measure t-lede text-ink">{mastery.lead}</p>
+        </Reveal>
       </div>
 
-      <Reveal delay={0.08} className="mt-14 max-w-measure border-t border-hairline pt-8">
-        <p className="t-lede italic text-gold-ink">{craft.close}</p>
-      </Reveal>
+      {/* The making, shown. */}
+      <div className="mt-[clamp(3rem,7vh,5rem)] grid grid-cols-1 gap-[clamp(1rem,2vw,1.75rem)] sm:grid-cols-3">
+        {mastery.pieces.map((p, i) => (
+          <Reveal as="figure" key={p.label} delay={i * 0.08}>
+            <Plate src={p.src} alt={p.alt} className="aspect-[4/5] w-full" />
+            <figcaption className="eyebrow mt-4">{p.label}</figcaption>
+          </Reveal>
+        ))}
+      </div>
     </section>
   );
 }

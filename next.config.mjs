@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    // Prototype only. Real site uses authentic CEO Rules photography (brief: no stock/AI).
+    // Authentic CEO Rules imagery, served from ImageKit.
     remotePatterns: [
-      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "ik.imagekit.io" },
     ],
   },
 };
