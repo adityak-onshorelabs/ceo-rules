@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ *
+ * CEO Rules design tokens. Single source of truth = DESIGN.md.
+ * ------------------------------------------------------------------ */
+:root {
+  /* Light surface (default "paper") */
+  --bg: oklch(0.955 0.010 78);
+  --surface: oklch(0.925 0.012 76);
+  --ink: oklch(0.235 0.012 62);
+  --ink-muted: oklch(0.435 0.028 58);
+  --ink-faint: oklch(0.620 0.022 62);
+  --hairline: oklch(0.235 0.012 62 / 0.14);
+  --gold: oklch(0.735 0.088 82);
+  --gold-ink: oklch(0.560 0.078 74);
+  --forest: oklch(0.340 0.046 156);
+
+  /* Dark surface ("cinema") */
+  --bg-dark: oklch(0.185 0.012 58);
+  --surface-dark: oklch(0.235 0.014 58);
+  --ink-dark: oklch(0.945 0.010 80);
+  --ink-dark-muted: oklch(0.760 0.020 72);
+  --hairline-dark: oklch(0.945 0.010 80 / 0.16);
+  --gold-on-dark: oklch(0.780 0.100 84);
+
+  /* Warm placeholder plate (used behind prototype imagery) */
+  --plate: radial-gradient(
+      120% 120% at 30% 20%,
+      oklch(0.42 0.03 60) 0%,
+      oklch(0.28 0.02 55) 45%,
+      oklch(0.185 0.012 58) 100%
+    );
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.7;
+    letter-spacing: -0.003em;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--bg-dark);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--gold-ink);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-serif), Georgia, serif;
+    font-weight: 420;
+    font-variation-settings: "opsz" 144;
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  /* Editorial section rhythm; intentionally NOT uniform (DESIGN.md). */
+  .section {
+    /* Generous, luxury breathing room. Two adjacent sections stack this, which is fine. */
+    padding-block: clamp(6rem, 12vh, 11rem);
+    padding-inline: clamp(1.75rem, 6vw, 7rem);
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 500;
+    font-size: 0.75rem;
+    /* ink-muted (not ink-faint) so small tracked labels clear AA on ivory */
+    color: var(--ink-muted);
+  }
+
+  /* Type scale (DESIGN.md), fluid clamps. */
+  .t-display {
+    font-family: var(--font-serif), Georgia, serif;
+    font-size: clamp(2.6rem, 5.2vw, 5.2rem);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 144;
+  }
+  .t-h1 {
+    font-family: var(--font-serif), Georgia, serif;
+    font-size: clamp(1.9rem, 3.4vw, 3.1rem);
+    line-height: 1.08;
+    letter-spacing: -0.012em;
+    font-variation-settings: "opsz" 110;
+  }
+  .t-h2 {
+    font-family: var(--font-serif), Georgia, serif;
+    font-size: clamp(1.45rem, 2.4vw, 2.05rem);
+    line-height: 1.14;
+    font-variation-settings: "opsz" 84;
+  }
+  .t-lede {
+    font-size: clamp(1.05rem, 1.3vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--ink-muted);
+  }
+
+  /* On dark cinema surfaces */
+  .on-dark {
+    background-color: var(--bg-dark);
+    color: var(--ink-dark);
+  }
+  .on-dark .eyebrow {
+    color: var(--ink-dark-muted);
+  }
+}

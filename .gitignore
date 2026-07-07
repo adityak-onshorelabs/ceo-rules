@@ -1,0 +1,12 @@
+/node_modules
+/.next
+/out
+/build
+*.tsbuildinfo
+next-env.d.ts
+.env*.local
+.DS_Store
+
+# Images are served from ImageKit, not committed
+/images
+/public/images
