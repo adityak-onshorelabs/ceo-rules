@@ -38,6 +38,19 @@
   html {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    scroll-padding-top: 5rem;
+  }
+
+  /* Native smooth anchors when JS smoothing is off (reduced-motion or touch). */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  @media (pointer: coarse) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
   body {

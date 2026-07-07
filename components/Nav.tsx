@@ -37,8 +37,8 @@ export function Nav() {
   const headerBg = atTop
     ? "bg-transparent"
     : onDark
-      ? "bg-bg-dark/80 backdrop-blur-[3px]"
-      : "bg-bg/90 shadow-soft backdrop-blur-[3px]";
+      ? "border-b border-hairline-dark bg-bg-dark/80 backdrop-blur-[3px]"
+      : "border-b border-hairline bg-bg/90 backdrop-blur-[3px]";
 
   return (
     <header
@@ -46,7 +46,10 @@ export function Nav() {
         onDark ? "text-ink-dark" : "text-ink"
       }`}
       style={
-        atTop ? { textShadow: "0 1px 16px oklch(0.14 0.012 58 / 0.65)" } : undefined
+        // Legibility glow only when ivory text sits over a dark image (the hero).
+        atTop && onDark
+          ? { textShadow: "0 1px 16px oklch(0.14 0.012 58 / 0.65)" }
+          : undefined
       }
     >
       <nav className="mx-auto flex max-w-editorial items-center justify-between px-[clamp(1.5rem,6vw,6rem)] py-5">

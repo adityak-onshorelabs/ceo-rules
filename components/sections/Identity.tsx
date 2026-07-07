@@ -79,24 +79,6 @@ export function Identity() {
           </Reveal>
         </div>
       </div>
-
-      {/* The shopfront beat: invitation on the dark surface, then the storefront
-          shown whole at its native aspect (no crop, no text over it). */}
-      <div data-nav="dark" className="on-dark section mx-auto max-w-editorial">
-        <Reveal>
-          <h2 className="t-h2 max-w-[24ch] text-ink-dark">
-            {identity.placeLead}{" "}
-            <span className="italic text-gold-on-dark">{identity.placeAccent}</span>
-          </h2>
-        </Reveal>
-        <Reveal as="figure" delay={0.1} className="mt-[clamp(2.5rem,6vh,5rem)]">
-          <Plate
-            src={identity.image}
-            alt={identity.imageAlt}
-            className="aspect-square w-full"
-          />
-        </Reveal>
-      </div>
     </section>
   );
 }

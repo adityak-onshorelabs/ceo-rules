@@ -5,7 +5,8 @@ export const nav = {
   wordmark: "CEO RULES",
   // Root-relative so the nav works from any page.
   links: [
-    { label: "The Wardrobe", href: "/#wardrobe" },
+    { label: "The Wardrobe", href: "/the-wardrobe" },
+    { label: "Insights", href: "/insights" },
     { label: "Visit", href: "/#visit" },
   ],
 };
@@ -163,6 +164,65 @@ export const visit = {
   whatsapp: { label: "+91 98333 14141", href: "https://wa.me/919833314141" },
   image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3732.jpg",
   imageAlt: "The CEO Rules storefront at night, Bandra",
+};
+
+// Insights: the founder sharing knowledge (education as generosity, brief §13).
+// Adapted from CEO Rules' own Instagram posts.
+export const insights = {
+  eyebrow: "Insights",
+  title: "What the founder sees.",
+  intro:
+    "Anis has spent a lifetime noticing what most people miss. A little of what he has learned, shared freely, whether or not you ever commission a suit.",
+  entries: [
+    {
+      id: "details",
+      tag: "The detail",
+      title: "The details make all the difference.",
+      body: "Timeless style is decided in the details. From the lapel to the shoulder, and every stitch in between, each choice shapes a suit that stands out without asking to.",
+    },
+    {
+      id: "winchester",
+      tag: "The shirt",
+      title: "The Winchester, evolved.",
+      body: "Not every classic belongs in the past; some evolve with it. The Winchester shirt has long stood for refinement and authority. We reimagine it with coordinated collars and cuffs, and bring heritage tailoring into the modern wardrobe.",
+    },
+    {
+      id: "combinations",
+      tag: "The wardrobe",
+      title: "Better combinations, not more clothes.",
+      body: "A well-dressed man does not need more clothes. He needs better combinations. A timeless wardrobe is not dozens of outfits; it is a few versatile essentials that work together effortlessly. Build one that works smarter, not bigger.",
+    },
+    {
+      id: "trends",
+      tag: "On style",
+      title: "Trends come and go. Style stays.",
+      body: "Oversized is not always stylish, and true elegance is never accidental. Dress for lasting impact, not for the fashion of a season.",
+    },
+    {
+      id: "solaro",
+      tag: "The cloth",
+      title: "True luxury is never loud.",
+      body: "It is thoughtful, timeless, and made with purpose. Solaro is more than a fabric; it is a legacy of intelligent tailoring, cut to keep its wearer comfortable while carrying an effortless ease. Chosen not for trends, but for the finer details. Style fades. Class endures.",
+    },
+    {
+      id: "fit",
+      tag: "The fit",
+      title: "An expensive suit means nothing if it does not fit.",
+      body: "The perfect fit never demands attention. It moves with you like a second skin, with no pulling, no bunching, no constant adjusting. A few things to look for:",
+      list: [
+        "No gap between the shirt and the jacket collar.",
+        "Shoulders that sit, neither drooping nor tight.",
+        "Lapels in proportion to your chest and frame.",
+      ],
+      coda: "True elegance is not about the price. It is about precision.",
+    },
+    {
+      id: "legend",
+      tag: "The craft",
+      title: "What makes a tailor a legend.",
+      body: "The eye to notice the smallest detail. Craftsmanship is not only stitching cloth; it is seeing what others miss. Here, every cut, every seam, and every finish is worked with a precision that speaks for itself.",
+    },
+  ],
 };
 
 export const footer = {

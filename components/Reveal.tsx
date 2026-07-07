@@ -16,7 +16,7 @@ export function Reveal({
   delay?: number;
   y?: number;
   className?: string;
-  as?: "div" | "span" | "li" | "p" | "h1" | "h2" | "figure";
+  as?: "div" | "span" | "li" | "p" | "h1" | "h2" | "figure" | "article";
 }) {
   const reduce = useReducedMotion();
   const MotionTag = motion[as];
