@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 // Lightweight smooth scrolling: a rAF lerp toward a wheel-driven target, plus
 // smooth in-page anchor clicks. No dependencies. Disabled on touch and for
@@ -9,6 +10,28 @@ const NAV_OFFSET = 72;
 const EASE = 0.095;
 
 export function SmoothScroll() {
+  const pathname = usePathname();
+
+  // Cross-page section links (e.g. "/#visit" from another route): after landing,
+  // scroll to the hashed section. Next's App Router doesn't do this reliably.
+  useEffect(() => {
+    const hash = decodeURIComponent(window.location.hash.slice(1));
+    if (!hash) return;
+    let tries = 0;
+    let raf = 0;
+    const settle = () => {
+      const el = document.getElementById(hash);
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
+        window.scrollTo(0, Math.max(0, top));
+      } else if (tries++ < 10) {
+        raf = requestAnimationFrame(settle);
+      }
+    };
+    raf = requestAnimationFrame(settle);
+    return () => cancelAnimationFrame(raf);
+  }, [pathname]);
+
   useEffect(() => {
     const mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     const mqCoarse = window.matchMedia("(pointer: coarse)");
