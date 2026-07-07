@@ -11,12 +11,25 @@ export function Nav() {
   const pathname = usePathname();
   const [onDark, setOnDark] = useState(true);
   const [solid, setSolid] = useState(false);
+  const [open, setOpen] = useState(false);
 
   // A link is "active" only if it points to a real page (not an in-page anchor).
   const isActive = (href: string) => {
     if (href.includes("#")) return false;
     return pathname === href;
   };
+
+  // Close the mobile menu on navigation, and lock body scroll while it's open.
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   useEffect(() => {
     const probeY = 32; // a point just inside the nav
@@ -42,20 +55,24 @@ export function Nav() {
   }, []);
 
   const atTop = !solid;
-  const headerBg = atTop
-    ? "bg-transparent"
-    : onDark
-      ? "border-b border-hairline-dark bg-bg-dark/80 backdrop-blur-[3px]"
-      : "border-b border-hairline bg-bg/90 backdrop-blur-[3px]";
+  // Menu open forces an ivory header with ink text (it sits over the ivory overlay).
+  const headerBg = open
+    ? "bg-bg"
+    : atTop
+      ? "bg-transparent"
+      : onDark
+        ? "border-b border-hairline-dark bg-bg-dark/80 backdrop-blur-[3px]"
+        : "border-b border-hairline bg-bg/90 backdrop-blur-[3px]";
+  const darkText = onDark && !open;
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ease-out-quart ${headerBg} ${
-        onDark ? "text-ink-dark" : "text-ink"
+        darkText ? "text-ink-dark" : "text-ink"
       }`}
       style={
         // Legibility glow only when ivory text sits over a dark image (the hero).
-        atTop && onDark
+        atTop && darkText
           ? { textShadow: "0 1px 16px oklch(0.14 0.012 58 / 0.65)" }
           : undefined
       }
@@ -63,10 +80,32 @@ export function Nav() {
       <nav className="mx-auto flex max-w-editorial items-center justify-between px-[clamp(1.5rem,6vw,6rem)] py-5">
         <Link
           href="/"
-          className="font-sans text-sm font-semibold uppercase tracking-[0.22em]"
+          className="relative z-10 font-sans text-sm font-semibold uppercase tracking-[0.22em]"
         >
           {nav.wordmark}
         </Link>
+
+        {/* Mobile menu toggle */}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          className="relative z-10 -mr-2 flex h-10 w-10 items-center justify-center md:hidden"
+        >
+          <span className="relative block h-3.5 w-6" aria-hidden>
+            <span
+              className={`absolute left-0 block h-[1.5px] w-6 bg-current transition-all duration-300 ease-out-quart ${
+                open ? "top-1/2 -translate-y-1/2 rotate-45" : "top-0"
+              }`}
+            />
+            <span
+              className={`absolute bottom-0 left-0 block h-[1.5px] w-6 bg-current transition-all duration-300 ease-out-quart ${
+                open ? "bottom-1/2 translate-y-1/2 -rotate-45" : ""
+              }`}
+            />
+          </span>
+        </button>
 
         <div className="hidden items-center gap-9 md:flex">
           {nav.links.map((l) => {
@@ -96,6 +135,43 @@ export function Nav() {
           })}
         </div>
       </nav>
+
+      {/* Mobile full-screen menu */}
+      <div
+        className={`fixed inset-0 z-0 bg-bg transition-opacity duration-300 ease-out-quart md:hidden ${
+          open ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      >
+        <nav className="flex h-full flex-col justify-center gap-2 px-[clamp(1.5rem,6vw,6rem)]">
+          {nav.links.map((l, i) => {
+            const active = isActive(l.href);
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                aria-current={active ? "page" : undefined}
+                onClick={() => setOpen(false)}
+                className="group inline-flex flex-col items-start py-2"
+                style={{ transitionDelay: open ? `${i * 40}ms` : "0ms" }}
+              >
+                <span
+                  className={`font-serif text-[clamp(2rem,9vw,2.75rem)] leading-tight ${
+                    active ? "text-ink" : "text-ink-muted"
+                  }`}
+                >
+                  {l.label}
+                </span>
+                <span
+                  aria-hidden
+                  className={`mt-1 h-[2px] w-full origin-left bg-gold transition-transform duration-500 ease-out-expo ${
+                    active ? "scale-x-100" : "scale-x-0"
+                  }`}
+                />
+              </Link>
+            );
+          })}
+        </nav>
+      </div>
     </header>
   );
 }
