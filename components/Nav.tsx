@@ -1,14 +1,22 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { nav } from "@/lib/content";
 
 // The page alternates dark and ivory bands, so the nav reads whichever band sits
 // under it (via [data-nav="dark"|"light"] markers) and adapts its colours.
 export function Nav() {
+  const pathname = usePathname();
   const [onDark, setOnDark] = useState(true);
   const [solid, setSolid] = useState(false);
+
+  // A link is "active" only if it points to a real page (not an in-page anchor).
+  const isActive = (href: string) => {
+    if (href.includes("#")) return false;
+    return pathname === href;
+  };
 
   useEffect(() => {
     const probeY = 32; // a point just inside the nav
@@ -61,15 +69,31 @@ export function Nav() {
         </Link>
 
         <div className="hidden items-center gap-9 md:flex">
-          {nav.links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="font-sans text-[0.8rem] uppercase tracking-[0.14em] opacity-95 transition-opacity duration-300 hover:opacity-100"
-            >
-              {l.label}
-            </Link>
-          ))}
+          {nav.links.map((l) => {
+            const active = isActive(l.href);
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                aria-current={active ? "page" : undefined}
+                className="group inline-flex flex-col items-start"
+              >
+                <span
+                  className={`font-sans text-[0.8rem] uppercase tracking-[0.14em] transition-opacity duration-300 ${
+                    active ? "opacity-100" : "opacity-95 group-hover:opacity-100"
+                  }`}
+                >
+                  {l.label}
+                </span>
+                <span
+                  aria-hidden
+                  className={`mt-1 h-[2px] w-full origin-left transition-transform duration-500 ease-out-expo ${
+                    onDark ? "bg-gold-on-dark" : "bg-gold"
+                  } ${active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
+                />
+              </Link>
+            );
+          })}
         </div>
       </nav>
     </header>

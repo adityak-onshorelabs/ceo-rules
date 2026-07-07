@@ -5,6 +5,7 @@ export const nav = {
   wordmark: "CEO RULES",
   // Root-relative so the nav works from any page.
   links: [
+    { label: "Home", href: "/" },
     { label: "The Wardrobe", href: "/the-wardrobe" },
     { label: "Insights", href: "/insights" },
     { label: "Visit", href: "/#visit" },
