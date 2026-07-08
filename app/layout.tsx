@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Montserrat } from "next/font/google";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { Loader } from "@/components/Loader";
 import "./globals.css";
 
 // Serif for headlines.
@@ -34,6 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fraunces.variable} ${montserrat.variable}`}>
       <body>
+        <Loader />
         <SmoothScroll />
         {children}
       </body>
