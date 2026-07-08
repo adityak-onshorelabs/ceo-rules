@@ -1,10 +1,15 @@
 import { footer } from "@/lib/content";
+import { FooterDoodle } from "@/components/Illustrations";
 
 // The closing frame. Minimal, but complete: the houses, hours, a way to reach them.
+// A faint scissors-and-thread doodle drifts across the background.
 export function Footer() {
   return (
-    <footer className="on-dark border-t border-hairline-dark">
-      <div className="mx-auto max-w-editorial px-[clamp(1.75rem,6vw,7rem)] py-[clamp(3.5rem,8vh,6rem)]">
+    <footer className="on-dark stitch-top-dark relative overflow-hidden">
+      <FooterDoodle
+        className="pointer-events-none absolute -right-8 top-1/2 hidden w-[min(56rem,72%)] -translate-y-1/2 text-ink-dark opacity-[0.1] lg:block"
+      />
+      <div className="relative z-10 mx-auto max-w-editorial px-[clamp(1.75rem,6vw,7rem)] py-[clamp(3.5rem,8vh,6rem)]">
         <div className="grid grid-cols-1 gap-x-[clamp(2.5rem,6vw,6rem)] gap-y-12 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr]">
           {/* The house */}
           <div>
@@ -53,7 +58,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-[clamp(3rem,7vh,5rem)] flex items-center justify-between border-t border-hairline-dark pt-6">
+        <div className="mt-[clamp(3rem,7vh,5rem)] flex items-center justify-between stitch-top-dark pt-6">
           <span className="font-sans text-[0.8rem] uppercase tracking-[0.14em] text-ink-dark-muted">
             {footer.since}
           </span>

@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/Reveal";
 import { Plate } from "@/components/Plate";
+import { MeasureTicks } from "@/components/MeasureTicks";
 import { mastery } from "@/lib/content";
 
 // Brief §5: demonstrate mastery through visuals, not paragraphs. A quiet triptych
@@ -7,6 +8,9 @@ import { mastery } from "@/lib/content";
 export function Craft() {
   return (
     <section id="craft" data-nav="light" className="section mx-auto max-w-editorial">
+      <Reveal>
+        <MeasureTicks className="mb-6 h-2.5 w-32 text-gold-ink" />
+      </Reveal>
       <Reveal as="p" className="eyebrow mb-10">
         {mastery.eyebrow}
       </Reveal>

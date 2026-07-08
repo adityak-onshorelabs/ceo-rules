@@ -29,7 +29,7 @@ export function Insights() {
   return (
     <section id="insights" data-nav="light" className="section mx-auto max-w-editorial">
       {/* Header */}
-      <header className="grid grid-cols-1 items-end gap-y-8 border-b border-hairline pb-[clamp(2.5rem,6vh,4rem)] lg:grid-cols-[1fr_auto]">
+      <header className="grid grid-cols-1 items-end gap-y-8 stitch-bottom pb-[clamp(2.5rem,6vh,4rem)] lg:grid-cols-[1fr_auto]">
         <div className="max-w-[42rem]">
           <p className="eyebrow mb-8">{insights.eyebrow}</p>
           <h1 className="t-display text-ink">{insights.title}</h1>
@@ -75,7 +75,7 @@ export function Insights() {
               as="article"
               key={n.id}
               delay={0.02}
-              className={`scroll-mt-28 border-b border-hairline py-[clamp(3rem,6vh,5rem)] first:pt-0 ${
+              className={`scroll-mt-28 stitch-bottom py-[clamp(3rem,6vh,5rem)] first:pt-0 ${
                 i === 0 ? "lg:pt-0" : ""
               }`}
             >

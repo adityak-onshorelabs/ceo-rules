@@ -14,7 +14,6 @@ export function Loader() {
   const [show, setShow] = useState(true);
 
   useEffect(() => {
-    // Hold the curtain, then lift. Shorter and still for reduced-motion.
     const hold = reduce ? 500 : 1500;
     const t = setTimeout(() => setShow(false), hold);
     document.body.style.overflow = "hidden";

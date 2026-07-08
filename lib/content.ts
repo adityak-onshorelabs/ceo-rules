@@ -238,15 +238,15 @@ export const footer = {
 // The founder is not an "About Us" (brief Part II §8): he is the house, a mentor
 // and teacher, never simply "founder."
 export const founder = {
-  eyebrow: "The men of the house",
+  eyebrow: "The house is a person",
   quote:
     "I have never sold a man a suit. I have only ever taught him how to wear one.",
   attribution: "Anis Soomar",
-  body: "Anis and his brother Arshad are the fourth generation of the family, a lifetime between them at the same work. Anis measures a man and listens to him; Arshad keeps the cloth and the craft. Together they steer you away from the loud choice, toward what your life actually asks for.",
-  roles: "Mentors. Teachers. Craftsmen. Custodians.",
-  note: "The word founder never quite fit them.",
-  image: "/images/founders.png",
-  imageAlt: "Anis and Arshad Soomar, the fourth generation of the house",
+  body: "For most of a lifetime he has done the same two things each morning: measure a man, and listen to him. He will steer you away from the loud cloth, toward what your life actually asks for.",
+  roles: "Mentor. Teacher. Craftsman. Guide. Storyteller.",
+  note: "The word founder never quite fit him.",
+  image: "/images/founder-stitching.webp",
+  imageAlt: "Anis Soomar at work, hand-stitching a lapel",
 };
 
 // The brand's central contradiction (brief Part II): the name sounds like hustle;
@@ -286,8 +286,8 @@ export const house = {
     eyebrow: "Since 1881",
     title: "Clothiers and tailors of impeccable pedigree.",
     lede: "Four generations of one family, and the same quiet work: dressing a man so the room believes him before he speaks.",
-    image: "/images/founders.png",
-    imageAlt: "Anis and Arshad Soomar, the fourth generation of the house",
+    image: "/images/atelier-conversation.webp",
+    imageAlt: "Anis Soomar in the atelier, in conversation over coffee",
   },
   lineage: {
     eyebrow: "The line",
@@ -306,7 +306,7 @@ export const house = {
       {
         marker: "30+",
         label: "Years as tailors",
-        body: "Anis and Arshad grow the fabric house into a tailoring house, stocking the world's finest mills and cutting for the men of the city.",
+        body: "Anis Soomar grows the fabric house into a tailoring house, stocking the world's finest mills and cutting for the men of the city.",
       },
       {
         marker: "Today",
@@ -319,19 +319,6 @@ export const house = {
   tagline: "Clothiers & Tailors Of Impeccable Pedigree.",
 };
 
-// The custodians: both brothers, co-equal. Anis is the teaching voice.
-export const custodians = {
-  eyebrow: "The custodians",
-  headline: "Two brothers, one hand.",
-  body: "Anis and Arshad Soomar are the fourth generation to keep this house. Anis is the teacher: he measures a man, listens, and steers him toward the cloth his life actually asks for. Arshad keeps the craft and the cloth, the quiet machinery behind every finished jacket. Neither has ever thought of it as selling.",
-  people: [
-    { name: "Anis Soomar", role: "The teacher. Measure, and counsel." },
-    { name: "Arshad Soomar", role: "The craftsman. Cloth, and construction." },
-  ],
-  image: "/images/founders.png",
-  imageAlt: "Anis and Arshad Soomar",
-  close: "The word founder never quite fit them.",
-};
 
 // The Cloth (Loro Piana model): material as hero, provenance over paragraphs.
 export const cloth = {

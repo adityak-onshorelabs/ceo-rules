@@ -27,12 +27,12 @@ export function Wardrobe() {
           </Reveal>
 
           {/* the pieces, each with a reason, not a price */}
-          <div className="mt-12 max-w-measure border-t border-hairline-dark">
+          <div className="mt-12 max-w-measure stitch-top-dark">
             {wardrobe.pieces.map((p, i) => (
               <Reveal
                 key={p.name}
                 delay={i * 0.05}
-                className="flex items-baseline justify-between gap-6 border-b border-hairline-dark py-5"
+                className="flex items-baseline justify-between gap-6 stitch-bottom-dark py-5"
               >
                 <span className="font-serif text-[clamp(1.15rem,1.6vw,1.5rem)] text-ink-dark">
                   {p.name}

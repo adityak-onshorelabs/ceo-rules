@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/Reveal";
 import { Plate } from "@/components/Plate";
+import { MeasureTicks } from "@/components/MeasureTicks";
 import { process } from "@/lib/content";
 
 // The Atelier (Aman model): the visit as an unhurried sequence. Numbered beats
@@ -12,6 +13,9 @@ export function Process() {
       className="section mx-auto max-w-editorial"
     >
       <div className="max-w-[44rem]">
+        <Reveal>
+          <MeasureTicks className="mb-6 h-2.5 w-32 text-gold-ink" />
+        </Reveal>
         <Reveal as="p" className="eyebrow mb-8">
           {process.eyebrow}
         </Reveal>
@@ -31,7 +35,7 @@ export function Process() {
               as="li"
               key={s.title}
               delay={0.03}
-              className="grid grid-cols-[auto_1fr] gap-x-[clamp(1.25rem,3vw,2.5rem)] border-t border-hairline py-[clamp(1.5rem,4vh,2.75rem)] last:border-b"
+              className="grid grid-cols-[auto_1fr] gap-x-[clamp(1.25rem,3vw,2.5rem)] stitch-top py-[clamp(1.5rem,4vh,2.75rem)] last:stitch-bottom"
             >
               <span
                 aria-hidden

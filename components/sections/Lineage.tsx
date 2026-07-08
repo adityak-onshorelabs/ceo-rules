@@ -23,7 +23,7 @@ export function Lineage() {
           <Reveal
             key={b.marker}
             delay={0.04}
-            className="grid grid-cols-1 items-baseline gap-x-[clamp(2rem,5vw,5rem)] gap-y-3 border-t border-hairline-dark pt-[clamp(1.5rem,4vh,3rem)] sm:grid-cols-[0.4fr_1fr]"
+            className="grid grid-cols-1 items-baseline gap-x-[clamp(2rem,5vw,5rem)] gap-y-3 stitch-top-dark pt-[clamp(1.5rem,4vh,3rem)] sm:grid-cols-[0.4fr_1fr]"
           >
             <div>
               <p className="font-serif leading-none text-gold-on-dark text-[clamp(3rem,7vw,5.5rem)] tracking-[-0.02em]">
@@ -39,6 +39,13 @@ export function Lineage() {
       <Reveal delay={0.06}>
         <p className="mt-[clamp(3rem,7vh,5rem)] font-serif text-[clamp(1.2rem,1.7vw,1.6rem)] italic text-gold-on-dark">
           {lineage.close}
+        </p>
+      </Reveal>
+
+      {/* Pedigree close. */}
+      <Reveal delay={0.08}>
+        <p className="mt-[clamp(2.5rem,6vh,4rem)] max-w-[24ch] font-serif text-[clamp(1.6rem,3vw,2.6rem)] leading-[1.15] text-ink-dark">
+          {house.tagline}
         </p>
       </Reveal>
     </section>

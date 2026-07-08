@@ -22,18 +22,18 @@ export default function Template({ children }: { children: ReactNode }) {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, ease: EASE, delay: 0.35 }}
+        transition={{ duration: 0.8, ease: EASE, delay: 0.7 }}
       >
         {children}
       </motion.div>
 
-      {/* The lifting panel. Covers the first frame, then sweeps up and out. */}
+      {/* The lifting panel. Holds a covered beat, then sweeps up and out. */}
       <motion.div
         aria-hidden
         className="pointer-events-none fixed inset-0 z-[90] bg-bg-dark"
         initial={{ y: 0 }}
         animate={{ y: "-100%" }}
-        transition={{ duration: 0.7, ease: EASE, delay: 0.05 }}
+        transition={{ duration: 1.05, ease: EASE, delay: 0.3 }}
       />
     </>
   );

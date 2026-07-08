@@ -1,6 +1,7 @@
 import { Reveal } from "@/components/Reveal";
 import { Plate } from "@/components/Plate";
 import { CtaLink } from "@/components/CtaLink";
+import { MeasureTicks } from "@/components/MeasureTicks";
 import { cloth } from "@/lib/content";
 
 // The Cloth (Loro Piana model): material as hero. The finest houses read as an
@@ -14,6 +15,9 @@ export function Cloth() {
     >
       {/* Opening statement */}
       <div className="max-w-[46rem]">
+        <Reveal>
+          <MeasureTicks className="mb-6 h-2.5 w-32 text-gold-ink" />
+        </Reveal>
         <Reveal as="p" className="eyebrow mb-8">
           {cloth.eyebrow}
         </Reveal>
@@ -37,8 +41,8 @@ export function Cloth() {
                 as="li"
                 key={h.name}
                 delay={0.03}
-                className={`grid grid-cols-1 gap-y-1 border-t border-hairline py-[clamp(1.25rem,3vh,2rem)] sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-x-8 ${
-                  i === cloth.houses.length - 1 ? "border-b" : ""
+                className={`grid grid-cols-1 gap-y-1 stitch-top py-[clamp(1.25rem,3vh,2rem)] sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-x-8 ${
+                  i === cloth.houses.length - 1 ? "stitch-bottom" : ""
                 }`}
               >
                 <div>
@@ -67,7 +71,7 @@ export function Cloth() {
       {/* One education pull, then out to Philosophy */}
       <Reveal
         delay={0.06}
-        className="mt-[clamp(3.5rem,8vh,6rem)] max-w-measure border-t border-hairline pt-10"
+        className="mt-[clamp(3.5rem,8vh,6rem)] max-w-measure stitch-top-gold pt-10"
       >
         <p className="eyebrow mb-4 text-gold-ink">{cloth.teach.eyebrow}</p>
         <p className="t-lede italic text-ink">{cloth.teach.body}</p>

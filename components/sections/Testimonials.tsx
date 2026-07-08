@@ -74,7 +74,7 @@ export function Testimonials() {
           if (e.key === "ArrowRight") go(1);
           if (e.key === "ArrowLeft") go(-1);
         }}
-        className="mt-[var(--s-16)] border-t border-hairline pt-[var(--s-12)] outline-offset-8"
+        className="mt-[var(--s-16)] stitch-top pt-[var(--s-12)] outline-offset-8"
       >
         <div className="relative flex min-h-[4.5em] items-start" aria-live="polite">
           <AnimatePresence mode="wait" custom={dir}>

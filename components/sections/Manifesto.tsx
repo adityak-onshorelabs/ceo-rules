@@ -22,7 +22,7 @@ export function Manifesto() {
           </div>
 
           {/* Education woven in: one true takeaway, set quietly apart. */}
-          <Reveal delay={0.1} className="mt-12 max-w-measure border-t border-hairline pt-8">
+          <Reveal delay={0.1} className="mt-12 max-w-measure stitch-top-gold pt-8">
             <p className="t-lede italic">{manifesto.takeaway}</p>
           </Reveal>
         </div>

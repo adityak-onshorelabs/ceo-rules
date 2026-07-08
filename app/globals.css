@@ -50,6 +50,11 @@
      sections no longer stack into ~350px dead gaps. */
   --section-y: clamp(6rem, 11vh, 10.5rem);
   --section-y-tight: clamp(3.75rem, 6.5vh, 6.5rem);
+
+  /* Basting-thread colour for the tailoring stitch dividers. A touch stronger
+     than --hairline so the dashes read as hand-tacking, not a faint rule. */
+  --stitch-ink: oklch(0.235 0.012 62 / 0.32);
+  --stitch-ink-dark: oklch(0.945 0.010 80 / 0.34);
 }
 
 @layer base {
@@ -112,6 +117,43 @@
      Bottom padding stays full so the section still breathes into the next one. */
   .section-tight {
     padding-top: var(--section-y-tight);
+  }
+
+  /* ---- Tailoring detail language: basting-stitch dividers ----
+     Drop-in for `border-t/b border-hairline`. A dashed gradient line painted at
+     the top/bottom edge reads as a row of hand-tacking. Background-based (not
+     border-image) so it renders identically across browsers and adds no layout.
+     Gold variant is the precious tacking, used sparingly. */
+  .stitch-top,
+  .stitch-bottom,
+  .stitch-top-dark,
+  .stitch-bottom-dark,
+  .stitch-top-gold {
+    background-repeat: no-repeat;
+    background-size: 100% 2px;
+  }
+  .stitch-top {
+    background-image: repeating-linear-gradient(90deg, var(--stitch-ink) 0 6px, transparent 6px 12px);
+    background-position: top left;
+  }
+  .stitch-bottom {
+    background-image: repeating-linear-gradient(90deg, var(--stitch-ink) 0 6px, transparent 6px 12px);
+    background-position: bottom left;
+  }
+  .stitch-top-dark {
+    background-image: repeating-linear-gradient(90deg, var(--stitch-ink-dark) 0 6px, transparent 6px 12px);
+    background-position: top left;
+  }
+  .stitch-bottom-dark {
+    background-image: repeating-linear-gradient(90deg, var(--stitch-ink-dark) 0 6px, transparent 6px 12px);
+    background-position: bottom left;
+  }
+  .stitch-top-gold {
+    background-image: repeating-linear-gradient(90deg, var(--gold-ink) 0 5px, transparent 5px 11px);
+    background-position: top left;
+  }
+  .on-dark .stitch-top-gold {
+    background-image: repeating-linear-gradient(90deg, var(--gold-on-dark) 0 5px, transparent 5px 11px);
   }
 
   .eyebrow {
