@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
+import { Plate } from "@/components/Plate";
 import { insights } from "@/lib/content";
 
 // The founder's insights as a long-form reading page: a sticky contents rail that
@@ -115,6 +116,16 @@ export function Insights() {
                     <p className="mt-6 font-serif text-[clamp(1.1rem,1.5vw,1.35rem)] italic text-gold-ink">
                       {n.coda}
                     </p>
+                  ) : null}
+
+                  {"image" in n && n.image ? (
+                    <figure className="mt-8">
+                      <Plate
+                        src={n.image}
+                        alt={typeof n.imageAlt === "string" ? n.imageAlt : ""}
+                        className="aspect-[3/2] w-full"
+                      />
+                    </figure>
                   ) : null}
                 </div>
               </div>
