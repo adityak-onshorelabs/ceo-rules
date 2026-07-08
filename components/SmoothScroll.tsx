@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 // Lightweight smooth scrolling: a rAF lerp toward a wheel-driven target, plus
@@ -11,19 +11,32 @@ const EASE = 0.095;
 
 export function SmoothScroll() {
   const pathname = usePathname();
+  // Set by the scroll loop below so the route-change effect can hard-reset the
+  // loop's internal target/current. Null on touch/reduced-motion (loop is off).
+  const resetRef = useRef<((y: number) => void) | null>(null);
 
-  // Cross-page section links (e.g. "/#visit" from another route): after landing,
-  // scroll to the hashed section. Next's App Router doesn't do this reliably.
+  // On every route change, put the new page where it belongs: the hashed section
+  // if the URL has one, otherwise the top. Without this, the smooth loop's stale
+  // target (e.g. the previous page's bottom) overrides the browser scroll reset.
   useEffect(() => {
+    const jump = (y: number) => {
+      if (resetRef.current) resetRef.current(y);
+      else window.scrollTo(0, y);
+    };
+
     const hash = decodeURIComponent(window.location.hash.slice(1));
-    if (!hash) return;
+    if (!hash) {
+      jump(0);
+      return;
+    }
+
     let tries = 0;
     let raf = 0;
     const settle = () => {
       const el = document.getElementById(hash);
       if (el) {
         const top = el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
-        window.scrollTo(0, Math.max(0, top));
+        jump(Math.max(0, top));
       } else if (tries++ < 10) {
         raf = requestAnimationFrame(settle);
       }
@@ -68,6 +81,18 @@ export function SmoothScroll() {
         rafId = requestAnimationFrame(loop);
       }
     };
+
+    // Hard reset: stop any in-flight animation and snap both target and current
+    // to y. Used by the route-change effect so a new page never inherits the old
+    // page's scroll target.
+    const reset = (y: number) => {
+      running = false;
+      cancelAnimationFrame(rafId);
+      target = clamp(y);
+      current = target;
+      window.scrollTo(0, target);
+    };
+    resetRef.current = reset;
 
     const onWheel = (e: WheelEvent) => {
       if (e.ctrlKey) return; // let pinch-zoom through
@@ -115,6 +140,7 @@ export function SmoothScroll() {
 
     return () => {
       cancelAnimationFrame(rafId);
+      resetRef.current = null;
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
