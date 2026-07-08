@@ -36,7 +36,7 @@ export function Insights() {
           <p className="mt-8 max-w-measure t-lede text-ink">{insights.intro}</p>
         </div>
         <p className="eyebrow tabular-nums text-ink-faint lg:text-right">
-          {String(entries.length).padStart(2, "0")} insights
+          {String(entries.length).padStart(2, "0")} reflections
         </p>
       </header>
 

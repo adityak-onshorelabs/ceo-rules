@@ -32,6 +32,24 @@
       oklch(0.28 0.02 55) 45%,
       oklch(0.185 0.012 58) 100%
     );
+
+  /* Space scale (DESIGN.md) — the one place intra-section whitespace is tuned.
+     Consume via arbitrary utilities, e.g. mt-[var(--s-12)]. */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-6: 1.5rem;
+  --s-8: 2rem;
+  --s-12: 3rem;
+  --s-16: 4rem;
+  --s-24: 6rem;
+  --s-32: 8rem;
+
+  /* Section rhythm. Tuned down from the old clamp(6rem,12vh,11rem) so adjacent
+     sections no longer stack into ~350px dead gaps. */
+  --section-y: clamp(6rem, 11vh, 10.5rem);
+  --section-y-tight: clamp(3.75rem, 6.5vh, 6.5rem);
 }
 
 @layer base {
@@ -83,11 +101,17 @@
 }
 
 @layer components {
-  /* Editorial section rhythm; intentionally NOT uniform (DESIGN.md). */
+  /* Editorial section rhythm; intentionally NOT uniform (DESIGN.md).
+     Rule: a surface change (light <-> dark) earns a full interval; a same-surface
+     adjacency uses .section-tight so the seam is one gap, not two maxed-out ones. */
   .section {
-    /* Generous, luxury breathing room. Two adjacent sections stack this, which is fine. */
-    padding-block: clamp(6rem, 12vh, 11rem);
+    padding-block: var(--section-y);
     padding-inline: clamp(1.75rem, 6vw, 7rem);
+  }
+  /* Directional: only snugs a band UP under the one above (e.g. Identity Band A->B).
+     Bottom padding stays full so the section still breathes into the next one. */
+  .section-tight {
+    padding-top: var(--section-y-tight);
   }
 
   .eyebrow {
@@ -101,28 +125,29 @@
   }
 
   /* Type scale (DESIGN.md), fluid clamps. */
+  /* Scale to DESIGN.md commitment: serif presence carries the premium. */
   .t-display {
     font-family: var(--font-serif), Georgia, serif;
-    font-size: clamp(2.6rem, 5.2vw, 5.2rem);
-    line-height: 1.0;
+    font-size: clamp(3rem, 6.5vw, 6.75rem);
+    line-height: 0.98;
     letter-spacing: -0.02em;
     font-variation-settings: "opsz" 144;
   }
   .t-h1 {
     font-family: var(--font-serif), Georgia, serif;
-    font-size: clamp(1.9rem, 3.4vw, 3.1rem);
-    line-height: 1.08;
-    letter-spacing: -0.012em;
+    font-size: clamp(2.15rem, 3.9vw, 3.6rem);
+    line-height: 1.06;
+    letter-spacing: -0.014em;
     font-variation-settings: "opsz" 110;
   }
   .t-h2 {
     font-family: var(--font-serif), Georgia, serif;
-    font-size: clamp(1.45rem, 2.4vw, 2.05rem);
-    line-height: 1.14;
+    font-size: clamp(1.6rem, 2.7vw, 2.4rem);
+    line-height: 1.12;
     font-variation-settings: "opsz" 84;
   }
   .t-lede {
-    font-size: clamp(1.05rem, 1.3vw, 1.25rem);
+    font-size: clamp(1.1rem, 1.5vw, 1.35rem);
     line-height: 1.6;
     color: var(--ink-muted);
   }

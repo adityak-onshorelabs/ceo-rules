@@ -13,7 +13,7 @@ export function MeetAnis() {
       <div className="grid grid-cols-1 items-center gap-x-[clamp(3rem,7vw,7rem)] gap-y-14 lg:grid-cols-[1fr_0.82fr]">
         {/* words */}
         <div>
-          <Reveal as="p" className="eyebrow mb-10">
+          <Reveal as="p" className="eyebrow mb-8">
             {founder.eyebrow}
           </Reveal>
 
@@ -34,13 +34,13 @@ export function MeetAnis() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <p className="mt-10 font-serif text-[clamp(1.1rem,1.5vw,1.4rem)] text-gold-on-dark">
+            <p className="mt-8 font-serif text-[clamp(1.1rem,1.5vw,1.4rem)] text-gold-on-dark">
               {founder.roles}
             </p>
           </Reveal>
 
           <Reveal delay={0.12}>
-            <p className="mt-4 text-[0.9rem] italic text-ink-dark-muted">{founder.note}</p>
+            <p className="mt-3 text-[0.9rem] italic text-ink-dark-muted">{founder.note}</p>
           </Reveal>
         </div>
 

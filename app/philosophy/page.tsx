@@ -4,12 +4,12 @@ import { Insights } from "@/components/sections/Insights";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Insights — CEO Rules",
+  title: "Philosophy — CEO Rules",
   description:
     "What the founder sees. A little of what Anis has learned on fit, fabric, and dressing well, shared freely.",
 };
 
-export default function InsightsPage() {
+export default function PhilosophyPage() {
   return (
     <>
       <Nav />

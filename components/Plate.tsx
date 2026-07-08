@@ -33,9 +33,10 @@ export function Plate({
           fill
           priority={priority}
           sizes="100vw"
+          quality={90}
           onError={() => setOk(false)}
           className="object-cover"
-          style={{ filter: "saturate(0.9) contrast(1.02)" }}
+          style={{ filter: "saturate(0.84) contrast(1.09) brightness(0.97)" }}
         />
       )}
       {scrim !== "none" && (

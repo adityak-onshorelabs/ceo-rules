@@ -3,13 +3,16 @@
 
 export const nav = {
   wordmark: "CEO RULES",
-  // Root-relative so the nav works from any page.
+  // Root-relative so the nav works from any page. Quiet links + one gold CTA
+  // (DESIGN.md): the whole site drives toward the visit, so it is the one
+  // action set apart.
   links: [
-    { label: "Home", href: "/" },
+    { label: "The House", href: "/house" },
+    { label: "The Cloth", href: "/the-cloth" },
     { label: "The Wardrobe", href: "/the-wardrobe" },
-    { label: "Insights", href: "/insights" },
-    { label: "Visit", href: "/#visit" },
+    { label: "Philosophy", href: "/philosophy" },
   ],
+  cta: { label: "Visit the Atelier", href: "/atelier" },
 };
 
 // Real client reviews (lightly edited for length). The airport/Goa story is featured.
@@ -17,7 +20,7 @@ export const testimonials = {
   eyebrow: "In their words",
   featured: {
     lead: "They don't just make great suits. They deliver legendary service.",
-    body: "Our family has gone to CEO Rules for nearly twenty years, and they still find ways to exceed us. I flew into Mumbai for a wedding with no time to spare. Anis had me fitted the same day, and sent tailors to my hotel when jet-lag kept me from returning. He flew a staff member with our finished suits from Mumbai to Goa, and delivered them into our room closets. When I noticed a tiny flaw near a button on my way back to the US, his tailor met me at Mumbai airport, waited for my flight from Goa, and fixed it in under five minutes outside baggage claim.",
+    body: "Our family has gone to CEO Rules for nearly twenty years. I once flew into Mumbai for a wedding with no time to spare; Anis fitted me the same day, then flew a tailor with our finished suits to Goa. When I noticed a tiny flaw on a button heading back to the US, his tailor met me at the airport and fixed it in five minutes outside baggage claim.",
     author: "Mujtaba Khambatti",
   },
   items: [
@@ -38,18 +41,8 @@ export const testimonials = {
     },
     {
       quote:
-        "Perfect tailoring, perfect guidance in styling, and a real upgrade in the way my clothes look.",
-      author: "Dr. Gopal Sharma",
-    },
-    {
-      quote:
         "The family is so involved in the entire process that you won't leave dissatisfied. A customer for more than eight years.",
       author: "Pavan Shetty",
-    },
-    {
-      quote:
-        "They were very patient with me, and I never felt any pressure. I will definitely be back for more.",
-      author: "Bogdan Z.",
     },
   ],
 };
@@ -106,7 +99,7 @@ export const heritage = {
   lead: "We have told you what the house believes. We have not told you how long it has believed it.",
   year: "1881",
   years: "One hundred and forty-five years.",
-  body: "The house of Haji Soomar opened in Crawford Market in 1881, and has been cutting cloth ever since. What began as one man's trade became a family's language, refined and handed down, generation after generation.",
+  body: "The house of Haji Soomar opened in Crawford Market in 1881, and has been cutting cloth ever since. What began as one man's trade became a family's language, handed down generation after generation.",
   close: "Now the number means something.",
 };
 
@@ -170,7 +163,7 @@ export const visit = {
 // Insights: the founder sharing knowledge (education as generosity, brief §13).
 // Adapted from CEO Rules' own Instagram posts.
 export const insights = {
-  eyebrow: "Insights",
+  eyebrow: "Philosophy",
   title: "What the founder sees.",
   intro:
     "Anis has spent a lifetime noticing what most people miss. A little of what he has learned, shared freely, whether or not you ever commission a suit.",
@@ -228,23 +221,32 @@ export const insights = {
 
 export const footer = {
   wordmark: "CEO RULES",
-  line: "A family house of bespoke tailoring. Bandra, Mumbai.",
+  line: "A family house of bespoke tailoring, in Mumbai.",
   since: "Est. 1881",
   instagram: { label: "Instagram", href: "https://www.instagram.com/ceorules/" },
+  addressLabel: "The house",
+  address: [
+    "Shabistan CHSL, 319/A",
+    "Dr Ambedkar Road, Bandra West",
+    "Mumbai, Maharashtra 400 050",
+  ],
+  hoursLabel: "Hours",
+  hours: "Open every day · 10:30 am to 9 pm",
+  whatsapp: { label: "+91 98333 14141", href: "https://wa.me/919833314141" },
 };
 
 // The founder is not an "About Us" (brief Part II §8): he is the house, a mentor
 // and teacher, never simply "founder."
 export const founder = {
-  eyebrow: "The house is a person",
+  eyebrow: "The men of the house",
   quote:
     "I have never sold a man a suit. I have only ever taught him how to wear one.",
   attribution: "Anis Soomar",
-  body: "For most of a lifetime he has done the same two things each morning: measure a man, and listen to him. He will steer you away from the loud cloth, toward what your life actually asks for.",
-  roles: "Mentor. Teacher. Craftsman. Guide. Storyteller.",
-  note: "The word founder never quite fit him.",
-  image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3728.jpg",
-  imageAlt: "Anis Soomar fitting a jacket at the shoulder",
+  body: "Anis and his brother Arshad are the fourth generation of the family, a lifetime between them at the same work. Anis measures a man and listens to him; Arshad keeps the cloth and the craft. Together they steer you away from the loud choice, toward what your life actually asks for.",
+  roles: "Mentors. Teachers. Craftsmen. Custodians.",
+  note: "The word founder never quite fit them.",
+  image: "/images/founders.png",
+  imageAlt: "Anis and Arshad Soomar, the fourth generation of the house",
 };
 
 // The brand's central contradiction (brief Part II): the name sounds like hustle;
@@ -272,4 +274,101 @@ export const identity = {
   // "You arrive successful. You leave significant."
   image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3737.jpg",
   imageAlt: "Inside the CEO Rules store, Bandra",
+};
+
+// ---------------------------------------------------------------------------
+// Secondary pages (The House / The Cloth / The Atelier). Copy provisional.
+// ---------------------------------------------------------------------------
+
+// The House (Brioni /history model): the pedigree, told as a line handed down.
+export const house = {
+  hero: {
+    eyebrow: "Since 1881",
+    title: "Clothiers and tailors of impeccable pedigree.",
+    lede: "Four generations of one family, and the same quiet work: dressing a man so the room believes him before he speaks.",
+    image: "/images/founders.png",
+    imageAlt: "Anis and Arshad Soomar, the fourth generation of the house",
+  },
+  lineage: {
+    eyebrow: "The line",
+    intro: "It did not begin as a tailoring house. It began as cloth.",
+    beats: [
+      {
+        marker: "1881",
+        label: "A house of fabrics",
+        body: "The family opens in Crawford Market, trading in cloth. First a trade, and then, slowly, a language.",
+      },
+      {
+        marker: "IV",
+        label: "Four generations",
+        body: "The knowledge is handed down, hand to hand, each generation adding a little and letting nothing essential fall away.",
+      },
+      {
+        marker: "30+",
+        label: "Years as tailors",
+        body: "Anis and Arshad grow the fabric house into a tailoring house, stocking the world's finest mills and cutting for the men of the city.",
+      },
+      {
+        marker: "Today",
+        label: "CEO Rules, Bandra",
+        body: "One house, where a man is measured, taught, and sent back into the room a little more himself.",
+      },
+    ],
+    close: "Now the number means something.",
+  },
+  tagline: "Clothiers & Tailors Of Impeccable Pedigree.",
+};
+
+// The custodians: both brothers, co-equal. Anis is the teaching voice.
+export const custodians = {
+  eyebrow: "The custodians",
+  headline: "Two brothers, one hand.",
+  body: "Anis and Arshad Soomar are the fourth generation to keep this house. Anis is the teacher: he measures a man, listens, and steers him toward the cloth his life actually asks for. Arshad keeps the craft and the cloth, the quiet machinery behind every finished jacket. Neither has ever thought of it as selling.",
+  people: [
+    { name: "Anis Soomar", role: "The teacher. Measure, and counsel." },
+    { name: "Arshad Soomar", role: "The craftsman. Cloth, and construction." },
+  ],
+  image: "/images/founders.png",
+  imageAlt: "Anis and Arshad Soomar",
+  close: "The word founder never quite fit them.",
+};
+
+// The Cloth (Loro Piana model): material as hero, provenance over paragraphs.
+export const cloth = {
+  eyebrow: "The cloth",
+  headline: "The cloth remembers where it came from.",
+  lead: "A jacket is only ever as honest as the cloth beneath it. We keep the finest houses in the world, and we keep them for what they do, not for what they say.",
+  housesLabel: "The houses we keep",
+  houses: [
+    { name: "Dormeuil", place: "Paris, since 1842", line: "Sportex and Tonik, cloths with a memory of their own." },
+    { name: "Loro Piana", place: "Quarona, Italy", line: "The gift of kings: the world's finest wool and cashmere." },
+    { name: "Ermenegildo Zegna", place: "Trivero, Italy", line: "Trofeo and 15milmil15, milled from the longest fibres." },
+    { name: "Holland & Sherry", place: "Peebles, Scotland", line: "English and Scottish cloth, cut for weather and for weight." },
+    { name: "Scabal", place: "Brussels and Huddersfield", line: "Super 150s and diamond chip, cloth worn like jewellery." },
+  ],
+  detailImage: "/images/tuxedo-detail.webp",
+  detailAlt: "A black tuxedo on the stand, satin lapel and pleated shirt",
+  fabricImage: "/images/IMG_3735.jpg",
+  fabricAlt: "Navy cloth woven exclusively for CEO Rules by Huddersfield",
+  teach: {
+    eyebrow: "Why it matters",
+    body: "Canvas, not glue. A chest shaped by hand holds the cloth to you and lets it breathe, so a suit only looks better with the years.",
+    link: { label: "More from the founder", href: "/philosophy" },
+  },
+};
+
+// The Atelier (Aman model): the store as a place, the visit as an experience.
+export const process = {
+  eyebrow: "The visit",
+  headline: "Nothing to buy today. Only a conversation.",
+  lead: "A first visit takes an hour and asks nothing of you. This is how it goes.",
+  steps: [
+    { title: "The conversation", body: "Over coffee, we talk about your life before your measurements: the rooms you walk into, the way you want to be read." },
+    { title: "The measure", body: "Anis takes the measure himself. It is the one line a tailor cannot fake, so it is taken slowly." },
+    { title: "The cloth", body: "We put the finest houses in front of you, then narrow them to the few that suit your life, not the season." },
+    { title: "The fittings", body: "The jacket is built over fittings, a canvas chest shaped by hand, corrected until it disappears on you." },
+    { title: "The delivery", body: "It comes to you finished. And if it ever needs us again, we come to you." },
+  ],
+  image: "/images/atelier-conversation.webp",
+  imageAlt: "Anis Soomar with a client over coffee at the atelier",
 };

@@ -61,8 +61,8 @@ export function Nav() {
     : atTop
       ? "bg-transparent"
       : onDark
-        ? "border-b border-hairline-dark bg-bg-dark/80 backdrop-blur-[3px]"
-        : "border-b border-hairline bg-bg/90 backdrop-blur-[3px]";
+        ? "border-b border-hairline-dark bg-bg-dark/95 backdrop-blur-md"
+        : "border-b border-hairline bg-bg/95 backdrop-blur-md";
   const darkText = onDark && !open;
 
   return (
@@ -71,13 +71,14 @@ export function Nav() {
         darkText ? "text-ink-dark" : "text-ink"
       }`}
       style={
-        // Legibility glow only when ivory text sits over a dark image (the hero).
-        atTop && darkText
+        // Legibility glow whenever ivory text sits on a dark surface, so it holds
+        // up over bright regions of a full-bleed image (hero, the founder portrait).
+        darkText
           ? { textShadow: "0 1px 16px oklch(0.14 0.012 58 / 0.65)" }
           : undefined
       }
     >
-      <nav className="mx-auto flex max-w-editorial items-center justify-between px-[clamp(1.5rem,6vw,6rem)] py-5">
+      <nav className="flex w-full items-center justify-between px-[clamp(1.5rem,6vw,4rem)] py-5">
         <Link
           href="/"
           className="relative z-10 font-sans text-sm font-semibold uppercase tracking-[0.22em]"
@@ -91,7 +92,7 @@ export function Nav() {
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          className="relative z-10 -mr-2 flex h-10 w-10 items-center justify-center md:hidden"
+          className="relative z-10 -mr-2 ml-auto flex h-10 w-10 items-center justify-center md:hidden"
         >
           <span className="relative block h-3.5 w-6" aria-hidden>
             <span
@@ -107,7 +108,7 @@ export function Nav() {
           </span>
         </button>
 
-        <div className="hidden items-center gap-9 md:flex">
+        <div className="hidden items-center gap-x-[clamp(1.75rem,3vw,2.75rem)] md:flex">
           {nav.links.map((l) => {
             const active = isActive(l.href);
             return (
@@ -133,6 +134,16 @@ export function Nav() {
               </Link>
             );
           })}
+
+          {/* The one action set apart: a sharp gold-filled container (radius 0, no pill). */}
+          <Link
+            href={nav.cta.href}
+            className={`inline-flex items-center rounded-none px-4 py-2 font-sans text-[0.72rem] uppercase tracking-[0.14em] text-bg-dark transition-colors duration-300 ease-out-quart ${
+              onDark ? "bg-gold-on-dark hover:bg-gold" : "bg-gold hover:bg-gold-ink"
+            }`}
+          >
+            {nav.cta.label}
+          </Link>
         </div>
       </nav>
 
@@ -170,6 +181,16 @@ export function Nav() {
               </Link>
             );
           })}
+
+          {/* Primary action: the same sharp gold container as desktop. */}
+          <Link
+            href={nav.cta.href}
+            onClick={() => setOpen(false)}
+            style={{ transitionDelay: open ? `${nav.links.length * 40}ms` : "0ms" }}
+            className="mt-8 inline-flex items-center rounded-none bg-gold px-6 py-3.5 font-sans text-[0.8rem] uppercase tracking-[0.14em] text-bg-dark transition-colors duration-300 ease-out-quart hover:bg-gold-ink"
+          >
+            {nav.cta.label}
+          </Link>
         </nav>
       </div>
     </header>

@@ -9,7 +9,7 @@ export function Manifesto() {
       <div className="grid grid-cols-1 items-center gap-x-[clamp(2.5rem,6vw,6rem)] gap-y-14 lg:grid-cols-[1fr_0.72fr]">
         {/* Left: the words */}
         <div>
-          <Reveal as="p" className="eyebrow mb-12">
+          <Reveal as="p" className="eyebrow mb-8">
             {manifesto.eyebrow}
           </Reveal>
 
@@ -22,7 +22,7 @@ export function Manifesto() {
           </div>
 
           {/* Education woven in: one true takeaway, set quietly apart. */}
-          <Reveal delay={0.1} className="mt-14 max-w-measure border-t border-hairline pt-8">
+          <Reveal delay={0.1} className="mt-12 max-w-measure border-t border-hairline pt-8">
             <p className="t-lede italic">{manifesto.takeaway}</p>
           </Reveal>
         </div>

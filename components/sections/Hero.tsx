@@ -3,6 +3,7 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Plate } from "@/components/Plate";
+import { Grain } from "@/components/Grain";
 import { CtaLink } from "@/components/CtaLink";
 import { hero } from "@/lib/content";
 
@@ -35,6 +36,7 @@ export function Hero() {
           className="h-full w-full"
         />
       </motion.div>
+      <Grain />
 
       {/* Legibility scrims. Top: for the nav. Left: a dark bed for the copy column so the
           ivory type never bleeds over bright areas of the image. Bottom: anchors the base.

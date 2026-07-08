@@ -6,7 +6,8 @@
 next-env.d.ts
 .env*.local
 .DS_Store
+desktop.ini
 
-# Images are served from ImageKit, not committed
+# Root /images is a local source dump; not served. public/images IS served
+# (secondary pages reference local /images/* assets), so it is committed.
 /images
-/public/images

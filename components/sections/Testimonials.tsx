@@ -36,7 +36,7 @@ export function Testimonials() {
       data-nav="light"
       className="section mx-auto max-w-editorial"
     >
-      <Reveal as="p" className="eyebrow mb-14">
+      <Reveal as="p" className="eyebrow mb-8">
         {testimonials.eyebrow}
       </Reveal>
 
@@ -74,7 +74,7 @@ export function Testimonials() {
           if (e.key === "ArrowRight") go(1);
           if (e.key === "ArrowLeft") go(-1);
         }}
-        className="mt-[clamp(4.5rem,11vh,9rem)] border-t border-hairline pt-[clamp(2.5rem,6vh,4rem)] outline-offset-8"
+        className="mt-[var(--s-16)] border-t border-hairline pt-[var(--s-12)] outline-offset-8"
       >
         <div className="relative flex min-h-[4.5em] items-start" aria-live="polite">
           <AnimatePresence mode="wait" custom={dir}>

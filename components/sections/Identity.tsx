@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/Reveal";
 import { Plate } from "@/components/Plate";
+import { Grain } from "@/components/Grain";
 import { identity } from "@/lib/content";
 
 export function Identity() {
@@ -9,7 +10,7 @@ export function Identity() {
           A darkened cloth texture sits behind, felt more than seen. */}
       <div
         data-nav="dark"
-        className="on-dark relative flex min-h-[80svh] items-center overflow-hidden"
+        className="on-dark relative flex min-h-[60svh] items-center overflow-hidden"
       >
         <div className="absolute inset-0">
           <Plate
@@ -24,6 +25,7 @@ export function Identity() {
           className="absolute inset-0"
           style={{ background: "oklch(0.15 0.012 58 / 0.66)" }}
         />
+        <Grain />
         {/* darker bed under the left-aligned copy so text never blends over bright cloth */}
         <div
           aria-hidden
@@ -37,7 +39,7 @@ export function Identity() {
           className="relative z-10 section mx-auto w-full max-w-editorial"
           style={{ textShadow: "0 1px 20px oklch(0.12 0.012 58 / 0.6)" }}
         >
-          <Reveal as="p" className="eyebrow mb-10">
+          <Reveal as="p" className="eyebrow mb-8">
             {identity.eyebrow}
           </Reveal>
           <Reveal>
@@ -51,8 +53,9 @@ export function Identity() {
         </div>
       </div>
 
-      {/* Band B — the truth. Same editorial layout as the Manifesto. */}
-      <div data-nav="light" className="section mx-auto max-w-editorial">
+      {/* Band B — the truth. Same editorial layout as the Manifesto.
+          Tight seam: Band A -> Band B is one intentional cut, not two stacked gaps. */}
+      <div data-nav="light" className="section section-tight mx-auto max-w-editorial">
         <div className="grid grid-cols-1 items-center gap-x-[clamp(2.5rem,6vw,6rem)] gap-y-14 lg:grid-cols-[1fr_0.72fr]">
           <div>
             <Reveal>
@@ -65,7 +68,7 @@ export function Identity() {
             </Reveal>
             <Reveal
               delay={0.1}
-              className="mt-14 max-w-measure border-t border-hairline pt-8"
+              className="mt-12 max-w-measure border-t border-hairline pt-8"
             >
               <p className="t-lede italic text-gold-ink">{identity.reconcile}</p>
             </Reveal>

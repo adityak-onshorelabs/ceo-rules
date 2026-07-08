@@ -15,7 +15,7 @@ export function Heritage() {
 
       {/* The reveal itself. */}
       <Reveal delay={0.1}>
-        <p className="mt-[clamp(3rem,8vh,7rem)] font-serif leading-none text-gold-on-dark text-[clamp(4.5rem,15vw,13rem)] tracking-[-0.02em]">
+        <p className="mt-[var(--s-16)] font-serif leading-none text-gold-on-dark text-[clamp(4.5rem,15vw,13rem)] tracking-[-0.02em]">
           {heritage.year}
         </p>
       </Reveal>
@@ -24,7 +24,7 @@ export function Heritage() {
       </Reveal>
 
       <Reveal delay={0.1}>
-        <p className="mt-[clamp(2.5rem,6vh,5rem)] max-w-measure t-lede text-ink-dark-muted">
+        <p className="mt-[var(--s-12)] max-w-measure t-lede text-ink-dark-muted">
           {heritage.body}
         </p>
       </Reveal>
