@@ -564,8 +564,16 @@ export const cloth = {
     line: "Canvas, not glue.",
     body: "A chest shaped by hand holds the cloth to you and lets it breathe.",
     imageId: "canvasChest" as const,
-    fitImageId: "craftFitBasted" as const,
-    fit: "The jacket is corrected on the person.",
+  },
+  fit: {
+    label: "The Fit",
+    body: "Adjusted on the man, not the form.",
+    imageId: "craftFitBasted" as const,
+  },
+  finish: {
+    label: "The Finish",
+    body: "The work most people never see.",
+    imageId: "craftFinishThread" as const,
   },
   teach: {
     link: { label: "More from the founder", href: "/philosophy" },

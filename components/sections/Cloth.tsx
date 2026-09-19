@@ -79,20 +79,36 @@ export function Cloth() {
             className="aspect-[3/2] w-full"
           />
         </figure>
+      </div>
 
-        <div className="mt-10 flex flex-col items-end">
-          <div className="w-[80%] max-w-[20rem]">
-            <p className="t-annotate max-w-[22ch] text-ink">{cloth.canvas.fit}</p>
-            <figure className="mt-5">
-              <Plate
-                image={img(cloth.canvas.fitImageId)}
-                sizes="320px"
-                className="aspect-[3/2] w-full"
-              />
-            </figure>
-          </div>
+      <div className="mt-12 flex flex-col items-end lg:mt-16">
+        <div className="w-[80%] max-w-[20rem]">
+          <Reveal as="p" className="t-meta text-ink-muted">
+            {cloth.fit.label}
+          </Reveal>
+          <p className="t-annotate mt-2 max-w-[22ch] text-ink">{cloth.fit.body}</p>
+          <figure className="mt-5">
+            <Plate
+              image={img(cloth.fit.imageId)}
+              sizes="320px"
+              className="aspect-[3/2] w-full"
+            />
+          </figure>
         </div>
+      </div>
 
+      <div className="mt-12 max-w-[32rem] lg:mt-16">
+        <Reveal as="p" className="t-meta text-ink-muted">
+          {cloth.finish.label}
+        </Reveal>
+        <p className="t-annotate mt-2 max-w-[26ch] text-ink-muted">{cloth.finish.body}</p>
+        <figure className="mt-5">
+          <Plate
+            image={img(cloth.finish.imageId)}
+            sizes="(min-width: 1024px) 512px, 92vw"
+            className="aspect-[3/2] w-full"
+          />
+        </figure>
         <div className="mt-10">
           <CtaLink href={cloth.teach.link.href}>{cloth.teach.link.label}</CtaLink>
         </div>
