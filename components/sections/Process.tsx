@@ -14,7 +14,7 @@ export function Process() {
     >
       <div className="max-w-[44rem]">
         <Reveal>
-          <MeasureTicks className="mb-6 h-2.5 w-32 text-gold-ink" />
+          <MeasureTicks className="mb-6 h-2.5 w-32 text-walnut" />
         </Reveal>
         <Reveal as="p" className="eyebrow mb-8">
           {process.eyebrow}
@@ -39,7 +39,7 @@ export function Process() {
             >
               <span
                 aria-hidden
-                className="font-serif leading-none text-ink-faint text-[clamp(1.75rem,3.5vw,2.75rem)]"
+                className="font-serif leading-none text-ink-muted text-[clamp(1.75rem,3.5vw,2.75rem)]"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -56,6 +56,7 @@ export function Process() {
           <Plate
             src={process.image}
             alt={process.imageAlt}
+            sizes="(min-width: 1024px) 38vw, 100vw"
             className="aspect-[4/5] w-full"
           />
         </Reveal>

@@ -36,7 +36,7 @@ export function Insights() {
           <h1 className="t-display text-ink">{insights.title}</h1>
           <p className="mt-8 max-w-measure t-lede text-ink">{insights.intro}</p>
         </div>
-        <p className="eyebrow tabular-nums text-ink-faint lg:text-right">
+        <p className="eyebrow tabular-nums text-ink-muted lg:text-right">
           {String(entries.length).padStart(2, "0")} reflections
         </p>
       </header>
@@ -50,7 +50,7 @@ export function Insights() {
             <ol className="space-y-3.5">
               {entries.map((e, i) => (
                 <li key={e.id} className="flex gap-3 leading-snug">
-                  <span className="eyebrow tabular-nums pt-0.5 text-ink-faint">
+                  <span className="eyebrow tabular-nums pt-0.5 text-ink-muted">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <a
@@ -58,7 +58,7 @@ export function Insights() {
                     className={`text-[0.95rem] transition-colors duration-300 ${
                       active === e.id
                         ? "text-ink"
-                        : "text-ink-faint hover:text-ink-muted"
+                        : "text-ink-muted hover:text-ink"
                     }`}
                   >
                     {e.tag}
@@ -89,13 +89,13 @@ export function Insights() {
               >
                 <span
                   aria-hidden
-                  className="font-serif leading-none text-ink-faint text-[clamp(2rem,4vw,3.25rem)]"
+                  className="font-serif leading-none text-ink-muted text-[clamp(2rem,4vw,3.25rem)]"
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
 
                 <div className="max-w-measure">
-                  <p className="eyebrow mb-4 text-gold-ink">{n.tag}</p>
+                  <p className="eyebrow mb-4 text-walnut">{n.tag}</p>
                   <h2 className="t-h2 text-balance text-ink">{n.title}</h2>
                   <p className="mt-5 text-ink-muted">{n.body}</p>
 
@@ -103,7 +103,7 @@ export function Insights() {
                     <ul className="mt-7 space-y-3 rounded-[2px] bg-surface p-[clamp(1.25rem,3vw,2rem)]">
                       {n.list.map((item) => (
                         <li key={item} className="flex gap-3 text-ink">
-                          <span aria-hidden className="mt-1 text-gold-ink">
+                          <span aria-hidden className="mt-1 text-walnut">
                             &#10003;
                           </span>
                           <span>{item}</span>
@@ -113,7 +113,7 @@ export function Insights() {
                   ) : null}
 
                   {"coda" in n && n.coda ? (
-                    <p className="mt-6 font-serif text-[clamp(1.1rem,1.5vw,1.35rem)] italic text-gold-ink">
+                    <p className="mt-6 font-serif text-[clamp(1.1rem,1.5vw,1.35rem)] italic text-walnut">
                       {n.coda}
                     </p>
                   ) : null}
@@ -123,6 +123,7 @@ export function Insights() {
                       <Plate
                         src={n.image}
                         alt={typeof n.imageAlt === "string" ? n.imageAlt : ""}
+                        sizes="(min-width: 1024px) 42vw, 100vw"
                         className="aspect-[3/2] w-full"
                       />
                     </figure>

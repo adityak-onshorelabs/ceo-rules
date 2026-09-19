@@ -1,40 +1,36 @@
 import type { Metadata } from "next";
 import { Nav } from "@/components/Nav";
 import { PageHero } from "@/components/PageHero";
-import { Plate } from "@/components/Plate";
-import { Grain } from "@/components/Grain";
 import { Cloth } from "@/components/sections/Cloth";
 import { Footer } from "@/components/Footer";
 import { cloth } from "@/lib/content";
+import { img } from "@/lib/images";
+
+const opening = img("clothTable");
 
 export const metadata: Metadata = {
   title: "The Cloth — CEO Rules",
   description:
-    "The cloth remembers where it came from. The world's finest houses, kept and cut in Bandra: Dormeuil, Loro Piana, Zegna, Holland & Sherry, Scabal.",
+    "The cloth remembers where it came from. Loro Piana, Zegna, Scabal, ALUMO, and Söktas, kept and cut in Bandra.",
 };
 
 export default function TheClothPage() {
   return (
     <>
       <Nav />
-      <main>
+      <main id="main">
         <PageHero
           eyebrow={cloth.eyebrow}
           title={cloth.headline}
-          image="/images/IMG_3736.jpg"
-          imageAlt="A fan of jacketing cloths, edge on, in the house's colours"
+          lede={cloth.lead}
+          image={opening.desktopSrc}
+          imageAlt={opening.alt}
+          objectPosition={opening.desktopObjectPosition}
+          imageClassName="aspect-[16/9] w-full md:aspect-auto md:h-[min(78svh,42rem)]"
+          sizes="(min-width: 1024px) 1024px, 100vw"
+          quality={opening.quality}
         />
         <Cloth />
-        {/* Full-bleed material band: the cloth given the whole frame. */}
-        <div data-nav="dark" className="relative overflow-hidden">
-          <Plate
-            src={cloth.fabricImage}
-            alt={cloth.fabricAlt}
-            scrim="full"
-            className="h-[clamp(24rem,55svh,40rem)] w-full"
-          />
-          <Grain />
-        </div>
       </main>
       <Footer />
     </>

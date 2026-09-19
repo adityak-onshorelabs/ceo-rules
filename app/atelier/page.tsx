@@ -16,7 +16,7 @@ export default function AtelierPage() {
   return (
     <>
       <Nav />
-      <main>
+      <main id="main">
         <PageHero
           eyebrow="The Atelier"
           title="Come sit with us in Bandra."
@@ -25,7 +25,7 @@ export default function AtelierPage() {
           imageAlt="The CEO Rules storefront at dusk, Bandra"
         />
         <Process />
-        <Visit />
+        <Visit includeProcessLink={false} />
       </main>
       <Footer />
     </>

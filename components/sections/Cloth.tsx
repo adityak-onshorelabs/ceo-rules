@@ -3,82 +3,100 @@ import { Plate } from "@/components/Plate";
 import { CtaLink } from "@/components/CtaLink";
 import { MeasureTicks } from "@/components/MeasureTicks";
 import { cloth } from "@/lib/content";
+import { img } from "@/lib/images";
 
-// The Cloth (Loro Piana model): material as hero. The finest houses read as an
-// editorial ledger, name and provenance, never a grid of logos.
 export function Cloth() {
   return (
-    <section
-      id="cloth"
-      data-nav="light"
-      className="section mx-auto max-w-editorial"
-    >
-      {/* Opening statement */}
-      <div className="max-w-[46rem]">
-        <Reveal>
-          <MeasureTicks className="mb-6 h-2.5 w-32 text-gold-ink" />
-        </Reveal>
-        <Reveal as="p" className="eyebrow mb-8">
-          {cloth.eyebrow}
-        </Reveal>
-        <Reveal>
-          <h2 className="t-h1 text-balance text-ink">{cloth.headline}</h2>
-        </Reveal>
-        <Reveal delay={0.06}>
-          <p className="mt-8 max-w-measure t-lede text-ink">{cloth.lead}</p>
-        </Reveal>
-      </div>
+    <section id="cloth" data-nav="light" className="section-tight mx-auto max-w-editorial">
+      <Reveal>
+        <MeasureTicks className="mb-10 h-2.5 w-32 text-walnut" />
+      </Reveal>
 
-      {/* The houses, as a ledger + a tall detail plate alongside */}
-      <div className="mt-[clamp(3.5rem,9vh,7rem)] grid grid-cols-1 gap-x-[clamp(3rem,7vw,7rem)] gap-y-14 lg:grid-cols-[1fr_0.62fr]">
-        <div>
-          <Reveal as="p" className="eyebrow mb-8 text-ink-faint">
+      <Reveal as="figure">
+        <Plate
+          image={img(cloth.clothImageId)}
+          sizes="(min-width: 1024px) 512px, 92vw"
+          className="aspect-[3/2] w-full max-w-[32rem]"
+        />
+      </Reveal>
+
+      <div className="mt-12 house-grid items-start lg:mt-14">
+        <div className="col-span-4 md:col-span-6 lg:col-span-12">
+          <Reveal as="p" className="t-meta text-ink-muted">
             {cloth.housesLabel}
           </Reveal>
-          <ul>
-            {cloth.houses.map((h, i) => (
-              <Reveal
-                as="li"
-                key={h.name}
-                delay={0.03}
-                className={`grid grid-cols-1 gap-y-1 stitch-top py-[clamp(1.25rem,3vh,2rem)] sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-x-8 ${
-                  i === cloth.houses.length - 1 ? "stitch-bottom" : ""
-                }`}
-              >
-                <div>
-                  <p className="font-serif text-[clamp(1.35rem,2.2vw,2rem)] text-ink">
-                    {h.name}
-                  </p>
-                  <p className="mt-1.5 max-w-measure text-[0.95rem] text-ink-muted">
-                    {h.line}
-                  </p>
-                </div>
-                <p className="eyebrow text-ink-faint sm:text-right">{h.place}</p>
-              </Reveal>
+        </div>
+
+        <div className="col-span-4 md:col-span-3 lg:col-span-5">
+          <p className="t-meta text-ink-muted">{cloth.suitingLabel}</p>
+          <ul className="mt-4">
+            {cloth.suiting.map((house) => (
+              <li key={house.name} className="flex items-baseline justify-between gap-6 py-1.5">
+                <span className="t-h2 text-ink">{house.name}</span>
+                {house.place ? <span className="t-meta text-ink-muted">{house.place}</span> : null}
+              </li>
             ))}
           </ul>
         </div>
 
-        <Reveal as="figure" delay={0.1} className="hidden lg:block">
-          <Plate
-            src={cloth.detailImage}
-            alt={cloth.detailAlt}
-            className="aspect-[3/4] w-full"
-          />
-        </Reveal>
+        <div className="col-span-4 md:col-span-3 lg:col-span-4 lg:col-start-8">
+          <p className="t-meta text-ink-muted">{cloth.shirtingLabel}</p>
+          <ul className="mt-4">
+            {cloth.shirting.map((house) => (
+              <li key={house.name} className="t-h2 py-1.5 text-ink">
+                {house.name}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
-      {/* One education pull, then out to Philosophy */}
-      <Reveal
-        delay={0.06}
-        className="mt-[clamp(3.5rem,8vh,6rem)] max-w-measure stitch-top-gold pt-10"
-      >
-        <p className="eyebrow mb-4 text-gold-ink">{cloth.teach.eyebrow}</p>
-        <p className="t-lede italic text-ink">{cloth.teach.body}</p>
-        <div className="mt-8">
+      <div className="mt-12 lg:mt-16">
+        <Reveal as="p" className="t-meta text-ink-muted">
+          {cloth.cut.label}
+        </Reveal>
+        <p className="t-annotate mt-2 max-w-[28ch] text-ink">{cloth.cut.body}</p>
+        <figure className="mt-6">
+          <Plate
+            image={img(cloth.cut.imageId)}
+            sizes="(min-width: 1024px) 512px, 92vw"
+            className="aspect-[16/9] w-full max-w-[32rem]"
+          />
+        </figure>
+      </div>
+
+      <div className="mt-12 lg:mt-16">
+        <Reveal as="p" className="t-meta text-ink-muted">
+          {cloth.canvas.label}
+        </Reveal>
+        <p className="t-serif mt-3 max-w-[16ch] text-ink">{cloth.canvas.line}</p>
+        <p className="t-annotate mt-3 max-w-[36ch] text-ink-muted">{cloth.canvas.body}</p>
+
+        <figure className="mt-8 w-[70%] max-w-[20rem]">
+          <Plate
+            image={img(cloth.canvas.imageId)}
+            sizes="(min-width: 1024px) 320px, 70vw"
+            className="aspect-[3/2] w-full"
+          />
+        </figure>
+
+        <div className="mt-10 flex flex-col items-end">
+          <div className="w-[80%] max-w-[20rem]">
+            <p className="t-annotate max-w-[22ch] text-ink">{cloth.canvas.fit}</p>
+            <figure className="mt-5">
+              <Plate
+                image={img(cloth.canvas.fitImageId)}
+                sizes="320px"
+                className="aspect-[3/2] w-full"
+              />
+            </figure>
+          </div>
+        </div>
+
+        <div className="mt-10">
           <CtaLink href={cloth.teach.link.href}>{cloth.teach.link.label}</CtaLink>
         </div>
-      </Reveal>
+      </div>
     </section>
   );
 }

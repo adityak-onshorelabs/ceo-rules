@@ -2,26 +2,64 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { nav } from "@/lib/content";
+import { CtaLink } from "@/components/CtaLink";
 
-// The page alternates dark and ivory bands, so the nav reads whichever band sits
-// under it (via [data-nav="dark"|"light"] markers) and adapts its colours.
+function NavLink({
+  href,
+  label,
+  active,
+}: {
+  href: string;
+  label: string;
+  active: boolean;
+}) {
+  return (
+    <Link href={href} aria-current={active ? "page" : undefined} className="group inline-flex flex-col items-start">
+      <span className="font-sans text-[0.8rem] uppercase tracking-[0.12em]">{label}</span>
+      <span
+        aria-hidden
+        className={`mt-1 h-px w-full origin-left bg-brass transition-transform duration-300 ease-out-quart ${
+          active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+        }`}
+      />
+    </Link>
+  );
+}
+
 export function Nav() {
   const pathname = usePathname();
-  const [onDark, setOnDark] = useState(true);
-  const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
+  const [overHero, setOverHero] = useState(pathname === "/");
+  const panelId = useId();
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const links = [...nav.leftLinks, ...nav.rightLinks];
+  const onDarkHero = pathname === "/" && overHero && !open;
 
-  // A link is "active" only if it points to a real page (not an in-page anchor).
-  const isActive = (href: string) => {
-    if (href.includes("#")) return false;
-    return pathname === href;
-  };
+  const isActive = (href: string) => pathname === href;
 
-  // Close the mobile menu on navigation, and lock body scroll while it's open.
   useEffect(() => {
     setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      setOverHero(false);
+      return;
+    }
+    const hero = document.getElementById("top");
+    if (!hero) {
+      setOverHero(false);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => setOverHero(entry.isIntersecting),
+      { threshold: 0, rootMargin: "0px 0px -72% 0px" },
+    );
+    observer.observe(hero);
+    return () => observer.disconnect();
   }, [pathname]);
 
   useEffect(() => {
@@ -32,67 +70,73 @@ export function Nav() {
   }, [open]);
 
   useEffect(() => {
-    const probeY = 32; // a point just inside the nav
-    const update = () => {
-      setSolid(window.scrollY > 24);
-      const els = document.querySelectorAll<HTMLElement>("[data-nav]");
-      let theme: "dark" | "light" = "dark";
-      els.forEach((el) => {
-        const r = el.getBoundingClientRect();
-        if (r.top <= probeY && r.bottom > probeY) {
-          theme = (el.dataset.nav as "dark" | "light") ?? theme;
-        }
-      });
-      setOnDark(theme === "dark");
-    };
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-    };
-  }, []);
+    if (!open) return;
+    const panel = panelRef.current;
+    const focusable = panel?.querySelectorAll<HTMLElement>("a, button");
+    focusable?.[0]?.focus();
 
-  const atTop = !solid;
-  // Menu open forces an ivory header with ink text (it sits over the ivory overlay).
-  const headerBg = open
-    ? "bg-bg"
-    : atTop
-      ? "bg-transparent"
-      : onDark
-        ? "border-b border-hairline-dark bg-bg-dark/95 backdrop-blur-md"
-        : "border-b border-hairline bg-bg/95 backdrop-blur-md";
-  const darkText = onDark && !open;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+        return;
+      }
+      if (e.key !== "Tab" || !focusable?.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ease-out-quart ${headerBg} ${
-        darkText ? "text-ink-dark" : "text-ink"
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ease-out-quart ${
+        onDarkHero ? "bg-transparent text-bg" : "bg-bg text-ink"
       }`}
-      style={
-        // Legibility glow whenever ivory text sits on a dark surface, so it holds
-        // up over bright regions of a full-bleed image (hero, the founder portrait).
-        darkText
-          ? { textShadow: "0 1px 16px oklch(0.14 0.012 58 / 0.65)" }
-          : undefined
-      }
     >
-      <nav className="flex w-full items-center justify-between px-[clamp(1.5rem,6vw,4rem)] py-5">
+      <nav
+        className="relative flex w-full items-center justify-center px-[var(--page-pad)] py-5"
+        aria-label="Primary"
+      >
+        <div className="absolute left-[var(--page-pad)] hidden items-center gap-x-[clamp(1.25rem,2.2vw,2.25rem)] lg:flex">
+          {nav.leftLinks.map((l) => (
+            <NavLink key={l.href} href={l.href} label={l.label} active={isActive(l.href)} />
+          ))}
+        </div>
+
         <Link
           href="/"
-          className="relative z-10 font-sans text-sm font-semibold uppercase tracking-[0.22em]"
+          className="relative z-10 font-sans text-[1.0625rem] font-medium uppercase tracking-[0.2em]"
         >
           {nav.wordmark}
         </Link>
 
-        {/* Mobile menu toggle */}
+        <div className="absolute right-[var(--page-pad)] hidden items-center gap-x-[clamp(1.25rem,2.2vw,2.25rem)] lg:flex">
+          {nav.rightLinks.map((l) => (
+            <NavLink key={l.href} href={l.href} label={l.label} active={isActive(l.href)} />
+          ))}
+          <CtaLink href={nav.cta.href} tone={onDarkHero ? "ivory" : "ink"}>
+            {nav.cta.label}
+          </CtaLink>
+        </div>
+
         <button
+          ref={toggleRef}
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          className="relative z-10 -mr-2 ml-auto flex h-10 w-10 items-center justify-center md:hidden"
+          aria-controls={panelId}
+          className="absolute right-[var(--page-pad)] z-10 -mr-2 flex h-11 w-11 items-center justify-center lg:hidden"
         >
           <span className="relative block h-3.5 w-6" aria-hidden>
             <span
@@ -107,54 +151,20 @@ export function Nav() {
             />
           </span>
         </button>
-
-        <div className="hidden items-center gap-x-[clamp(1.75rem,3vw,2.75rem)] md:flex">
-          {nav.links.map((l) => {
-            const active = isActive(l.href);
-            return (
-              <Link
-                key={l.href}
-                href={l.href}
-                aria-current={active ? "page" : undefined}
-                className="group inline-flex flex-col items-start"
-              >
-                <span
-                  className={`font-sans text-[0.8rem] uppercase tracking-[0.14em] transition-opacity duration-300 ${
-                    active ? "opacity-100" : "opacity-95 group-hover:opacity-100"
-                  }`}
-                >
-                  {l.label}
-                </span>
-                <span
-                  aria-hidden
-                  className={`mt-1 h-[2px] w-full origin-left transition-transform duration-500 ease-out-expo ${
-                    onDark ? "bg-gold-on-dark" : "bg-gold"
-                  } ${active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
-                />
-              </Link>
-            );
-          })}
-
-          {/* The one action set apart: a sharp gold-filled container (radius 0, no pill). */}
-          <Link
-            href={nav.cta.href}
-            className={`inline-flex items-center rounded-none px-4 py-2 font-sans text-[0.72rem] uppercase tracking-[0.14em] text-bg-dark transition-colors duration-300 ease-out-quart ${
-              onDark ? "bg-gold-on-dark hover:bg-gold" : "bg-gold hover:bg-gold-ink"
-            }`}
-          >
-            {nav.cta.label}
-          </Link>
-        </div>
       </nav>
 
-      {/* Mobile full-screen menu */}
       <div
-        className={`fixed inset-0 z-0 bg-bg transition-opacity duration-300 ease-out-quart md:hidden ${
+        id={panelId}
+        ref={panelRef}
+        className={`fixed inset-0 z-0 bg-bg text-ink transition-opacity duration-300 ease-out-quart lg:hidden ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
-        <nav className="flex h-full flex-col justify-center gap-2 px-[clamp(1.5rem,6vw,6rem)]">
-          {nav.links.map((l, i) => {
+        <nav
+          className="flex h-full flex-col justify-center gap-1 px-[var(--page-pad)]"
+          aria-label="Mobile"
+        >
+          {links.map((l) => {
             const active = isActive(l.href);
             return (
               <Link
@@ -162,35 +172,15 @@ export function Nav() {
                 href={l.href}
                 aria-current={active ? "page" : undefined}
                 onClick={() => setOpen(false)}
-                className="group inline-flex flex-col items-start py-2"
-                style={{ transitionDelay: open ? `${i * 40}ms` : "0ms" }}
+                className="py-3 font-sans text-[clamp(1.75rem,7vw,2.35rem)] leading-tight"
               >
-                <span
-                  className={`font-serif text-[clamp(2rem,9vw,2.75rem)] leading-tight ${
-                    active ? "text-ink" : "text-ink-muted"
-                  }`}
-                >
-                  {l.label}
-                </span>
-                <span
-                  aria-hidden
-                  className={`mt-1 h-[2px] w-full origin-left bg-gold transition-transform duration-500 ease-out-expo ${
-                    active ? "scale-x-100" : "scale-x-0"
-                  }`}
-                />
+                <span className={active ? "text-ink" : "text-ink-muted"}>{l.label}</span>
               </Link>
             );
           })}
-
-          {/* Primary action: the same sharp gold container as desktop. */}
-          <Link
-            href={nav.cta.href}
-            onClick={() => setOpen(false)}
-            style={{ transitionDelay: open ? `${nav.links.length * 40}ms` : "0ms" }}
-            className="mt-8 inline-flex items-center rounded-none bg-gold px-6 py-3.5 font-sans text-[0.8rem] uppercase tracking-[0.14em] text-bg-dark transition-colors duration-300 ease-out-quart hover:bg-gold-ink"
-          >
-            {nav.cta.label}
-          </Link>
+          <div className="mt-8">
+            <CtaLink href={nav.cta.href}>{nav.cta.label}</CtaLink>
+          </div>
         </nav>
       </div>
     </header>

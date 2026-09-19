@@ -1,57 +1,41 @@
-import { Reveal } from "@/components/Reveal";
 import { Plate } from "@/components/Plate";
-import { wardrobe } from "@/lib/content";
+import { CtaLink } from "@/components/CtaLink";
+import { homeWardrobe } from "@/lib/content";
+import { img } from "@/lib/images";
 
-// Editorial, not a catalogue. On a dark band, the garments framed as identity.
 export function Wardrobe() {
   return (
-    <section
-      id="wardrobe"
-      data-nav="dark"
-      className="on-dark section mx-auto max-w-editorial"
-    >
-      <div className="grid grid-cols-1 items-center gap-x-[clamp(2.5rem,6vw,6rem)] gap-y-14 lg:grid-cols-[1fr_0.72fr]">
-        <div>
-          <Reveal as="p" className="eyebrow mb-10">
-            {wardrobe.eyebrow}
-          </Reveal>
-          <Reveal>
-            <h2 className="t-h1 max-w-[16ch] text-balance text-ink-dark">
-              {wardrobe.headline}
-            </h2>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <p className="mt-6 max-w-measure t-lede text-ink-dark-muted">
-              {wardrobe.lead}
-            </p>
-          </Reveal>
+    <section id="wardrobe" className="chapter bg-bg">
+      <div className="mx-auto max-w-editorial">
+        <div className="house-grid items-start">
+          <div className="col-span-4 md:col-span-3 lg:col-span-5">
+            <h2 className="t-observation max-w-[12ch] text-ink">{homeWardrobe.observation}</h2>
+            <p className="t-body mt-4 max-w-[28ch] text-ink-muted">{homeWardrobe.lead}</p>
 
-          {/* the pieces, each with a reason, not a price */}
-          <div className="mt-12 max-w-measure stitch-top-dark">
-            {wardrobe.pieces.map((p, i) => (
-              <Reveal
-                key={p.name}
-                delay={i * 0.05}
-                className="flex items-baseline justify-between gap-6 stitch-bottom-dark py-5"
-              >
-                <span className="font-serif text-[clamp(1.15rem,1.6vw,1.5rem)] text-ink-dark">
+            <ul className="mt-12">
+              {homeWardrobe.pieces.map((p) => (
+                <li
+                  key={p.name}
+                  className="py-2 font-sans text-[clamp(1.65rem,3vw,2.25rem)] font-medium tracking-[-0.03em] text-ink"
+                >
                   {p.name}
-                </span>
-                <span className="max-w-[24ch] text-right text-[0.9rem] text-ink-dark-muted">
-                  {p.line}
-                </span>
-              </Reveal>
-            ))}
-          </div>
-        </div>
+                </li>
+              ))}
+            </ul>
 
-        <Reveal as="figure" delay={0.12} className="hidden lg:block">
-          <Plate
-            src={wardrobe.image}
-            alt={wardrobe.imageAlt}
-            className="aspect-[4/5] w-full"
-          />
-        </Reveal>
+            <div className="mt-12">
+              <CtaLink href={homeWardrobe.link.href}>{homeWardrobe.link.label}</CtaLink>
+            </div>
+          </div>
+
+          <figure className="col-span-4 mt-4 md:col-span-3 md:mt-8 lg:col-span-6 lg:col-start-7">
+            <Plate
+              image={img(homeWardrobe.imageId)}
+              sizes="(min-width: 1024px) 540px, (min-width: 768px) 50vw, 92vw"
+              className="aspect-[3/2] w-full max-w-[33.75rem]"
+            />
+          </figure>
+        </div>
       </div>
     </section>
   );

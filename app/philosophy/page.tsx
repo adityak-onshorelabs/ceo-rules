@@ -13,7 +13,7 @@ export default function PhilosophyPage() {
   return (
     <>
       <Nav />
-      <main>
+      <main id="main">
         <Insights />
       </main>
       <Footer />
