@@ -60,6 +60,31 @@ Watermarked (`checked-suit.jpg`, `form-tape.jpg`), a banned mill in frame (`atel
 Dormeuil box), a baked-in grey border (`buttonhole.jpg`), and the unused Instagram-derived `IMG_37xx` set.
 All remain in git history.
 
+## Stock placeholders (added 21 Sept, evening)
+
+Supplied in `assets/homepage` and `assets/the-wardrobe` as placeholders, now live on the
+`redesign` preview in `public/images/stock/` (resized from ~27 MB to ~4.4 MB). High resolution,
+but **all appear to be stock photography**, which brief §28 bans for production ("generic
+tailoring stock imagery"; §4 asks for a believable CEO Rules environment). Status for all:
+**TEMPORARY: proves the layout, must be replaced before launch.** Each carries a ?audit note.
+
+| Used for | File (public/images/stock) | Source file | Note |
+|---|---|---|---|
+| Craft · Cut | craft-cut.jpg | homepage/the-cut.jpg | Stock. |
+| Craft · Canvas | craft-canvas.jpg | homepage/the-canvas.jpg | Stock; shows pattern-cutting rather than canvas. |
+| Craft · Fit, Wardrobe · Suits | craft-fit.jpg | homepage/the-fit.jpg = the-wardrobe/01-suits.jpg | Same photo supplied twice. |
+| Craft · Finish | craft-finish.jpg | homepage/the-finish.jpg | Stock. |
+| Home Wardrobe, Wardrobe hero | wardrobe-rack.jpg | homepage/wardrobe.jpg = the-wardrobe/the-wardrobe-hero.jpg | Same photo supplied twice; a retail rail (§9 prefers a person). |
+| Wardrobe · Shirts | shirts.jpg | the-wardrobe/02-shirts.jpg | Stock. |
+| Wardrobe · Jackets | jacket.jpg | bundo-kim-…-unsplash.jpg | Unsplash (licence permits use); mannequin. |
+| Wardrobe · Tuxedos | tuxedo.jpg | the-wardrobe/tuxedo.jpg | Stock studio shot. |
+| Wardrobe · Bandhgalas | bandhgala.jpg | the-wardrobe/05-bandhgalas.jpg | **736px and likely another brand's catalogue image: copyright risk, do not ship.** |
+| Wardrobe · Sherwanis | sherwani.jpg | the-wardrobe/06-sherwani.jpg | Stock; mannequin. |
+
+Not used: `logan-weaver-…-unsplash.jpg` (mannequin suit), `suits-wide.jpg` (hand at tie),
+`the-wardrobe/formal-shirt.jpg` (retail shirt rail). Licences for the non-Unsplash files are
+unknown; confirm the source of each before any of them could ship.
+
 ## Brand
 
 | Asset | Status | Note |

@@ -7,19 +7,23 @@ import { home } from "@/lib/content";
 export function Wardrobe() {
   const w = home.wardrobe;
   return (
-    <section id="wardrobe" className="on-dark relative flex min-h-screen items-end overflow-hidden bg-ink-deep">
+    <section id="wardrobe" className="on-dark relative overflow-hidden bg-ink-deep lg:flex lg:min-h-screen lg:items-end">
+      {/* Mobile: the photograph leads; the type follows on House Ink (brief §21). */}
+      <div className="relative h-[56svh] min-h-[320px] lg:absolute lg:inset-0 lg:h-auto lg:min-h-0">
       <Photo
         src={w.image}
         alt={w.alt}
-        position="50% 36%"
-        mobilePosition="50% 14%"
+        position="50% 50%"
+        mobilePosition="30% 50%"
         grade="interior"
         scrims={["deepen-bl"]}
+        scrimCls={{ "deepen-bl": "hidden lg:block" }}
         motion="drift"
         audit={w.audit}
         auditAt="tr"
       />
-      <div className="halo-cream relative z-10 w-full max-w-[calc(var(--gutter)+760px)] px-[var(--gutter)] pb-[clamp(76px,12vh,150px)] pt-40">
+      </div>
+      <div className="relative z-10 w-full max-w-[calc(var(--gutter)+760px)] px-[var(--gutter)] pb-[clamp(64px,10vh,150px)] pt-[clamp(36px,6vh,56px)] lg:halo-cream lg:pt-40">
         <p className="kicker text-cream">{w.kicker}</p>
         <Reveal as="h2" className="h-section !max-w-[18ch]">
           {w.title}
