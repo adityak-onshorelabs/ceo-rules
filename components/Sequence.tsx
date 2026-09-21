@@ -1,6 +1,4 @@
-"use client";
-
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { Photo } from "@/components/Photo";
 
 export type Moment = {
@@ -13,12 +11,15 @@ export type Moment = {
   audit?: string;
 };
 
-// Consecutive moments beside one photograph (brief §7, §28: no cards, no
-// feature grids). Desktop: the photographic field holds the left half, edge to
-// edge, sticky while the moments pass on House Ivory at the right; it
-// cross-fades as each moment crosses the middle of the screen. Scrolling stays
-// native, only the photograph is sticky. Mobile: the moments in order, each a
-// full-width photograph with its words beneath.
+// Consecutive moments as an editorial spread (brief §7, §28: no cards, no
+// feature grids, photography dominates).
+//
+// Desktop: each moment is its own large photograph bleeding off one edge of
+// the screen, alternating left and right down the page, with its label
+// and line set in the open side. Nothing is pinned; the page simply
+// scrolls, and each photograph unrolls once as it arrives.
+// Mobile: the moments in order, each a full-width photograph with its words
+// beneath.
 export function Sequence({
   id,
   labelledBy,
@@ -30,77 +31,48 @@ export function Sequence({
   header: ReactNode;
   moments: Moment[];
 }) {
-  const [active, setActive] = useState(0);
-  const refs = useRef<(HTMLLIElement | null)[]>([]);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) setActive(Number((e.target as HTMLElement).dataset.index));
-        }
-      },
-      { rootMargin: "-45% 0px -45% 0px" },
-    );
-    refs.current.forEach((el) => el && obs.observe(el));
-    return () => obs.disconnect();
-  }, []);
-
   return (
-    <section id={id} aria-labelledby={labelledBy} className="bg-cream lg:grid lg:grid-cols-2">
-      <div className="relative hidden lg:block">
-        <div className="sticky top-[var(--nav-h)] h-[calc(100svh-var(--nav-h))] overflow-hidden bg-ink-deep">
-          {moments.map((m, i) => (
-            <div
-              key={m.label}
-              aria-hidden
-              className={`absolute inset-0 transition-opacity duration-700 ease-house ${
-                i === active ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <Photo src={m.image} alt="" position={m.position} grade="plate" sizes="50vw" audit={m.audit} auditAt="bl" />
-            </div>
-          ))}
-        </div>
-      </div>
+    <section id={id} aria-labelledby={labelledBy} className="bg-cream pb-[var(--section-y)]">
+      <header className="px-[var(--gutter)] pb-[clamp(56px,10vh,120px)] pt-[var(--section-y)]">
+        <div className="mx-auto max-w-wide">{header}</div>
+      </header>
 
-      <div>
-        <header className="px-[clamp(24px,5vw,96px)] pb-[clamp(56px,9vh,96px)] pt-[var(--section-y)] lg:flex lg:min-h-[64svh] lg:flex-col lg:justify-end lg:pb-[clamp(40px,6vh,64px)]">
-          {header}
-        </header>
-
-        <ol className="lg:pb-[18svh]">
-          {moments.map((m, i) => (
-            <li
-              key={m.label}
-              data-index={i}
-              ref={(el) => {
-                refs.current[i] = el;
-              }}
-              className="pb-[clamp(64px,10vh,96px)] lg:flex lg:min-h-[calc(82svh-var(--nav-h))] lg:flex-col lg:justify-center lg:pb-0"
-            >
-              {/* The photograph carries the alt text once, here: on mobile it
-                  leads the moment; on desktop the sticky field shows it. */}
-              <div className="relative aspect-[4/5] lg:hidden">
-                <Photo src={m.image} alt={m.alt} position={m.position} grade="plate" sizes="100vw" audit={m.audit} auditAt="bl" />
+      <ol className="flex flex-col gap-[clamp(72px,14vh,168px)]">
+        {moments.map((m, i) => {
+          const photoLeft = i % 2 === 0;
+          return (
+            <li key={m.label} className="lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-[clamp(24px,3vw,56px)]">
+              <div
+                className={`relative aspect-[4/5] lg:aspect-auto lg:h-[clamp(520px,calc(82svh-var(--nav-h)*0.2),880px)] ${
+                  photoLeft ? "lg:col-span-7 lg:col-start-1" : "lg:col-span-7 lg:col-start-6 lg:row-start-1"
+                }`}
+              >
+                <Photo
+                  src={m.image}
+                  alt={m.alt}
+                  position={m.position}
+                  grade="plate"
+                  motion="reveal"
+                  sizes="(min-width: 1024px) 58vw, 100vw"
+                  audit={m.audit}
+                  auditAt="bl"
+                />
               </div>
               <div
-                className={`px-[clamp(24px,5vw,96px)] pt-7 transition-opacity duration-500 lg:pt-0 ${
-                  i === active ? "lg:opacity-100" : "lg:opacity-40"
+                className={`px-[var(--gutter)] pt-7 lg:row-start-1 lg:px-0 lg:pt-0 ${
+                  photoLeft ? "lg:col-span-4 lg:col-start-9 lg:pr-[var(--gutter)]" : "lg:col-span-4 lg:col-start-1 lg:pl-[var(--gutter)]"
                 }`}
               >
                 <p className="text-[12px] uppercase tracking-[0.24em] text-[rgba(28,26,23,.66)]">{m.label}</p>
-                <h3 className="mt-4 max-w-[15ch] font-serif text-[clamp(30px,8vw,40px)] font-light leading-[1.08] tracking-[-0.022em] text-ink lg:text-[clamp(34px,3.2vw,54px)]">
+                <h3 className="mt-4 max-w-[15ch] font-serif text-[clamp(30px,8vw,40px)] font-light leading-[1.08] tracking-[-0.022em] text-ink lg:text-[clamp(32px,2.9vw,50px)]">
                   {m.line}
                 </h3>
-                {m.body ? (
-                  <p className="body mt-5 max-w-[42ch] text-[rgba(28,26,23,.74)]">{m.body}</p>
-                ) : null}
+                {m.body ? <p className="body mt-5 max-w-[40ch] text-[rgba(28,26,23,.74)]">{m.body}</p> : null}
               </div>
             </li>
-          ))}
-        </ol>
-      </div>
+          );
+        })}
+      </ol>
     </section>
   );
 }
