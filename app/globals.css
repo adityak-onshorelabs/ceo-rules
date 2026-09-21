@@ -3,235 +3,236 @@
 @tailwind utilities;
 
 /* ------------------------------------------------------------------ *
- * CEO Rules design tokens. Single source of truth = DESIGN.md.
+ * CEO Rules design tokens (redesign handoff spec, Sept 2026).
+ * Five values carry the site. Gold is chrome only: a 1px hover rule
+ * and the focus ring, never a fill, never text.
  * ------------------------------------------------------------------ */
 :root {
-  /* Light surface (default "paper") */
-  --bg: oklch(0.955 0.010 78);
-  --surface: oklch(0.925 0.012 76);
-  --ink: oklch(0.235 0.012 62);
-  --ink-muted: oklch(0.435 0.028 58);
-  --ink-faint: oklch(0.620 0.022 62);
-  --hairline: oklch(0.235 0.012 62 / 0.14);
-  --gold: oklch(0.735 0.088 82);
-  --gold-ink: oklch(0.560 0.078 74);
-  --forest: oklch(0.340 0.046 156);
+  --cream: #f4f1ea;
+  --cream-deep: #e8e3d8;
+  --ink: #1c1a17;
+  --ink-deep: #14120f;
+  /* Sampled from the official logo (public/brand). */
+  --blue: #0d3088;
+  /* The Eye ground: a deep navy that sits behind the maker. */
+  --eye: #16202e;
+  --gold: #a8823c;
 
-  /* Dark surface ("cinema") */
-  --bg-dark: oklch(0.185 0.012 58);
-  --surface-dark: oklch(0.235 0.014 58);
-  --ink-dark: oklch(0.945 0.010 80);
-  --ink-dark-muted: oklch(0.760 0.020 72);
-  --hairline-dark: oklch(0.945 0.010 80 / 0.16);
-  --gold-on-dark: oklch(0.780 0.100 84);
+  --gutter: clamp(24px, 6vw, 120px);
+  --nav-h: 64px;
+  --nav-h-lg: 76px;
+  --section-y: clamp(130px, 20vh, 240px);
+  --section-y-accent: clamp(150px, 23vh, 280px);
+  --grid-gap: clamp(20px, 2.6vw, 40px);
+  --breath-gap: clamp(48px, 7vw, 150px);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-  /* Warm placeholder plate (used behind prototype imagery) */
-  --plate: radial-gradient(
-      120% 120% at 30% 20%,
-      oklch(0.42 0.03 60) 0%,
-      oklch(0.28 0.02 55) 45%,
-      oklch(0.185 0.012 58) 100%
-    );
-
-  /* Space scale (DESIGN.md) — the one place intra-section whitespace is tuned.
-     Consume via arbitrary utilities, e.g. mt-[var(--s-12)]. */
-  --s-1: 0.25rem;
-  --s-2: 0.5rem;
-  --s-3: 0.75rem;
-  --s-4: 1rem;
-  --s-6: 1.5rem;
-  --s-8: 2rem;
-  --s-12: 3rem;
-  --s-16: 4rem;
-  --s-24: 6rem;
-  --s-32: 8rem;
-
-  /* Section rhythm. Tuned down from the old clamp(6rem,12vh,11rem) so adjacent
-     sections no longer stack into ~350px dead gaps. */
-  --section-y: clamp(6rem, 11vh, 10.5rem);
-  --section-y-tight: clamp(3.75rem, 6.5vh, 6.5rem);
-
-  /* Basting-thread colour for the tailoring stitch dividers. A touch stronger
-     than --hairline so the dashes read as hand-tacking, not a faint rule. */
-  --stitch-ink: oklch(0.235 0.012 62 / 0.32);
-  --stitch-ink-dark: oklch(0.945 0.010 80 / 0.34);
+@media (min-width: 1140px) {
+  :root {
+    --nav-h: var(--nav-h-lg);
+  }
 }
 
 @layer base {
   html {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    scroll-padding-top: 5rem;
     scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-h) + 1rem);
+  }
+
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: var(--blue);
+    color: var(--cream);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  h1,
+  h2,
+  h3,
+  blockquote {
+    font-family: var(--font-serif), Georgia, serif;
+    font-weight: 300;
+    margin: 0;
+  }
+
+  p,
+  figure {
+    margin: 0;
   }
 
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
-  }
-
-  body {
-    background-color: var(--bg);
-    color: var(--ink);
-    font-family: var(--font-sans), system-ui, sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.7;
-    letter-spacing: -0.003em;
-  }
-
-  ::selection {
-    background: var(--gold);
-    color: var(--bg-dark);
-  }
-
-  :focus-visible {
-    outline: 2px solid var(--gold-ink);
-    outline-offset: 3px;
-    border-radius: 1px;
-  }
-
-  h1, h2, h3 {
-    font-family: var(--font-serif), Georgia, serif;
-    font-weight: 420;
-    font-variation-settings: "opsz" 144;
-    text-wrap: balance;
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+    }
   }
 }
 
 @layer components {
-  /* Editorial section rhythm; intentionally NOT uniform (DESIGN.md).
-     Rule: a surface change (light <-> dark) earns a full interval; a same-surface
-     adjacency uses .section-tight so the seam is one gap, not two maxed-out ones. */
+  /* ---- Layout ---- */
+  .gutter {
+    padding-inline: var(--gutter);
+  }
   .section {
-    padding-block: var(--section-y);
-    padding-inline: clamp(1.75rem, 6vw, 7rem);
+    padding: var(--section-y) var(--gutter);
   }
-  /* Directional: only snugs a band UP under the one above (e.g. Identity Band A->B).
-     Bottom padding stays full so the section still breathes into the next one. */
-  .section-tight {
-    padding-top: var(--section-y-tight);
+  .section-accent {
+    padding: var(--section-y-accent) var(--gutter);
   }
-
-  /* ---- Tailoring detail language: basting-stitch dividers ----
-     Drop-in for `border-t/b border-hairline`. A dashed gradient line painted at
-     the top/bottom edge reads as a row of hand-tacking. Background-based (not
-     border-image) so it renders identically across browsers and adds no layout.
-     Gold variant is the precious tacking, used sparingly. */
-  .stitch-top,
-  .stitch-bottom,
-  .stitch-top-dark,
-  .stitch-bottom-dark,
-  .stitch-top-gold {
-    background-repeat: no-repeat;
-    background-size: 100% 2px;
+  /* Two-column editorial breath: statement left, body right. */
+  .breath {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: var(--breath-gap);
+    align-items: start;
   }
-  .stitch-top {
-    background-image: repeating-linear-gradient(90deg, var(--stitch-ink) 0 6px, transparent 6px 12px);
-    background-position: top left;
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+    gap: var(--grid-gap);
   }
-  .stitch-bottom {
-    background-image: repeating-linear-gradient(90deg, var(--stitch-ink) 0 6px, transparent 6px 12px);
-    background-position: bottom left;
-  }
-  .stitch-top-dark {
-    background-image: repeating-linear-gradient(90deg, var(--stitch-ink-dark) 0 6px, transparent 6px 12px);
-    background-position: top left;
-  }
-  .stitch-bottom-dark {
-    background-image: repeating-linear-gradient(90deg, var(--stitch-ink-dark) 0 6px, transparent 6px 12px);
-    background-position: bottom left;
-  }
-  .stitch-top-gold {
-    background-image: repeating-linear-gradient(90deg, var(--gold-ink) 0 5px, transparent 5px 11px);
-    background-position: top left;
-  }
-  .on-dark .stitch-top-gold {
-    background-image: repeating-linear-gradient(90deg, var(--gold-on-dark) 0 5px, transparent 5px 11px);
+  .split {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
   }
 
-  .eyebrow {
-    font-family: var(--font-sans), system-ui, sans-serif;
+  /* ---- Type ---- */
+  .kicker {
+    font-size: 11.5px;
+    letter-spacing: 0.26em;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-weight: 500;
-    font-size: 0.75rem;
-    /* ink-muted (not ink-faint) so small tracked labels clear AA on ivory */
-    color: var(--ink-muted);
+    margin-bottom: 34px;
   }
-
-  /* Type scale (DESIGN.md), fluid clamps. */
-  /* Scale to DESIGN.md commitment: serif presence carries the premium. */
-  .t-display {
-    font-family: var(--font-serif), Georgia, serif;
-    font-size: clamp(3rem, 6.5vw, 6.75rem);
-    line-height: 0.98;
+  .label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .h-hero {
+    font-size: clamp(40px, 6vw, 104px);
+    line-height: 1;
+    letter-spacing: -0.028em;
+    max-width: 15ch;
+  }
+  .h-section {
+    font-size: clamp(34px, 4.8vw, 78px);
+    line-height: 1.02;
+    letter-spacing: -0.026em;
+    max-width: 16ch;
+  }
+  .h-breath {
+    font-size: clamp(30px, 3.6vw, 58px);
+    line-height: 1.04;
+    letter-spacing: -0.024em;
+    max-width: 17ch;
+  }
+  .h-card {
+    font-size: clamp(24px, 2.2vw, 34px);
+    line-height: 1.15;
     letter-spacing: -0.02em;
-    font-variation-settings: "opsz" 144;
+    max-width: 16ch;
   }
-  .t-h1 {
+  .pull {
     font-family: var(--font-serif), Georgia, serif;
-    font-size: clamp(2.15rem, 3.9vw, 3.6rem);
-    line-height: 1.06;
-    letter-spacing: -0.014em;
-    font-variation-settings: "opsz" 110;
+    font-weight: 300;
+    font-size: clamp(20px, 1.9vw, 28px);
+    line-height: 1.42;
+    max-width: 28ch;
   }
-  .t-h2 {
+  .statement {
     font-family: var(--font-serif), Georgia, serif;
-    font-size: clamp(1.6rem, 2.7vw, 2.4rem);
-    line-height: 1.12;
-    font-variation-settings: "opsz" 84;
+    font-weight: 300;
+    font-size: clamp(28px, 3.6vw, 56px);
+    line-height: 1.16;
+    letter-spacing: -0.022em;
+    max-width: 22ch;
   }
-  .t-lede {
-    font-size: clamp(1.1rem, 1.5vw, 1.35rem);
-    line-height: 1.6;
-    color: var(--ink-muted);
+  .body {
+    font-size: clamp(15px, 1.15vw, 17px);
+    line-height: 1.75;
+    max-width: 52ch;
+  }
+  .numeral {
+    font-family: var(--font-serif), Georgia, serif;
+    font-weight: 200;
+    font-size: clamp(40px, 4.4vw, 72px);
+    line-height: 1;
+    font-feature-settings: "tnum";
   }
 
-  /* On dark cinema surfaces */
+  /* ---- Links ----
+     .link-line: text with a hairline beneath that turns gold on hover.
+     .link-box: bordered CTA that fills with the opposite ground on hover. */
+  .link-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding-bottom: 8px;
+    border-bottom: 1px solid currentColor;
+    border-bottom-color: color-mix(in srgb, currentColor 40%, transparent);
+    transition: border-color 240ms ease;
+  }
+  .link-line:hover {
+    border-bottom-color: var(--gold);
+  }
+  .link-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: 17px 28px;
+    border: 1px solid color-mix(in srgb, currentColor 45%, transparent);
+    transition:
+      background-color 240ms ease,
+      color 240ms ease;
+  }
+  .on-dark .link-box:hover,
+  .link-box.on-dark:hover {
+    background: var(--cream);
+    color: var(--ink);
+  }
+  .on-cream .link-box:hover {
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  /* ---- Grounds ---- */
   .on-dark {
-    background-color: var(--bg-dark);
-    color: var(--ink-dark);
+    color: var(--cream);
   }
-  .on-dark .eyebrow {
-    color: var(--ink-dark-muted);
-  }
-}
-
-/* ---- Mill band marquee ----
-   The track holds the set twice; sliding it by half its width loops seamlessly.
-   Reduced motion: no drift, the single set becomes a row you can scroll. */
-@layer components {
-  .marquee-track {
-    animation: marquee 52s linear infinite;
-  }
-  .marquee:hover .marquee-track {
-    animation-play-state: paused;
-  }
-  @keyframes marquee {
-    to {
-      transform: translateX(-50%);
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .marquee-track {
-      animation: none;
-    }
-    .marquee {
-      overflow-x: auto !important;
-      scrollbar-width: none;
-    }
-    .marquee-dup {
-      display: none !important;
-    }
-  }
-
-  /* Hide the scrollbar on swipeable rows (timeline on touch). */
-  .no-scrollbar {
-    scrollbar-width: none;
-  }
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
+  .on-cream {
+    color: var(--ink);
   }
 }

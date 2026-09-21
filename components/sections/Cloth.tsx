@@ -1,88 +1,65 @@
+import Link from "next/link";
+import { Photo } from "@/components/Photo";
 import { Reveal } from "@/components/Reveal";
-import { Plate } from "@/components/Plate";
-import { CtaLink } from "@/components/CtaLink";
-import { MeasureTicks } from "@/components/MeasureTicks";
-import { MillLogo } from "@/components/MillLogo";
-import { cloth, mills } from "@/lib/content";
+import { home, mills } from "@/lib/content";
 
-// The Cloth (Loro Piana model): material as hero. The finest houses read as an
-// editorial ledger, name and provenance, never a grid of logos.
+// 02 Material (brief §6). The photograph is the section: the cloth shelves in
+// low atelier light. On desktop the type sits in the dark run of shelves at the
+// left, with only a local deepening of tone behind it. The frame has no quiet
+// area in a portrait crop, so on mobile the photograph leads and the type
+// follows on House Ink beneath it rather than fighting the pattern. The mills
+// are listed as names, quiet proof rather than the visual hero: no logos, no
+// carousel.
 export function Cloth() {
+  const c = home.cloth;
   return (
     <section
       id="cloth"
-      data-nav="light"
-      className="section mx-auto max-w-editorial"
+      className="on-dark relative overflow-hidden bg-ink-deep lg:flex lg:min-h-[calc(100svh-var(--nav-h))] lg:items-center"
     >
-      {/* Opening statement */}
-      <div className="max-w-[46rem]">
-        <Reveal>
-          <MeasureTicks className="mb-6 h-2.5 w-32 text-gold-ink" />
-        </Reveal>
-        <Reveal as="p" className="eyebrow mb-8">
-          {cloth.eyebrow}
-        </Reveal>
-        <Reveal>
-          <h2 className="t-h1 text-balance text-ink">{cloth.headline}</h2>
-        </Reveal>
-        <Reveal delay={0.06}>
-          <p className="mt-8 max-w-measure t-lede text-ink">{cloth.lead}</p>
-        </Reveal>
+      <div className="relative h-[56svh] min-h-[340px] lg:absolute lg:inset-0 lg:h-auto lg:min-h-0">
+        <Photo
+          src={c.image}
+          alt={c.alt}
+          position="50% 50%"
+          mobilePosition="55% 50%"
+          grade="atelier"
+          scrims={["deepen-l"]}
+          scrimCls={{ "deepen-l": "hidden lg:block" }}
+          motion="drift"
+          audit={c.audit}
+        />
       </div>
+      <div className="relative z-10 w-full px-[var(--gutter)] pb-[clamp(56px,9vh,96px)] pt-[clamp(40px,6vh,56px)] lg:max-w-[calc(var(--gutter)+460px)] lg:py-[clamp(96px,14vh,160px)]">
+        <p className="kicker !mb-[26px] text-[rgba(244,241,234,.72)]">{c.kicker}</p>
+        <Reveal
+          as="h2"
+          className="max-w-[12ch] font-serif text-[clamp(36px,9vw,48px)] font-light leading-[1.02] tracking-[-0.025em] lg:text-[clamp(40px,3.8vw,64px)]"
+        >
+          {c.title}
+        </Reveal>
+        <p className="body mt-[clamp(22px,3.4vh,34px)] max-w-[40ch] text-[rgba(244,241,234,.8)]">{c.body}</p>
 
-      {/* The houses, as a ledger + a tall detail plate alongside */}
-      <div className="mt-[clamp(3.5rem,9vh,7rem)] grid grid-cols-1 gap-x-[clamp(3rem,7vw,7rem)] gap-y-14 lg:grid-cols-[1fr_0.62fr]">
-        <div>
-          <Reveal as="p" className="eyebrow mb-8 text-ink-faint">
-            {cloth.housesLabel}
-          </Reveal>
-          <ul>
-            {cloth.houses.map((h, i) => (
-              <Reveal
-                as="li"
-                key={h.name}
-                delay={0.03}
-                className={`grid grid-cols-1 gap-y-1 stitch-top py-[clamp(1.25rem,3vh,2rem)] sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-x-8 ${
-                  i === cloth.houses.length - 1 ? "stitch-bottom" : ""
-                }`}
-              >
-                <div>
-                  <MillLogo
-                    name={h.name}
-                    logo={mills.find((m) => m.name === h.name)?.logo ?? ""}
-                    tone="ink"
-                    className="h-[clamp(3.25rem,5vw,4.25rem)] w-auto"
-                  />
-                  <p className="mt-1.5 max-w-measure text-[0.95rem] text-ink-muted">
-                    {h.line}
-                  </p>
-                </div>
-                <p className="eyebrow text-ink-faint sm:text-right">{h.place}</p>
-              </Reveal>
+        <div className="mt-[clamp(36px,6vh,64px)] border-t border-[rgba(244,241,234,.22)] pt-6">
+          <p className="label mb-4 !text-[11px] text-[rgba(244,241,234,.62)]">{c.millsLabel}</p>
+          <ul className="flex flex-wrap gap-x-5 gap-y-2 text-[clamp(14px,1.05vw,15.5px)] leading-[1.6] tracking-[0.04em] text-[rgba(244,241,234,.9)]">
+            {mills.map((m, i) => (
+              <li key={m.name} className="flex items-center gap-5">
+                {m.name}
+                {i < mills.length - 1 ? (
+                  <span aria-hidden className="text-[rgba(244,241,234,.4)]">
+                    ·
+                  </span>
+                ) : null}
+              </li>
             ))}
           </ul>
         </div>
 
-        <Reveal as="figure" delay={0.1} className="hidden lg:sticky lg:top-28 lg:block lg:self-start">
-          <Plate
-            src={cloth.detailImage}
-            alt={cloth.detailAlt}
-            className="aspect-[3/4] w-full"
-          />
-        </Reveal>
+        <Link href={c.cta.href} className="link-line mt-[clamp(28px,4vh,40px)]">
+          {c.cta.label} <span aria-hidden>→</span>
+        </Link>
       </div>
-
-      {/* One education pull, then out to Philosophy */}
-      <Reveal
-        delay={0.06}
-        className="mt-[clamp(3.5rem,8vh,6rem)] max-w-measure stitch-top-gold pt-10"
-      >
-        <p className="eyebrow mb-4 text-gold-ink">{cloth.teach.eyebrow}</p>
-        <p className="t-lede italic text-ink">{cloth.teach.body}</p>
-        <div className="mt-8">
-          <CtaLink href={cloth.teach.link.href}>{cloth.teach.link.label}</CtaLink>
-        </div>
-      </Reveal>
     </section>
   );
 }

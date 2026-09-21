@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
 import { Nav } from "@/components/Nav";
-import { PageHero } from "@/components/PageHero";
-import { Reveal } from "@/components/Reveal";
-import { Plate } from "@/components/Plate";
-import { CtaLink } from "@/components/CtaLink";
-import { MeasureTicks } from "@/components/MeasureTicks";
 import { Footer } from "@/components/Footer";
-import { bespoke, nav } from "@/lib/content";
+import { PageHero } from "@/components/PageHero";
+import { Photo } from "@/components/Photo";
+import { Reveal } from "@/components/Reveal";
+import { Breath, Closing } from "@/components/sections/Breath";
+import { bespoke } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Bespoke — CEO Rules",
+  title: "The Bespoke — CEO Rules",
   description:
-    "One garment, cut for one man. A commission takes four to six weeks and three visits: the conversation, the cloth, the pattern, the fittings, the finish.",
+    "One garment, cut for one man. A bespoke commission takes four to six weeks and three visits: the conversation, the cloth, the pattern, the fittings, the finish.",
 };
 
 export default function BespokePage() {
@@ -20,59 +19,51 @@ export default function BespokePage() {
       <Nav />
       <main>
         <PageHero
-          eyebrow={bespoke.hero.eyebrow}
+          kicker={bespoke.hero.kicker}
           title={bespoke.hero.title}
           lede={bespoke.hero.lede}
           image={bespoke.hero.image}
-          imageAlt={bespoke.hero.imageAlt}
+          alt={bespoke.hero.alt}
+          position="50% 46%"
+          titleWidth="max-w-[14ch]"
         />
+        <Breath title={bespoke.breath.title} body={bespoke.breath.body} />
 
-        <section data-nav="light" className="section mx-auto max-w-editorial">
-          <Reveal>
-            <MeasureTicks className="mb-6 h-2.5 w-32 text-gold-ink" />
-          </Reveal>
-          <div className="grid grid-cols-1 gap-x-[clamp(2.5rem,6vw,6rem)] gap-y-6 lg:grid-cols-[1fr_1fr] lg:items-end">
-            <Reveal>
-              <h2 className="t-h1 max-w-[16ch] text-ink">{bespoke.intro.headline}</h2>
-            </Reveal>
-            <Reveal delay={0.06}>
-              <p className="max-w-measure t-lede text-ink">{bespoke.intro.body}</p>
-            </Reveal>
-          </div>
-
-          {/* The commission, step by step: numeral, words, the thing itself. */}
-          <ol className="mt-[clamp(3.5rem,9vh,7rem)]">
+        <section className="bg-cream px-[var(--gutter)] pb-[var(--section-y)]">
+          <ol className="mx-auto max-w-wide border-t border-[rgba(28,26,23,.18)]">
             {bespoke.steps.map((s, i) => (
               <Reveal
                 as="li"
                 key={s.title}
-                delay={0.03}
-                className="grid grid-cols-1 items-start gap-x-[clamp(1.5rem,4vw,4rem)] gap-y-5 stitch-top py-[clamp(2rem,5vh,3.5rem)] last:stitch-bottom md:grid-cols-[auto_1fr_0.8fr]"
+                className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-[clamp(36px,5vw,110px)] border-b border-[rgba(28,26,23,.18)] py-[clamp(48px,7vh,90px)] last:border-b-0"
               >
-                <span aria-hidden className="font-serif leading-none text-ink-faint text-[clamp(2.25rem,4vw,3.5rem)]">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="max-w-measure">
-                  <h3 className="t-h2 text-ink">{s.title}</h3>
-                  <p className="eyebrow mt-3">{s.when}</p>
-                  <p className="mt-5 text-ink-muted">{s.body}</p>
+                <div>
+                  <p aria-hidden className="numeral mb-5 text-[rgba(28,26,23,.22)]">
+                    {String(i + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="max-w-[14ch] text-[clamp(24px,2.4vw,36px)] leading-[1.15] tracking-[-0.02em]">
+                    {s.title}
+                  </h3>
+                  <p className="mt-[18px] text-[11px] uppercase tracking-[0.2em] text-[rgba(28,26,23,.5)]">
+                    {s.when}
+                  </p>
                 </div>
-                <Plate src={s.image} alt={s.alt} className="aspect-[3/2] w-full" />
+                <p className="body max-w-[46ch] text-[rgba(28,26,23,.72)]">{s.body}</p>
+                <div className="relative min-h-[clamp(240px,34vh,340px)]">
+                  <Photo
+                    src={s.image}
+                    alt={s.alt}
+                    position={s.position}
+                    grade="plate"
+                    sizes="(min-width: 1100px) 33vw, 100vw"
+                  />
+                </div>
               </Reveal>
             ))}
           </ol>
-
-          {/* What it costs: the one recessed field on the page. */}
-          <Reveal delay={0.06} className="mt-[clamp(3.5rem,8vh,6rem)] bg-surface p-[clamp(1.75rem,4vw,3.5rem)]">
-            <p className="eyebrow mb-4 text-gold-ink">{bespoke.price.eyebrow}</p>
-            <p className="max-w-[48ch] font-serif text-[clamp(1.3rem,2vw,1.8rem)] leading-snug text-ink">
-              {bespoke.price.body}
-            </p>
-            <div className="mt-8">
-              <CtaLink href={nav.cta.href + "#book"}>Hold an hour with Anis</CtaLink>
-            </div>
-          </Reveal>
         </section>
+
+        <Closing kicker={bespoke.price.kicker} title={bespoke.price.title} body={bespoke.price.body} />
       </main>
       <Footer />
     </>

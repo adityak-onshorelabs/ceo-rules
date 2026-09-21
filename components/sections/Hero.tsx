@@ -1,126 +1,58 @@
-"use client";
+import Link from "next/link";
+import { Photo } from "@/components/Photo";
+import { Reveal } from "@/components/Reveal";
+import { home, site } from "@/lib/content";
 
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { Plate } from "@/components/Plate";
-import { Grain } from "@/components/Grain";
-import { CtaLink } from "@/components/CtaLink";
-import { hero } from "@/lib/content";
-
+// 01 Place (brief §5). The daytime storefront, full width, no card, no margins.
+//
+// Desktop: the type is art-directed into the one genuine negative space the
+// photograph has, the pale cladding at the upper left, clear of the signage,
+// the plaque and the mannequins. It is set in House Ink over a soft local lift
+// of tone, not a dark overlay. Its width is held in vw so it keeps clear of the
+// sign, which sits ~22.6% in from the left at any desktop width.
+//
+// Mobile: a portrait crop centred on the sign and the door, with the type set
+// on House Ivory directly beneath it: its own composition, not the desktop
+// frame squeezed down (brief §21).
 export function Hero() {
-  const ref = useRef<HTMLElement>(null);
-  const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-
-  // Slow parallax: image drifts and lifts as you scroll away. Disabled for reduced motion.
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", reduce ? "0%" : "14%"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1.06, reduce ? 1.06 : 1.0]);
-  const fade = useTransform(scrollYProgress, [0, 0.7], [1, reduce ? 1 : 0]);
-
+  const h = home.hero;
   return (
     <section
-      ref={ref}
       id="top"
-      data-nav="dark"
-      className="on-dark relative flex min-h-[100svh] flex-col justify-end overflow-hidden"
+      className="relative overflow-hidden bg-cream lg:h-[calc(100svh-var(--nav-h))] lg:min-h-[600px]"
     >
-      <motion.div style={{ y, scale }} className="absolute inset-0">
-        <Plate
-          src={hero.image}
-          alt={hero.imageAlt}
+      <div className="relative h-[62svh] min-h-[360px] lg:absolute lg:inset-0 lg:h-auto lg:min-h-0">
+        <Photo
+          src={h.image}
+          alt={h.alt}
+          position="50% 30%"
+          mobilePosition="42% 50%"
+          grade="day"
+          scrims={["lift-tl"]}
+          scrimCls={{ "lift-tl": "hidden lg:block" }}
+          motion="load"
           priority
-          scrim="none"
-          className="h-full w-full"
+          audit={h.audit}
         />
-      </motion.div>
-      <Grain />
+      </div>
 
-      {/* Legibility scrims. Top: for the nav. Left: a dark bed for the copy column so the
-          ivory type never bleeds over bright areas of the image. Bottom: anchors the base.
-          The image stays open on the right. */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 z-[5] h-48"
-        style={{
-          background:
-            "linear-gradient(180deg, oklch(0.15 0.012 58 / 0.72) 0%, transparent 100%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-y-0 left-0 z-[5] w-full md:w-[72%]"
-        style={{
-          background:
-            "linear-gradient(90deg, oklch(0.13 0.012 58 / 0.82) 0%, oklch(0.13 0.012 58 / 0.5) 42%, transparent 100%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[70%]"
-        style={{
-          background:
-            "linear-gradient(180deg, transparent 0%, oklch(0.14 0.012 58 / 0.6) 45%, oklch(0.13 0.012 58 / 0.92) 100%)",
-        }}
-      />
-
-      <motion.div
-        style={{
-          opacity: fade,
-          textShadow: "0 1px 24px oklch(0.12 0.012 58 / 0.5)",
-        }}
-        className="relative z-10 mx-auto w-full max-w-editorial px-[clamp(1.5rem,6vw,6rem)] pb-[clamp(3.5rem,9vh,7rem)]"
-      >
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reduce ? 0 : 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-          className="eyebrow mb-6"
-          style={{ color: "var(--gold-on-dark)" }}
+      <div className="relative z-10 px-[var(--gutter)] pb-[clamp(48px,8vh,72px)] pt-[clamp(32px,5vh,44px)] lg:absolute lg:left-[clamp(28px,2.6vw,56px)] lg:top-[clamp(32px,5vh,64px)] lg:w-[19.5vw] lg:p-0">
+        <Reveal onLoad as="p" className="kicker !mb-[22px] text-[rgba(28,26,23,.62)]">
+          {h.kicker}
+        </Reveal>
+        <Reveal
+          onLoad
+          as="h1"
+          className="max-w-[12ch] font-serif text-[clamp(38px,10vw,48px)] font-light leading-[1.02] tracking-[-0.025em] text-ink lg:max-w-none lg:text-[2.8vw]"
         >
-          {hero.eyebrow}
-        </motion.p>
-
-        <h1 className="t-display max-w-[15ch] text-ink-dark">
-          {hero.headline.map((line, i) => (
-            <motion.span
-              key={line}
-              className="block"
-              initial={{ opacity: 0, y: 26 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: reduce ? 0 : 1,
-                ease: [0.16, 1, 0.3, 1],
-                delay: 0.28 + i * 0.12,
-              }}
-            >
-              {line}
-            </motion.span>
-          ))}
-        </h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reduce ? 0 : 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.62 }}
-          className="mt-8 max-w-[52ch] text-[clamp(1.05rem,1.4vw,1.35rem)] leading-[1.6] text-ink-dark"
-        >
-          {hero.lede}
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reduce ? 0 : 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
-          className="mt-11"
-        >
-          <CtaLink href={hero.cta.href} dark>
-            {hero.cta.label}
-          </CtaLink>
-        </motion.div>
-      </motion.div>
+          {h.title}
+        </Reveal>
+        <Reveal onLoad delay={0.1} className="mt-[clamp(24px,3.4vh,32px)]">
+          <Link href={site.appointment} className="link-line !text-[12px] !gap-3 text-ink">
+            {h.cta} <span aria-hidden className="text-[14px]">→</span>
+          </Link>
+        </Reveal>
+      </div>
     </section>
   );
 }

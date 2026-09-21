@@ -1,29 +1,36 @@
 import { Nav } from "@/components/Nav";
+import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/sections/Hero";
-import { Manifesto } from "@/components/sections/Manifesto";
-import { Identity } from "@/components/sections/Identity";
-import { MillBand } from "@/components/sections/MillBand";
-import { MeetAnis } from "@/components/sections/MeetAnis";
+import { Statement } from "@/components/sections/Statement";
+import { Cloth } from "@/components/sections/Cloth";
 import { Craft } from "@/components/sections/Craft";
-import { Testimonials } from "@/components/sections/Testimonials";
+import { TheEye } from "@/components/sections/TheEye";
+import { Wardrobe } from "@/components/sections/Wardrobe";
+import { Reels } from "@/components/sections/Reels";
 import { Heritage } from "@/components/sections/Heritage";
 import { Visit } from "@/components/sections/Visit";
-import { Footer } from "@/components/Footer";
+import { home } from "@/lib/content";
 
-// Curiosity → Respect → Trust → Connection → Aspiration → Action.
-// Heritage is the plot twist: 1881 lands late, after the visitor is invested.
+// The brief's narrative sequence: Place, Material, Making, Maker, Man,
+// From the House, History, Invitation.
 export default function Home() {
   return (
     <>
       <Nav />
       <main>
         <Hero />
-        <Manifesto />
-        <Identity />
-        <MillBand />
-        <MeetAnis />
+        <Statement />
+        <Cloth />
         <Craft />
-        <Testimonials />
+        <TheEye
+          video={home.eye.video}
+          image={home.eye.image}
+          alt={home.eye.alt}
+          position={home.eye.position}
+          audit={home.eye.audit}
+        />
+        <Wardrobe />
+        <Reels />
         <Heritage />
         <Visit />
       </main>
