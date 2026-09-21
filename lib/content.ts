@@ -99,7 +99,7 @@ export const home = {
         label: "01 / The Cut",
         line: "Every line begins on the table.",
         image: "/images/craft-cut.jpg",
-        alt: "Shears cutting through wool on the cutting table",
+        alt: "Anis Soomar cutting cloth with shears on the table",
         position: "50% 58%",
         audit: "Replace · 795×810 · 3000px portrait, controlled light",
       },
