@@ -36,8 +36,8 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative z-10 px-[var(--gutter)] pb-[clamp(48px,8vh,72px)] pt-[clamp(32px,5vh,44px)] lg:absolute lg:left-[clamp(28px,2.6vw,56px)] lg:top-[clamp(32px,5vh,64px)] lg:w-[19.5vw] lg:p-0">
-        <Reveal onLoad as="p" className="kicker !mb-[22px] text-[rgba(28,26,23,.62)]">
+      <div className="relative z-10 px-[var(--gutter)] lg:halo-ink pb-[clamp(48px,8vh,72px)] pt-[clamp(32px,5vh,44px)] lg:absolute lg:left-[clamp(28px,2.6vw,56px)] lg:top-[clamp(32px,5vh,64px)] lg:w-[19.5vw] lg:p-0">
+        <Reveal onLoad as="p" className="kicker !mb-[22px] text-[rgba(28,26,23,.86)] lg:font-medium">
           {h.kicker}
         </Reveal>
         <Reveal

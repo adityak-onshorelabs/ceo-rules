@@ -31,8 +31,8 @@ export const SCRIMS = {
   reel: "linear-gradient(0deg, rgba(14,13,11,.8) 0%, rgba(14,13,11,0) 48%)",
   // Localised treatments (brief §5): a soft pool of tone behind the type only,
   // never a wash over the photograph.
-  "lift-tl": "radial-gradient(ellipse 34% 58% at 0% 0%, rgba(244,241,234,.62) 0%, rgba(244,241,234,.32) 55%, rgba(244,241,234,0) 100%)",
-  "deepen-l": "radial-gradient(ellipse 46% 88% at 0% 58%, rgba(14,13,11,.78) 0%, rgba(14,13,11,.5) 48%, rgba(14,13,11,0) 100%)",
+  "lift-tl": "radial-gradient(ellipse 30% 64% at 0% 4%, rgba(244,241,234,.8) 0%, rgba(244,241,234,.58) 46%, rgba(244,241,234,.16) 78%, rgba(244,241,234,0) 100%)",
+  "deepen-l": "linear-gradient(90deg, rgba(14,13,11,.8) 0%, rgba(14,13,11,.7) 26%, rgba(14,13,11,.36) 38%, rgba(14,13,11,0) 50%)",
   "deepen-b": "radial-gradient(ellipse 110% 55% at 30% 100%, rgba(14,13,11,.7) 0%, rgba(14,13,11,.25) 60%, rgba(14,13,11,0) 100%)",
 } as const;
 
