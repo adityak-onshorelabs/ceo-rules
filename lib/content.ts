@@ -86,10 +86,9 @@ export const home = {
     body: "Before a measurement, before a cut, there is a decision made with your hands. We keep the books that are worth opening.",
     millsLabel: "The houses we keep",
     cta: { label: "The Bespoke", href: "/bespoke" },
-    image: "/images/cloth-shelves.jpg",
-    alt: "Cloth books and folded bolts on the shelves of the atelier",
-    audit:
-      "Replace · 1206×1177 — occasion cloth, not suiting. Need hands paging an open cloth book, warm low light, 3000px landscape, space left.",
+    image: "/images/stock/cloth.jpg",
+    alt: "Folded lengths of tartan wool stacked on the shelf",
+    audit: "Stock placeholder · replace with CEO Rules photography before launch (brief §4, §28)",
   },
   craft: {
     kicker: "The Craft",

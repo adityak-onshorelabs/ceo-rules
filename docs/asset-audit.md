@@ -19,7 +19,7 @@ Status: FINAL / TEMPORARY / REPLACE. Nothing is FINAL until the shoot.
 | `storefront-day.jpg` | 1280×960 | Home hero | TEMPORARY | The client's enhanced daytime frame (§5). Half the resolution floor. Baked-in plaque "Master tailors since 1881 · A legacy of six generations" contradicts §1 and §4. Confirm against the real façade. |
 | `storefront.jpg` (dusk) | 1206×927 | House, Atelier heroes | TEMPORARY | The real façade; too small. |
 | `interior.jpg` | 1206×1175 | Home Visit, House band | TEMPORARY | Reads as retail shelving, not the salon. |
-| `cloth-shelves.jpg` | 1206×1177 | Home Cloth | REPLACE | Occasion brocade, not suiting cloth books. |
+| `cloth-shelves.jpg` | 1206×1177 | (was Home Cloth) | REPLACE | Occasion brocade, not suiting cloth books. Replaced by a stock placeholder. |
 
 ### The Man (Anis with clients, fitting, talking, selecting cloth)
 | File | Size | Used on | Status | Note |
@@ -70,6 +70,7 @@ tailoring stock imagery"; §4 asks for a believable CEO Rules environment). Stat
 
 | Used for | File (public/images/stock) | Source file | Note |
 |---|---|---|---|
+| Home Cloth | cloth.jpg | homepage/the-cloth.jpg | Stock, 2592×1944. Folded tartans: rich, but brief §1 warns against reading as an old British tailoring house; §6 asks for hands in a suiting cloth book. |
 | Craft · Cut | craft-cut.jpg | homepage/the-cut.jpg | Stock. |
 | Craft · Canvas | craft-canvas.jpg | homepage/the-canvas.jpg | Stock; shows pattern-cutting rather than canvas. |
 | Craft · Fit, Wardrobe · Suits | craft-fit.jpg | homepage/the-fit.jpg = the-wardrobe/01-suits.jpg | Same photo supplied twice. |
