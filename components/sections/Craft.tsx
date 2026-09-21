@@ -1,37 +1,44 @@
+import { Photo } from "@/components/Photo";
 import { Reveal } from "@/components/Reveal";
-import { Plate } from "@/components/Plate";
-import { MeasureTicks } from "@/components/MeasureTicks";
-import { mastery } from "@/lib/content";
+import { home } from "@/lib/content";
 
-// Brief §5: demonstrate mastery through visuals, not paragraphs. A quiet triptych
-// of fabric, construction, and finish.
+// 03 Making. Cut, canvas, fit, finish: a 2×2 photographic grid.
 export function Craft() {
+  const c = home.craft;
   return (
-    <section id="craft" data-nav="light" className="section mx-auto max-w-editorial">
-      <Reveal>
-        <MeasureTicks className="mb-6 h-2.5 w-32 text-gold-ink" />
-      </Reveal>
-      <Reveal as="p" className="eyebrow mb-10">
-        {mastery.eyebrow}
-      </Reveal>
-      <div className="grid grid-cols-1 gap-x-[clamp(2.5rem,6vw,6rem)] gap-y-6 lg:grid-cols-[1fr_1fr] lg:items-end">
-        <Reveal>
-          <h2 className="t-h1 max-w-[16ch] text-balance text-ink">
-            {mastery.headline}
-          </h2>
-        </Reveal>
-        <Reveal delay={0.06}>
-          <p className="max-w-measure t-lede text-ink">{mastery.lead}</p>
+    <section id="craft" className="bg-cream pb-[clamp(110px,16vh,190px)] pt-[var(--section-y)]">
+      <div className="mx-auto max-w-wide px-[var(--gutter)]">
+        <p className="kicker text-[rgba(28,26,23,.55)]">{c.kicker}</p>
+        <Reveal as="h2" className="h-section">
+          {c.title}
         </Reveal>
       </div>
 
-      {/* The making, shown. */}
-      <div className="mt-[clamp(3rem,7vh,5rem)] grid grid-cols-1 gap-[clamp(1rem,2vw,1.75rem)] sm:grid-cols-3">
-        {mastery.pieces.map((p, i) => (
-          <Reveal as="figure" key={p.label} delay={i * 0.08}>
-            <Plate src={p.src} alt={p.alt} className="aspect-[4/5] w-full" />
-            <figcaption className="eyebrow mt-4">{p.label}</figcaption>
-          </Reveal>
+      <div className="card-grid mx-auto mt-[clamp(64px,10vh,130px)] max-w-wide px-[var(--gutter)]">
+        {c.steps.map((s) => (
+          <article
+            key={s.label}
+            className="on-dark relative flex min-h-[clamp(430px,62vh,660px)] items-end overflow-hidden bg-ink-deep"
+          >
+            <Photo
+              src={s.image}
+              alt={s.alt}
+              position={s.position}
+              grade="card"
+              scrims={["card"]}
+              sizes="(min-width: 960px) 50vw, 100vw"
+              audit={s.audit}
+              auditAt="tl"
+            />
+            <div className="relative z-10 p-[clamp(30px,3.6vw,54px)]">
+              <p className="mb-3.5 text-[10.5px] uppercase tracking-[0.24em] text-[rgba(244,241,234,.62)]">
+                {s.label}
+              </p>
+              <p className="max-w-[16ch] font-serif text-[clamp(22px,1.9vw,30px)] font-light leading-[1.2] tracking-[-0.02em]">
+                {s.line}
+              </p>
+            </div>
+          </article>
         ))}
       </div>
     </section>

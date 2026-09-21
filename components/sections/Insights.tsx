@@ -1,13 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Photo } from "@/components/Photo";
 import { Reveal } from "@/components/Reveal";
-import { Plate } from "@/components/Plate";
 import { insights } from "@/lib/content";
 
-// The founder's insights as a long-form reading page: a sticky contents rail that
-// tracks the active essay, quiet serif numerals as anchors, and the fit checklist
-// pulled into a recessed field so no two entries read the same.
+// The founder's essays as a long-form reading page: a sticky contents rail that
+// tracks the active essay beside the essays themselves.
 export function Insights() {
   const entries = insights.entries;
   const [active, setActive] = useState(entries[0]?.id);
@@ -28,37 +27,23 @@ export function Insights() {
   }, []);
 
   return (
-    <section id="insights" data-nav="light" className="section mx-auto max-w-editorial">
-      {/* Header */}
-      <header className="grid grid-cols-1 items-end gap-y-8 stitch-bottom pb-[clamp(2.5rem,6vh,4rem)] lg:grid-cols-[1fr_auto]">
-        <div className="max-w-[42rem]">
-          <p className="eyebrow mb-8">{insights.eyebrow}</p>
-          <h1 className="t-display text-ink">{insights.title}</h1>
-          <p className="mt-8 max-w-measure t-lede text-ink">{insights.intro}</p>
-        </div>
-        <p className="eyebrow tabular-nums text-ink-faint lg:text-right">
-          {String(entries.length).padStart(2, "0")} reflections
-        </p>
-      </header>
-
-      {/* Reading layout: contents rail + essays */}
-      <div className="mt-[clamp(3rem,8vh,6rem)] grid grid-cols-1 gap-x-[clamp(3rem,7vw,7rem)] lg:grid-cols-[0.42fr_1fr]">
-        {/* Sticky contents */}
+    <section id="essays" className="section bg-cream">
+      <div className="mx-auto grid max-w-wide grid-cols-1 gap-x-[var(--breath-gap)] lg:grid-cols-[0.36fr_1fr]">
         <aside className="hidden lg:block">
-          <nav className="sticky top-28" aria-label="Contents">
-            <p className="eyebrow mb-6">Contents</p>
-            <ol className="space-y-3.5">
+          <nav className="sticky top-32" aria-label="Contents">
+            <p className="kicker text-[rgba(28,26,23,.55)]">Contents</p>
+            <ol className="space-y-4">
               {entries.map((e, i) => (
-                <li key={e.id} className="flex gap-3 leading-snug">
-                  <span className="eyebrow tabular-nums pt-0.5 text-ink-faint">
+                <li key={e.id} className="flex items-baseline gap-4">
+                  <span className="text-[10.5px] tracking-[0.2em] tabular-nums text-[rgba(28,26,23,.4)]">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <a
                     href={`#${e.id}`}
-                    className={`text-[0.95rem] transition-colors duration-300 ${
+                    className={`border-b pb-0.5 text-[14px] transition-colors duration-[240ms] ${
                       active === e.id
-                        ? "text-ink"
-                        : "text-ink-faint hover:text-ink-muted"
+                        ? "border-gold text-ink"
+                        : "border-transparent text-[rgba(28,26,23,.5)] hover:text-ink"
                     }`}
                   >
                     {e.tag}
@@ -69,67 +54,53 @@ export function Insights() {
           </nav>
         </aside>
 
-        {/* Essays */}
-        <div>
+        <div className="border-t border-[rgba(28,26,23,.18)]">
           {entries.map((n, i) => (
-            <Reveal
-              as="article"
+            <article
               key={n.id}
-              delay={0.02}
-              className={`scroll-mt-28 stitch-bottom py-[clamp(3rem,6vh,5rem)] first:pt-0 ${
-                i === 0 ? "lg:pt-0" : ""
-              }`}
+              id={n.id}
+              ref={(el) => {
+                refs.current[n.id] = el;
+              }}
+              className="scroll-mt-28 border-b border-[rgba(28,26,23,.18)] py-[clamp(56px,8vh,100px)]"
             >
-              <div
-                id={n.id}
-                ref={(el) => {
-                  refs.current[n.id] = el;
-                }}
-                className="grid grid-cols-1 gap-x-[clamp(1.5rem,3vw,3rem)] gap-y-4 sm:grid-cols-[auto_1fr]"
-              >
-                <span
-                  aria-hidden
-                  className="font-serif leading-none text-ink-faint text-[clamp(2rem,4vw,3.25rem)]"
-                >
+              <Reveal className="grid grid-cols-1 gap-x-[clamp(24px,3vw,48px)] gap-y-6 sm:grid-cols-[auto_1fr]">
+                <span aria-hidden className="numeral text-[rgba(28,26,23,.22)]">
                   {String(i + 1).padStart(2, "0")}
                 </span>
+                <div className="max-w-[60ch]">
+                  <p className="label mb-4 text-[rgba(28,26,23,.55)]">{n.tag}</p>
+                  <h2 className="max-w-[20ch] text-[clamp(28px,3vw,46px)] leading-[1.08] tracking-[-0.022em]">
+                    {n.title}
+                  </h2>
+                  <p className="body mt-6 text-[rgba(28,26,23,.72)]">{n.body}</p>
 
-                <div className="max-w-measure">
-                  <p className="eyebrow mb-4 text-gold-ink">{n.tag}</p>
-                  <h2 className="t-h2 text-balance text-ink">{n.title}</h2>
-                  <p className="mt-5 text-ink-muted">{n.body}</p>
-
-                  {"list" in n && n.list ? (
-                    <ul className="mt-7 space-y-3 rounded-[2px] bg-surface p-[clamp(1.25rem,3vw,2rem)]">
+                  {n.list ? (
+                    <ul className="mt-8 border-t border-[rgba(28,26,23,.18)]">
                       {n.list.map((item) => (
-                        <li key={item} className="flex gap-3 text-ink">
-                          <span aria-hidden className="mt-1 text-gold-ink">
-                            &#10003;
-                          </span>
-                          <span>{item}</span>
+                        <li
+                          key={item}
+                          className="border-b border-[rgba(28,26,23,.18)] py-4 text-[15px] leading-[1.6] text-ink"
+                        >
+                          {item}
                         </li>
                       ))}
                     </ul>
                   ) : null}
 
-                  {"coda" in n && n.coda ? (
-                    <p className="mt-6 font-serif text-[clamp(1.1rem,1.5vw,1.35rem)] italic text-gold-ink">
-                      {n.coda}
-                    </p>
-                  ) : null}
+                  {n.coda ? <p className="pull mt-8 italic">{n.coda}</p> : null}
 
-                  {"image" in n && n.image ? (
-                    <figure className="mt-8">
-                      <Plate
-                        src={n.image}
-                        alt={typeof n.imageAlt === "string" ? n.imageAlt : ""}
-                        className="aspect-[3/2] w-full"
-                      />
-                    </figure>
-                  ) : null}
+                  <div className="relative mt-10 aspect-[3/2] w-full">
+                    <Photo
+                      src={n.image}
+                      alt={n.imageAlt}
+                      grade="plate"
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                    />
+                  </div>
                 </div>
-              </div>
-            </Reveal>
+              </Reveal>
+            </article>
           ))}
         </div>
       </div>

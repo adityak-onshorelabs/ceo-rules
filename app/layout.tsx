@@ -1,30 +1,31 @@
 import type { Metadata } from "next";
-import { Fraunces, Montserrat } from "next/font/google";
-import { SmoothScroll } from "@/components/SmoothScroll";
-import { Loader } from "@/components/Loader";
+import { Instrument_Sans, Newsreader } from "next/font/google";
 import "./globals.css";
 
-// Serif for headlines.
-const fraunces = Fraunces({
+// Newsreader carries every display headline and pull-quote (weights 200/300 only).
+// Variable, with the optical-size axis so large settings draw the display cut.
+const newsreader = Newsreader({
   subsets: ["latin"],
   variable: "--font-serif",
   axes: ["opsz"],
   style: ["normal", "italic"],
   display: "swap",
+  // next/font has no fallback metrics for Newsreader; Georgia stands in.
+  adjustFontFallback: false,
+  fallback: ["Georgia", "serif"],
 });
 
-// Montserrat for body, UI, eyebrows.
-const montserrat = Montserrat({
+// Instrument Sans carries everything functional: kickers, nav, body, captions.
+const instrument = Instrument_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
-  style: ["normal", "italic"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "CEO Rules — The quiet language of confidence",
+  title: "CEO Rules — Private tailoring, Bandra",
   description:
-    "A house that teaches self-made men the quiet language of confidence through timeless craftsmanship. Bespoke tailoring, Bandra, Mumbai.",
+    "A family house of bespoke tailoring in Bandra, Mumbai. Six generations in cloth, since 1881.",
 };
 
 export default function RootLayout({
@@ -33,12 +34,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${montserrat.variable}`}>
-      <body>
-        <Loader />
-        <SmoothScroll />
-        {children}
-      </body>
+    <html lang="en" className={`${newsreader.variable} ${instrument.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }

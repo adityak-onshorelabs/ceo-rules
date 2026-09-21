@@ -1,57 +1,38 @@
+import Link from "next/link";
+import { Photo } from "@/components/Photo";
 import { Reveal } from "@/components/Reveal";
-import { Plate } from "@/components/Plate";
-import { wardrobe } from "@/lib/content";
+import { home } from "@/lib/content";
 
-// Editorial, not a catalogue. On a dark band, the garments framed as identity.
+// 05 Man. The finished garment, and the six things the house makes.
 export function Wardrobe() {
+  const w = home.wardrobe;
   return (
-    <section
-      id="wardrobe"
-      data-nav="dark"
-      className="on-dark section mx-auto max-w-editorial"
-    >
-      <div className="grid grid-cols-1 items-center gap-x-[clamp(2.5rem,6vw,6rem)] gap-y-14 lg:grid-cols-[1fr_0.72fr]">
-        <div>
-          <Reveal as="p" className="eyebrow mb-10">
-            {wardrobe.eyebrow}
-          </Reveal>
-          <Reveal>
-            <h2 className="t-h1 max-w-[16ch] text-balance text-ink-dark">
-              {wardrobe.headline}
-            </h2>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <p className="mt-6 max-w-measure t-lede text-ink-dark-muted">
-              {wardrobe.lead}
-            </p>
-          </Reveal>
-
-          {/* the pieces, each with a reason, not a price */}
-          <div className="mt-12 max-w-measure stitch-top-dark">
-            {wardrobe.pieces.map((p, i) => (
-              <Reveal
-                key={p.name}
-                delay={i * 0.05}
-                className="flex items-baseline justify-between gap-6 stitch-bottom-dark py-5"
-              >
-                <span className="font-serif text-[clamp(1.15rem,1.6vw,1.5rem)] text-ink-dark">
-                  {p.name}
-                </span>
-                <span className="max-w-[24ch] text-right text-[0.9rem] text-ink-dark-muted">
-                  {p.line}
-                </span>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-
-        <Reveal as="figure" delay={0.12} className="hidden lg:block">
-          <Plate
-            src={wardrobe.image}
-            alt={wardrobe.imageAlt}
-            className="aspect-[4/5] w-full"
-          />
+    <section id="wardrobe" className="on-dark relative flex min-h-screen items-end overflow-hidden bg-ink-deep">
+      <Photo
+        src={w.image}
+        alt={w.alt}
+        position="38% 32%"
+        grade="interior"
+        scrims={["interior"]}
+        motion="drift"
+        audit={w.audit}
+        auditAt="tr"
+      />
+      <div className="relative z-10 w-full px-[var(--gutter)] pb-[clamp(76px,12vh,150px)] pt-40">
+        <p className="kicker text-[rgba(244,241,234,.7)]">{w.kicker}</p>
+        <Reveal as="h2" className="h-section !max-w-[18ch]">
+          {w.title}
         </Reveal>
+        <div className="mt-[clamp(34px,5vh,54px)] flex flex-wrap items-baseline gap-x-12 gap-y-[22px] border-t border-[rgba(244,241,234,.2)] pt-[30px]">
+          {w.categories.map((c) => (
+            <span key={c} className="text-[clamp(13px,1.05vw,15px)] uppercase tracking-[0.14em] text-[rgba(244,241,234,.86)]">
+              {c}
+            </span>
+          ))}
+          <Link href="/the-wardrobe" className="link-line ml-auto !pb-1.5">
+            {w.cta} <span aria-hidden>→</span>
+          </Link>
+        </div>
       </div>
     </section>
   );

@@ -1,179 +1,434 @@
-// PROVISIONAL copy. Voice follows docs/CEO-Rules-Content-Foundation.md.
-// Not final. Final copy comes from the founder interview + copy phase.
+// Site copy. Structure and wording follow the Sept 2026 redesign handoff
+// ("CEO Rules website redesign"). Photo notes (`audit`) show only with ?audit
+// in the URL; they list which frames still need the brief's 3000px reshoot.
 
-export const nav = {
-  wordmark: "CEO RULES",
-  // Root-relative so the nav works from any page. Quiet links + one gold CTA
-  // (DESIGN.md): the whole site drives toward the visit, so it is the one
-  // action set apart.
-  links: [
-    { label: "The House", href: "/house" },
-    { label: "The Cloth", href: "/the-cloth" },
-    { label: "The Wardrobe", href: "/the-wardrobe" },
-    { label: "Philosophy", href: "/philosophy" },
-  ],
-  cta: { label: "Visit the Atelier", href: "/atelier" },
-};
-
-// Real client reviews (lightly edited for length). The airport/Goa story is featured.
-export const testimonials = {
-  eyebrow: "In their words",
-  featured: {
-    lead: "They don't just make great suits. They deliver legendary service.",
-    body: "Our family has gone to CEO Rules for nearly twenty years. I once flew into Mumbai for a wedding with no time to spare; Anis fitted me the same day, then flew a tailor with our finished suits to Goa. When I noticed a tiny flaw on a button heading back to the US, his tailor met me at the airport and fixed it in five minutes outside baggage claim.",
-    author: "Mujtaba Khambatti",
-  },
-  items: [
-    {
-      quote:
-        "Climbing the ladder of success wasn't easy without the right attire. I was lost, and my job was at stake. Then I found the house through Instagram. His wisdom, his expertise, the whole experience was amazing.",
-      author: "Ursula Paul",
-    },
-    {
-      quote:
-        "Mr. Anis patiently, personally walked me through every characteristic of making a suit. I bought a bespoke one, and it has been my favourite piece of clothing ever since.",
-      author: "Raunak",
-    },
-    {
-      quote:
-        "Anis walked me through every offering, and shared his knowledge of suits and the finer points of construction, tailored to the wearer.",
-      author: "Anubhav Saha",
-    },
-    {
-      quote:
-        "The family is so involved in the entire process that you won't leave dissatisfied. A customer for more than eight years.",
-      author: "Pavan Shetty",
-    },
-  ],
-};
-
-export const hero = {
-  eyebrow: "Bandra · Mumbai",
-  headline: ["The quiet language", "of confidence."],
-  lede: "We have dressed self-made men longer than most houses have existed. Quietly.",
-  cta: { label: "Visit the Atelier", href: "#visit" },
-  scrollHint: "Scroll",
-  // Authentic CEO Rules imagery (from their Instagram).
-  image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3731.jpg",
-  imageAlt: "A jacket taking shape on the form, tape measure across the chest",
-};
-
-export const manifesto = {
-  eyebrow: "What we believe",
-  lines: [
-    "We do not sell suits.",
-    "We teach a man how to occupy a room.",
-    "The cloth is only the medium.",
-    "Presence is the work.",
-  ],
-  // Education woven in: every section leaves the visitor slightly wiser.
-  takeaway:
-    "A jacket is built, not sewn. The shoulder is the one line a tailor cannot fake, and the first thing a room reads.",
-  image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3726.jpg",
-  imageAlt: "A jacket lapel with a folded pocket square",
-};
-
-// The Craft. Adapted from Anis's own words on Instagram:
-// "A gentleman isn't born, he's built through attention to detail... every detail
-// speaks before you do... first impressions are made in seconds."
-export const craft = {
-  eyebrow: "The details",
-  headline: "A gentleman isn't born. He is built.",
-  lead: "Built through attention to detail, because every detail speaks before you do.",
-  details: [
-    "A considered cut.",
-    "A kept beard.",
-    "Cloth made to you.",
-    "Shoes that mean it.",
-    "A watch with a past.",
-    "A scent that stays.",
-  ],
-  close: "First impressions are made in seconds. We make yours count.",
-  image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3738.jpg",
-  imageAlt: "Folded silk ties in the house's patterns",
-};
-
-// Heritage as a plot twist (brief Part II §12): the year lands late, after the
-// visitor is already invested, so 145 years suddenly means something.
-export const heritage = {
-  lead: "We have told you what the house believes. We have not told you how long it has believed it.",
-  year: "1881",
-  years: "One hundred and forty-five years.",
-  body: "The house of Haji Soomar opened in Crawford Market in 1881, and has been cutting cloth ever since. What began as one man's trade became a family's language, handed down generation after generation.",
-  close: "Now the number means something.",
-};
-
-// The Craft (brief §5): mastery shown through visuals, not paragraphs.
-export const mastery = {
-  eyebrow: "The craft",
-  headline: "Most of the work never shows.",
-  lead: "Canvas, not glue. A chest shaped by hand, and stitches you will never see. Mastery is quiet, and mostly hidden inside the jacket.",
-  pieces: [
-    { src: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3727.jpg", alt: "Cloth waiting in the atelier", label: "Fabric" },
-    {
-      src: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3739.jpg",
-      alt: "A hand-basted canvas chest taking shape",
-      label: "Construction",
-    },
-    {
-      src: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3729.jpg",
-      alt: "Working buttonholes and the finish",
-      label: "Finish",
-    },
-  ],
-};
-
-// The wardrobe: the outcome as identity, editorial, never a catalogue (brief §7).
-export const wardrobe = {
-  eyebrow: "The wardrobe",
-  headline: "A wardrobe is a kind of autobiography.",
-  lead: "Not a collection of clothes. A record of who a man has decided to be.",
-  pieces: [
-    { name: "Bespoke suits", line: "Cut for the life you actually lead." },
-    { name: "Bandhgalas", line: "For the rooms that ask for a little more." },
-    { name: "Sherwanis", line: "For the days you will want to remember." },
-    { name: "The finishing", line: "The tie, the square, the things that speak last." },
-  ],
-  image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3730.jpg",
-  imageAlt: "A man in a bespoke checked suit",
-};
-
-// Visit: the natural ending. Remove friction, do not sell (brief §9).
-export const visit = {
-  eyebrow: "Visit",
-  headline: "Come sit with us in Bandra.",
-  lead: "There is nothing to buy today. Only a conversation, and a good cup of coffee.",
-  addressLabel: "The house",
-  address: [
-    "CEO Rules",
-    "Shabistan CHSL, 319/A",
-    "Dr Ambedkar Road, Bandra West",
-    "Mumbai 400 050",
-  ],
-  hoursLabel: "Hours",
-  hours: ["Open every day", "10:30 am until 9 pm"],
-  mapLabel: "Get directions",
+export const site = {
+  whatsapp: { label: "WhatsApp +91 98333 14141", href: "https://wa.me/919833314141" },
+  instagram: "https://www.instagram.com/ceorules/",
   mapHref:
     "https://www.google.com/maps/search/?api=1&query=CEO+Rules+Shabistan+CHSL+Dr+Ambedkar+Road+Bandra+West+Mumbai",
-  whatsapp: { label: "+91 98333 14141", href: "https://wa.me/919833314141" },
-  image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3732.jpg",
-  imageAlt: "The CEO Rules storefront at night, Bandra",
+  address: ["Shabistan CHSL, 319/A", "Dr Ambedkar Road, Bandra West", "Mumbai 400 050"],
+  hours: ["Every day", "10:30 am – 9:00 pm"],
+  appointment: "/appointment",
 };
 
-// Insights: the founder sharing knowledge (education as generosity, brief §13).
-// Adapted from CEO Rules' own Instagram posts.
+export const nav = {
+  left: [
+    { label: "The House", href: "/house" },
+    { label: "The Bespoke", href: "/bespoke" },
+  ],
+  right: [
+    { label: "The Wardrobe", href: "/the-wardrobe" },
+    { label: "The Rules", href: "/philosophy" },
+  ],
+  cta: { label: "Visit the Atelier", href: "/appointment" },
+};
+
+export const footer = {
+  line: "A family house of bespoke tailoring, in Mumbai. Est. 1881.",
+  links: [
+    { label: "The Cloth", href: "/the-cloth" },
+    { label: "The Atelier", href: "/atelier" },
+    { label: "Instagram", href: site.instagram, external: true },
+    { label: "WhatsApp", href: site.whatsapp.href, external: true },
+    { label: "Appointment", href: site.appointment },
+  ],
+};
+
+export const testimonial = {
+  quote:
+    "I flew into Mumbai for a wedding with no time to spare. Anis fitted me the same day, then flew a tailor with our finished suits to Goa. Heading back to the US I noticed a flaw on a button — his tailor met me at the airport and fixed it in five minutes outside baggage claim.",
+  by: "Mujtaba Khambatti · client, nineteen years",
+};
+
+export const theEye = {
+  kicker: "The Eye",
+  name: "Anis Soomar",
+  pull: "Anyone can sell you expensive cloth. Judgement is the part you cannot buy by the metre.",
+  body: "Proportion, fit, cloth, occasion, personality, and how a man should actually wear the thing. Thirty years of deciding those six things correctly, for one man at a time.",
+  cta: "Sit with Anis",
+};
+
+export const mills = ["Loro Piana", "Zegna", "Scabal", "ALUMO", "Söktas"];
+
+// ---------------------------------------------------------------------------
+// Homepage: the brief's eight-act sequence.
+// ---------------------------------------------------------------------------
+export const home = {
+  hero: {
+    kicker: "Mumbai · Since 1881",
+    title: "Private tailoring for a more considered life.",
+    cta: "Book a Private Appointment",
+    image: "/images/storefront.jpg",
+    alt: "The CEO Rules storefront on Dr Ambedkar Road, Bandra, at dusk",
+    audit:
+      "Replace · 1206×927 — daytime storefront, 3000px+ landscape master from across the road, open sky left for type. Also as an 8s loop.",
+  },
+  statement: {
+    lead: "A house in Bandra, six generations in cloth, one man's eye.",
+    body: "We are not a shop. You come in, you sit down, and we talk about the rooms you walk into before we talk about cloth. Everything after that is a consequence of that conversation.",
+  },
+  cloth: {
+    kicker: "The Cloth",
+    title: "A wardrobe begins in the book.",
+    body: "Before a measurement, before a cut, there is a decision made with your hands. We keep the books that are worth opening.",
+    millsLabel: "The houses we keep",
+    cta: { label: "The Bespoke", href: "/bespoke" },
+    image: "/images/cloth-shelves.jpg",
+    alt: "Cloth books and folded bolts on the shelves of the atelier",
+    audit:
+      "Replace · 1206×1177 — occasion cloth, not suiting. Need hands paging an open cloth book, warm low light, 3000px landscape, space left.",
+  },
+  craft: {
+    kicker: "The Craft",
+    title: "Most of the work never shows.",
+    steps: [
+      {
+        label: "01 / The Cut",
+        line: "Every line begins on the table.",
+        image: "/images/craft-cut.jpg",
+        alt: "Shears cutting through wool on the cutting table",
+        position: "50% 58%",
+        audit: "Replace · 795×810 · 3000px portrait, controlled light",
+      },
+      {
+        label: "02 / The Canvas",
+        line: "Structure without stiffness.",
+        image: "/images/canvas.jpg",
+        alt: "A basted canvas chest taking shape inside a jacket",
+        position: "50% 45%",
+        audit: "Replace · 1061×764 · basting close-up, 3000px",
+      },
+      {
+        label: "03 / The Fit",
+        line: "Adjusted on the man, not the form.",
+        image: "/images/anis-fitting.jpg",
+        alt: "Anis Soomar adjusting a jacket at the shoulder during a fitting",
+        position: "62% 40%",
+        audit: "Replace · 1075×1089 · colour cast, live fitting reshoot",
+      },
+      {
+        label: "04 / The Finish",
+        line: "The work most people never see.",
+        image: "/images/founder-stitching.webp",
+        alt: "Hand stitching a lapel, green thread through canvas",
+        position: "46% 62%",
+        audit: "Temporary · 826×1020 · regrade or reshoot buttonhole",
+      },
+    ],
+  },
+  eye: {
+    image: "/images/atelier-conversation.webp",
+    alt: "Anis Soomar in conversation with a client over an open cloth book",
+    position: "34% 46%",
+    audit:
+      "Replace · 1020×1020 — Dormeuil box in shot (banned mill). Reshoot: Anis explaining cloth to a client, 3/4, warm salon light, 3000px portrait.",
+  },
+  wardrobe: {
+    kicker: "The Wardrobe",
+    title: "This is what the house can make for you.",
+    categories: ["Suits", "Shirts", "Jackets", "Tuxedos", "Bandhgalas", "Sherwanis"],
+    cta: "The Wardrobe",
+    image: "/images/checked-suit.jpg",
+    alt: "A finished bespoke checked jacket, adjusted at the cuff",
+    audit:
+      "Replace · watermarked — baked-in CEO RULES® mark. Need a real client, 3/4, movement, 3000px portrait, space at base for type.",
+  },
+  reels: {
+    kicker: "From the House",
+    title: "Three things worth knowing before you commission anything.",
+    more: { label: "More from the house", href: "/philosophy" },
+    items: [
+      {
+        line: "The details speak before you do.",
+        image: "/images/lapel.jpg",
+        alt: "Reel: folded pocket squares in the house patterns",
+        position: "50% 40%",
+      },
+      {
+        line: "True luxury is never loud.",
+        image: "/images/tuxedo-detail.webp",
+        alt: "Reel: a finished tuxedo on the stand, satin lapel and pleated shirt",
+        position: "50% 42%",
+      },
+      {
+        line: "Better combinations, not more clothes.",
+        image: "/images/ties.jpg",
+        alt: "Reel: silk ties laid out in combination",
+        position: "50% 45%",
+      },
+    ],
+    audit: "Poster stand-in · select 3 Reels · 1080×1920 posters",
+  },
+  heritage: {
+    kicker: "The House",
+    title: "Six generations in the clothing industry. A history that traces to 1881.",
+    body: "The family began in cloth, in Crawford Market. What was traded became what was cut, and what was cut became a way of speaking to a man about himself. The house carries that forward in Bandra.",
+    cta: { label: "The House", href: "/house" },
+  },
+  visit: {
+    kicker: "Visit",
+    title: "Come sit with us in Bandra.",
+    body: "Thirty minutes, a cup of coffee, and no obligation to commission anything. Anis will tell you honestly whether we are the right house for you.",
+    cta: "Book a Private Appointment",
+    image: "/images/interior.jpg",
+    alt: "Inside the house in Bandra",
+    audit:
+      "Temporary · 1206×1175 — reads as retail shelving. Want the seating area, coffee on the table, someone mid-conversation. 3000px portrait.",
+  },
+};
+
+// ---------------------------------------------------------------------------
+// The House
+// ---------------------------------------------------------------------------
+export const house = {
+  hero: {
+    kicker: "The House · Since 1881",
+    title: "Six generations in cloth.",
+    image: "/images/storefront.jpg",
+    alt: "The house on Dr Ambedkar Road, Bandra",
+  },
+  breath: {
+    title: "A trade that became a craft.",
+    body: [
+      "The family began in cloth, in Crawford Market. What was traded became what was cut, and what was cut became a way of speaking to a man about himself. The house carries that forward in Bandra, and it is still run by the family.",
+      "Nothing here is licensed, franchised, or made elsewhere. The measuring, the cutting and the fitting happen in one room, which is the only reason the standard holds.",
+    ],
+  },
+  plates: [
+    { image: "/images/interior.jpg", alt: "Inside the house", position: "46% 50%" },
+    { image: "/images/founder-stitching.webp", alt: "Hand stitching at the bench", position: "46% 60%" },
+    { image: "/images/ties.jpg", alt: "Accessories and ties", position: "50% 45%" },
+  ],
+  portrait: {
+    image: "/images/principals-portrait.png",
+    alt: "Anis Soomar in the atelier",
+    position: "56% 24%",
+    audit: "Replace · 545×612 — confirm which figure is Anis; need a 3000px portrait, warm atelier light.",
+  },
+};
+
+// ---------------------------------------------------------------------------
+// The Bespoke
+// ---------------------------------------------------------------------------
+export const bespoke = {
+  hero: {
+    kicker: "The Bespoke",
+    title: "One garment, cut for one man.",
+    lede: "A commission takes four to six weeks and three visits. Here is exactly what happens between the first conversation and the finished coat.",
+    image: "/images/bolts.jpg",
+    alt: "Folded bolts of cloth in the atelier",
+  },
+  breath: {
+    title: "Bespoke is a process, not a purchase.",
+    body: "There is no rail to choose from and no size to fall into. A pattern is drafted for your body, cut by hand, and adjusted on you across fittings until the garment does what you need it to do. That is the whole of it.",
+  },
+  steps: [
+    {
+      title: "The Conversation",
+      when: "Visit one · 45 minutes",
+      body: "We talk before we measure. What rooms you walk into, what your week looks like, what you already own and never wear. Anis will tell you what to commission and, more usefully, what not to.",
+      image: "/images/atelier-conversation.webp",
+      alt: "A client conversation at the table",
+      position: "50% 40%",
+    },
+    {
+      title: "The Cloth",
+      when: "Same visit",
+      body: "The books come out. Weight, weave and season matter more than the name on the selvedge, and Mumbai narrows the field further than most men expect. You will handle the cloth before you choose it.",
+      image: "/images/navy-cloth.jpg",
+      alt: "Navy suiting cloth",
+      position: "50% 50%",
+    },
+    {
+      title: "The Measure & The Pattern",
+      when: "Drafted in house",
+      body: "Around thirty measurements, then a paper pattern drafted for your posture — one shoulder lower than the other, as it is for almost everyone. The pattern is kept, so the second commission is easier than the first.",
+      image: "/images/form-tape.jpg",
+      alt: "Tape and form on the cutting table",
+      position: "50% 45%",
+    },
+    {
+      title: "The Fittings",
+      when: "Visits two and three",
+      body: "A basted garment first, held together loosely so it can be opened and moved. You walk in it, sit in it, reach in it. Two fittings is typical; we will take a third if the coat asks for one.",
+      image: "/images/canvas.jpg",
+      alt: "Basted canvas inside a jacket",
+      position: "50% 45%",
+    },
+    {
+      title: "The Finish",
+      when: "Four to six weeks from the first visit",
+      body: "Buttonholes, lining, pressing. The work nobody sees and everybody feels. The garment stays ours until it is right, and it comes back to us for alterations for as long as you wear it.",
+      image: "/images/buttonhole.jpg",
+      alt: "A finished hand buttonhole",
+      position: "50% 50%",
+    },
+  ],
+  price: {
+    kicker: "What it costs",
+    title: "Price follows the cloth and the hours, and we tell you both before anything is cut.",
+    body: "There is no published price list because there is no standard garment. What we will do, in the first conversation, is give you a firm number for what you are considering — and say plainly if a simpler commission would serve you better.",
+  },
+};
+
+// ---------------------------------------------------------------------------
+// The Wardrobe
+// ---------------------------------------------------------------------------
+export const wardrobe = {
+  hero: {
+    kicker: "The Wardrobe",
+    title: "Better combinations, not more clothes.",
+    image: "/images/lapel.jpg",
+    alt: "A finished lapel and pocket square",
+  },
+  breath: {
+    title: "Six things the house makes.",
+    body: "Most men need fewer garments than they own and more range from each one. What follows is the working repertoire — Western and Indian formalwear held to the same standard, because a Mumbai wardrobe has to do both.",
+  },
+  pieces: [
+    {
+      label: "01 / Suits",
+      title: "The one that has to work everywhere.",
+      body: "Two or three-piece, single or double breasted, in weights that survive a Mumbai afternoon.",
+      image: "/images/checked-suit.jpg",
+      alt: "A bespoke checked suit",
+      position: "44% 30%",
+    },
+    {
+      label: "02 / Shirts",
+      title: "Where fit is noticed first.",
+      body: "Collar, cuff and yoke drafted to you. ALUMO, Canclini and Söktas cottons.",
+      image: "/images/cloth-shelves.jpg",
+      alt: "Shirting cloth on the shelves",
+      position: "58% 50%",
+    },
+    {
+      label: "03 / Jackets",
+      title: "The most used thing you will own.",
+      body: "Softer in the shoulder, lighter in the canvas. Worn six days out of seven.",
+      image: "/images/form-tape.jpg",
+      alt: "Tape and tailor's form on the cutting table",
+      position: "50% 45%",
+    },
+    {
+      label: "04 / Tuxedos",
+      title: "Evening dress has rules for a reason.",
+      body: "Grosgrain or satin facing, no notch lapel, no black tie worn as a suit.",
+      image: "/images/tuxedo-detail.webp",
+      alt: "Tuxedo detail",
+      position: "50% 45%",
+    },
+    {
+      label: "05 / Bandhgalas",
+      title: "Cut with a tailor's discipline.",
+      body: "The closed collar is unforgiving. It is drafted here the way a coat is, not draped.",
+      image: "/images/anis-fitting.jpg",
+      alt: "A jacket adjusted at the shoulder during a fitting",
+      position: "62% 38%",
+      audit: "No bandhgala photography exists · worn garment, closed collar clearly read",
+    },
+    {
+      label: "06 / Sherwanis",
+      title: "For the day you are looked at all day.",
+      body: "Commission early. Wedding work needs its own calendar, and we will tell you when to start.",
+      image: "/images/bolts.jpg",
+      alt: "Folded bolts of cloth on the shelves",
+      position: "50% 46%",
+      audit: "No sherwani photography exists · worn garment, occasion context",
+    },
+  ],
+  close: {
+    kicker: "Where to start",
+    title: "Come in with the wardrobe you have. We will tell you what is missing.",
+  },
+};
+
+// ---------------------------------------------------------------------------
+// Appointment
+// ---------------------------------------------------------------------------
+export const appointment = {
+  image: "/images/atelier-conversation.webp",
+  alt: "A conversation at the table in the atelier",
+  place: "Bandra West · Mumbai",
+  pull: "Thirty minutes, a cup of coffee, and no obligation to commission anything.",
+  kicker: "Appointment",
+  title: "Come sit with us.",
+  body: "Appointments are held one at a time, so the room is yours. Tell us roughly what you have in mind and we will hold the hour.",
+  // Pending the client's Calendly link and event type.
+  calendly: null as string | null,
+  fallback: "Message us on WhatsApp with a day and time that suits you, and we will confirm the hour.",
+};
+
+// ---------------------------------------------------------------------------
+// The Cloth (not in the redesign set; kept and restyled)
+// ---------------------------------------------------------------------------
+export const cloth = {
+  hero: {
+    kicker: "The Cloth",
+    title: "The cloth remembers where it came from.",
+    lede: "A jacket is only ever as honest as the cloth beneath it. We keep the finest houses in the world, and we keep them for what they do, not for what they say.",
+    image: "/images/cloth-shelves.jpg",
+    alt: "Cloth books and folded bolts on the shelves of the atelier",
+  },
+  housesLabel: "The houses we keep",
+  houses: [
+    { name: "Loro Piana", place: "Quarona, Italy", line: "The world's finest wool and cashmere, kept for what it does in the hand." },
+    { name: "Zegna", place: "Trivero, Italy", line: "Trofeo and 15milmil15, milled from the longest fibres." },
+    { name: "Scabal", place: "Brussels", line: "Suiting worn like jewellery, woven in Huddersfield." },
+    { name: "ALUMO", place: "Appenzell, Switzerland", line: "Swiss two-ply cottons: the shirting that holds a collar all day." },
+    { name: "Söktas", place: "Söke, Turkey", line: "Aegean cotton, grown and woven in one valley." },
+  ],
+  teach: {
+    kicker: "Why it matters",
+    title: "Weight, weave and season matter more than the name on the selvedge.",
+    body: "Mumbai narrows the field further than most men expect. You will handle the cloth before you choose it, and we will tell you plainly which books are worth opening for the life you lead.",
+  },
+  plate: { image: "/images/navy-cloth.jpg", alt: "Navy suiting cloth", position: "50% 50%" },
+};
+
+// ---------------------------------------------------------------------------
+// The Atelier (not in the redesign set; kept and restyled)
+// ---------------------------------------------------------------------------
+export const atelier = {
+  hero: {
+    kicker: "The Atelier",
+    title: "Come sit with us in Bandra.",
+    lede: "A first visit takes an hour and asks nothing of you. This is how it goes.",
+    image: "/images/storefront.jpg",
+    alt: "The CEO Rules storefront at dusk, Bandra",
+  },
+  breath: {
+    title: "Nothing to buy today. Only a conversation.",
+    body: "The house is a room, not a shop floor. There is coffee, there are the books, and there is Anis — who will tell you honestly whether we are the right house for you.",
+  },
+  steps: [
+    { title: "The conversation", body: "Over coffee, we talk about your life before your measurements: the rooms you walk into, the way you want to be read." },
+    { title: "The measure", body: "Anis takes the measure himself. It is the one line a tailor cannot fake, so it is taken slowly." },
+    { title: "The cloth", body: "We put the finest houses in front of you, then narrow them to the few that suit your life, not the season." },
+    { title: "The fittings", body: "The jacket is built over fittings, a canvas chest shaped by hand, corrected until it disappears on you." },
+    { title: "The delivery", body: "It comes to you finished. And if it ever needs us again, we come to you." },
+  ],
+};
+
+// ---------------------------------------------------------------------------
+// Philosophy / The Rules (not in the redesign set; kept and restyled)
+// ---------------------------------------------------------------------------
 export const insights = {
-  eyebrow: "Philosophy",
-  title: "What the founder sees.",
-  intro:
-    "Anis has spent a lifetime noticing what most people miss. A little of what he has learned, shared freely, whether or not you ever commission a suit.",
+  hero: {
+    kicker: "The Rules",
+    title: "What the founder sees.",
+    lede: "Anis has spent a lifetime noticing what most people miss. A little of what he has learned, shared freely, whether or not you ever commission a suit.",
+    image: "/images/lapel.jpg",
+    alt: "A finished lapel and pocket square",
+  },
   entries: [
     {
       id: "details",
       tag: "The detail",
       title: "The details make all the difference.",
       body: "Timeless style is decided in the details. From the lapel to the shoulder, and every stitch in between, each choice shapes a suit that stands out without asking to.",
-      image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3726.jpg",
+      image: "/images/lapel.jpg",
       imageAlt: "A jacket lapel with a folded pocket square",
     },
     {
@@ -189,24 +444,24 @@ export const insights = {
       tag: "The wardrobe",
       title: "Better combinations, not more clothes.",
       body: "A well-dressed man does not need more clothes. He needs better combinations. A timeless wardrobe is not dozens of outfits; it is a few versatile essentials that work together effortlessly. Build one that works smarter, not bigger.",
-      image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3730.jpg",
-      imageAlt: "A man in a bespoke checked suit",
+      image: "/images/ties.jpg",
+      imageAlt: "Silk ties laid out in combination",
     },
     {
       id: "trends",
       tag: "On style",
       title: "Trends come and go. Style stays.",
       body: "Oversized is not always stylish, and true elegance is never accidental. Dress for lasting impact, not for the fashion of a season.",
-      image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3731.jpg",
-      imageAlt: "A jacket taking shape on the form, tape measure across the chest",
+      image: "/images/form-tape.jpg",
+      imageAlt: "Tape and tailor's form on the cutting table",
     },
     {
       id: "solaro",
       tag: "The cloth",
       title: "True luxury is never loud.",
       body: "It is thoughtful, timeless, and made with purpose. Solaro is more than a fabric; it is a legacy of intelligent tailoring, cut to keep its wearer comfortable while carrying an effortless ease. Chosen not for trends, but for the finer details. Style fades. Class endures.",
-      image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3735.jpg",
-      imageAlt: "Navy cloth woven exclusively for CEO Rules by Huddersfield",
+      image: "/images/navy-cloth.jpg",
+      imageAlt: "Navy suiting cloth",
     },
     {
       id: "fit",
@@ -219,7 +474,7 @@ export const insights = {
         "Lapels in proportion to your chest and frame.",
       ],
       coda: "True elegance is not about the price. It is about precision.",
-      image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3728.jpg",
+      image: "/images/anis-fitting.jpg",
       imageAlt: "Anis Soomar fitting a jacket at the shoulder",
     },
     {
@@ -230,146 +485,14 @@ export const insights = {
       image: "/images/founder-stitching.webp",
       imageAlt: "Anis Soomar hand-stitching, green thread through cloth",
     },
-  ],
-};
-
-export const footer = {
-  wordmark: "CEO RULES",
-  line: "A family house of bespoke tailoring, in Mumbai.",
-  since: "Est. 1881",
-  instagram: { label: "Instagram", href: "https://www.instagram.com/ceorules/" },
-  addressLabel: "The house",
-  address: [
-    "Shabistan CHSL, 319/A",
-    "Dr Ambedkar Road, Bandra West",
-    "Mumbai, Maharashtra 400 050",
-  ],
-  hoursLabel: "Hours",
-  hours: "Open every day · 10:30 am to 9 pm",
-  whatsapp: { label: "+91 98333 14141", href: "https://wa.me/919833314141" },
-};
-
-// The founder is not an "About Us" (brief Part II §8): he is the house, a mentor
-// and teacher, never simply "founder."
-export const founder = {
-  eyebrow: "The house is a person",
-  quote:
-    "I have never sold a man a suit. I have only ever taught him how to wear one.",
-  attribution: "Anis Soomar",
-  body: "For most of a lifetime he has done the same two things each morning: measure a man, and listen to him. He will steer you away from the loud cloth, toward what your life actually asks for.",
-  roles: "Mentor. Teacher. Craftsman. Guide. Storyteller.",
-  note: "The word founder never quite fit him.",
-  image: "/images/founder-stitching.webp",
-  imageAlt: "Anis Soomar at work, hand-stitching a lapel",
-};
-
-// The brand's central contradiction (brief Part II): the name sounds like hustle;
-// the reality is heritage and quiet. Told as story, not resolved.
-export const identity = {
-  eyebrow: "The name, and the truth",
-  nameImage: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3736.jpg",
-  nameImageAlt: "Stacked bolts of cloth, edge on",
-  heard: "You hear the name before you meet the house.",
-  loud: "It sounds like ambition. Like hurry. Like a man in a rush to be seen.",
-  quiet: "Walk in, and the noise falls away.",
-  reality:
-    "What remains is older than the name. Heritage. Patience. A hand that has taken the same measure ten thousand times, and still takes its time.",
-  reconcile: "We have never resolved the contradiction. We wear it well.",
-  // Images for the 'truth' band.
-  truthImageA: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3739.jpg",
-  truthImageAAlt: "A jacket taking shape, hand-basted canvas at the chest",
-  truthImageB: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3727.jpg",
-  truthImageBAlt: "Bolts of cloth waiting in the atelier",
-  truthCaption: "Chosen by hand. Cut once, and correctly.",
-  // Shopfront beat: Anis's own invitation (from Instagram).
-  placeLead: "Join me at the house, in Bandra.",
-  placeAccent: "We'll talk presence, over a cup of coffee.",
-  // Kept for reuse elsewhere (the transformation payoff):
-  // "You arrive successful. You leave significant."
-  image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3737.jpg",
-  imageAlt: "Inside the CEO Rules store, Bandra",
-};
-
-// ---------------------------------------------------------------------------
-// Secondary pages (The House / The Cloth / The Atelier). Copy provisional.
-// ---------------------------------------------------------------------------
-
-// The House (Brioni /history model): the pedigree, told as a line handed down.
-export const house = {
-  hero: {
-    eyebrow: "Since 1881",
-    title: "Clothiers and tailors of impeccable pedigree.",
-    lede: "Four generations of one family, and the same quiet work: dressing a man so the room believes him before he speaks.",
-    image: "/images/atelier-conversation.webp",
-    imageAlt: "Anis Soomar in the atelier, in conversation over coffee",
-  },
-  lineage: {
-    eyebrow: "The line",
-    intro: "It did not begin as a tailoring house. It began as cloth.",
-    beats: [
-      {
-        marker: "1881",
-        label: "A house of fabrics",
-        body: "The family opens in Crawford Market, trading in cloth. First a trade, and then, slowly, a language.",
-      },
-      {
-        marker: "IV",
-        label: "Four generations",
-        body: "The knowledge is handed down, hand to hand, each generation adding a little and letting nothing essential fall away.",
-      },
-      {
-        marker: "30+",
-        label: "Years as tailors",
-        body: "Anis Soomar grows the fabric house into a tailoring house, stocking the world's finest mills and cutting for the men of the city.",
-      },
-      {
-        marker: "Today",
-        label: "CEO Rules, Bandra",
-        body: "One house, where a man is measured, taught, and sent back into the room a little more himself.",
-      },
-    ],
-    close: "Now the number means something.",
-  },
-  tagline: "Clothiers & Tailors Of Impeccable Pedigree.",
-};
-
-
-// The Cloth (Loro Piana model): material as hero, provenance over paragraphs.
-export const cloth = {
-  eyebrow: "The cloth",
-  headline: "The cloth remembers where it came from.",
-  lead: "A jacket is only ever as honest as the cloth beneath it. We keep the finest houses in the world, and we keep them for what they do, not for what they say.",
-  housesLabel: "The houses we keep",
-  houses: [
-    { name: "Dormeuil", place: "Paris, since 1842", line: "Sportex and Tonik, cloths with a memory of their own." },
-    { name: "Loro Piana", place: "Quarona, Italy", line: "The gift of kings: the world's finest wool and cashmere." },
-    { name: "Ermenegildo Zegna", place: "Trivero, Italy", line: "Trofeo and 15milmil15, milled from the longest fibres." },
-    { name: "Holland & Sherry", place: "Peebles, Scotland", line: "English and Scottish cloth, cut for weather and for weight." },
-    { name: "Scabal", place: "Brussels and Huddersfield", line: "Super 150s and diamond chip, cloth worn like jewellery." },
-  ],
-  detailImage: "/images/tuxedo-detail.webp",
-  detailAlt: "A black tuxedo on the stand, satin lapel and pleated shirt",
-  fabricImage: "/images/IMG_3735.jpg",
-  fabricAlt: "Navy cloth woven exclusively for CEO Rules by Huddersfield",
-  teach: {
-    eyebrow: "Why it matters",
-    body: "Canvas, not glue. A chest shaped by hand holds the cloth to you and lets it breathe, so a suit only looks better with the years.",
-    link: { label: "More from the founder", href: "/philosophy" },
-  },
-};
-
-// The Atelier (Aman model): the store as a place, the visit as an experience.
-export const process = {
-  eyebrow: "The visit",
-  headline: "Nothing to buy today. Only a conversation.",
-  lead: "A first visit takes an hour and asks nothing of you. This is how it goes.",
-  steps: [
-    { title: "The conversation", body: "Over coffee, we talk about your life before your measurements: the rooms you walk into, the way you want to be read." },
-    { title: "The measure", body: "Anis takes the measure himself. It is the one line a tailor cannot fake, so it is taken slowly." },
-    { title: "The cloth", body: "We put the finest houses in front of you, then narrow them to the few that suit your life, not the season." },
-    { title: "The fittings", body: "The jacket is built over fittings, a canvas chest shaped by hand, corrected until it disappears on you." },
-    { title: "The delivery", body: "It comes to you finished. And if it ever needs us again, we come to you." },
-  ],
-  image: "/images/atelier-conversation.webp",
-  imageAlt: "Anis Soomar with a client over coffee at the atelier",
+  ] as {
+    id: string;
+    tag: string;
+    title: string;
+    body: string;
+    image: string;
+    imageAlt: string;
+    list?: string[];
+    coda?: string;
+  }[],
 };

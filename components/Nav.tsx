@@ -3,196 +3,165 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { BrandLogo } from "@/components/BrandLogo";
 import { nav } from "@/lib/content";
 
-// The page alternates dark and ivory bands, so the nav reads whichever band sits
-// under it (via [data-nav="dark"|"light"] markers) and adapts its colours.
-export function Nav() {
+const linkCls =
+  "whitespace-nowrap border-b pb-[3px] text-[11.5px] uppercase tracking-[0.2em] transition-colors duration-[240ms] ease-linear hover:border-gold";
+
+// Fixed header over the hero: transparent with a top-down scrim, wordmark centred
+// between two flex:1 link groups. Once the page scrolls it settles onto a solid
+// ink ground so cream type never lands on a cream section. Below 1140px the
+// groups drop out (CSS, so there is no flash on load) for a full-screen overlay.
+export function Nav({ solid: alwaysSolid = false }: { solid?: boolean }) {
   const pathname = usePathname();
-  const [onDark, setOnDark] = useState(true);
-  const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const solid = alwaysSolid || scrolled;
 
-  // A link is "active" only if it points to a real page (not an in-page anchor).
-  const isActive = (href: string) => {
-    if (href.includes("#")) return false;
-    return pathname === href;
-  };
-
-  // Close the mobile menu on navigation, and lock body scroll while it's open.
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  useEffect(() => setOpen(false), [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
     };
   }, [open]);
 
+  // Widening past the breakpoint closes the overlay.
   useEffect(() => {
-    const probeY = 32; // a point just inside the nav
-    const update = () => {
-      setSolid(window.scrollY > 24);
-      const els = document.querySelectorAll<HTMLElement>("[data-nav]");
-      let theme: "dark" | "light" = "dark";
-      els.forEach((el) => {
-        const r = el.getBoundingClientRect();
-        if (r.top <= probeY && r.bottom > probeY) {
-          theme = (el.dataset.nav as "dark" | "light") ?? theme;
-        }
-      });
-      setOnDark(theme === "dark");
-    };
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-    };
+    const mq = window.matchMedia("(min-width: 1140px)");
+    const onChange = (e: MediaQueryListEvent) => e.matches && setOpen(false);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
   }, []);
 
-  const atTop = !solid;
-  // Menu open forces an ivory header with ink text (it sits over the ivory overlay).
-  const headerBg = open
-    ? "bg-bg"
-    : atTop
-      ? "bg-transparent"
-      : onDark
-        ? "border-b border-hairline-dark bg-bg-dark/95 backdrop-blur-md"
-        : "border-b border-hairline bg-bg/95 backdrop-blur-md";
-  const darkText = onDark && !open;
+  useEffect(() => {
+    const update = () => setScrolled(window.scrollY > 40);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, []);
+
+  const renderLink = (l: { label: string; href: string }) => {
+    const active = pathname === l.href;
+    return (
+      <Link
+        key={l.href}
+        href={l.href}
+        aria-current={active ? "page" : undefined}
+        className={`${linkCls} ${active ? "border-gold" : "border-transparent"}`}
+      >
+        {l.label}
+      </Link>
+    );
+  };
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ease-out-quart ${headerBg} ${
-        darkText ? "text-ink-dark" : "text-ink"
-      }`}
-      style={
-        // Legibility glow whenever ivory text sits on a dark surface, so it holds
-        // up over bright regions of a full-bleed image (hero, the founder portrait).
-        darkText
-          ? { textShadow: "0 1px 16px oklch(0.14 0.012 58 / 0.65)" }
-          : undefined
-      }
-    >
-      <nav className="flex w-full items-center justify-between px-[clamp(1.5rem,6vw,4rem)] py-5">
-        <Link
-          href="/"
-          className="relative z-10 font-sans text-sm font-semibold uppercase tracking-[0.22em]"
-        >
-          {nav.wordmark}
-        </Link>
-
-        {/* Mobile menu toggle */}
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          className="relative z-10 -mr-2 ml-auto flex h-10 w-10 items-center justify-center md:hidden"
-        >
-          <span className="relative block h-3.5 w-6" aria-hidden>
-            <span
-              className={`absolute left-0 block h-[1.5px] w-6 bg-current transition-all duration-300 ease-out-quart ${
-                open ? "top-1/2 -translate-y-1/2 rotate-45" : "top-0"
-              }`}
-            />
-            <span
-              className={`absolute bottom-0 left-0 block h-[1.5px] w-6 bg-current transition-all duration-300 ease-out-quart ${
-                open ? "bottom-1/2 translate-y-1/2 -rotate-45" : ""
-              }`}
-            />
-          </span>
-        </button>
-
-        <div className="hidden items-center gap-x-[clamp(1.75rem,3vw,2.75rem)] md:flex">
-          {nav.links.map((l) => {
-            const active = isActive(l.href);
-            return (
-              <Link
-                key={l.href}
-                href={l.href}
-                aria-current={active ? "page" : undefined}
-                className="group inline-flex flex-col items-start"
-              >
-                <span
-                  className={`font-sans text-[0.8rem] uppercase tracking-[0.14em] transition-opacity duration-300 ${
-                    active ? "opacity-100" : "opacity-95 group-hover:opacity-100"
-                  }`}
-                >
-                  {l.label}
-                </span>
-                <span
-                  aria-hidden
-                  className={`mt-1 h-[2px] w-full origin-left transition-transform duration-500 ease-out-expo ${
-                    onDark ? "bg-gold-on-dark" : "bg-gold"
-                  } ${active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
-                />
-              </Link>
-            );
-          })}
-
-          {/* The one action set apart: a sharp gold-filled container (radius 0, no pill). */}
-          <Link
-            href={nav.cta.href}
-            className={`inline-flex items-center rounded-none px-4 py-2 font-sans text-[0.72rem] uppercase tracking-[0.14em] text-bg-dark transition-colors duration-300 ease-out-quart ${
-              onDark ? "bg-gold-on-dark hover:bg-gold" : "bg-gold hover:bg-gold-ink"
-            }`}
-          >
-            {nav.cta.label}
-          </Link>
-        </div>
-      </nav>
-
-      {/* Mobile full-screen menu */}
-      <div
-        className={`fixed inset-0 z-0 bg-bg transition-opacity duration-300 ease-out-quart md:hidden ${
-          open ? "opacity-100" : "pointer-events-none opacity-0"
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-[60] flex items-center gap-8 px-[clamp(24px,4.2vw,64px)] text-cream transition-[padding] duration-300 ease-house ${
+          solid ? "py-[18px]" : "py-[30px]"
         }`}
       >
-        <nav className="flex h-full flex-col justify-center gap-2 px-[clamp(1.5rem,6vw,6rem)]">
-          {nav.links.map((l, i) => {
-            const active = isActive(l.href);
-            return (
-              <Link
-                key={l.href}
-                href={l.href}
-                aria-current={active ? "page" : undefined}
-                onClick={() => setOpen(false)}
-                className="group inline-flex flex-col items-start py-2"
-                style={{ transitionDelay: open ? `${i * 40}ms` : "0ms" }}
-              >
-                <span
-                  className={`font-serif text-[clamp(2rem,9vw,2.75rem)] leading-tight ${
-                    active ? "text-ink" : "text-ink-muted"
-                  }`}
-                >
-                  {l.label}
-                </span>
-                <span
-                  aria-hidden
-                  className={`mt-1 h-[2px] w-full origin-left bg-gold transition-transform duration-500 ease-out-expo ${
-                    active ? "scale-x-100" : "scale-x-0"
-                  }`}
-                />
-              </Link>
-            );
-          })}
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10"
+          style={{ background: "linear-gradient(180deg, rgba(20,18,15,.55) 0%, rgba(20,18,15,0) 100%)" }}
+        />
+        <div
+          aria-hidden
+          className={`absolute inset-0 -z-10 border-b border-[rgba(244,241,234,.1)] bg-[rgba(20,18,15,.94)] transition-opacity duration-300 ${
+            solid ? "opacity-100" : "opacity-0"
+          }`}
+        />
 
-          {/* Primary action: the same sharp gold container as desktop. */}
+        <nav aria-label="Primary" className="hidden flex-1 items-center gap-[clamp(20px,2.4vw,34px)] min-[1140px]:flex">
+          {nav.left.map(renderLink)}
+        </nav>
+
+        <Link href="/" aria-label="CEO Rules, home" className="mx-auto flex flex-none items-center">
+          <BrandLogo priority />
+        </Link>
+
+        <nav
+          aria-label="Secondary"
+          className="hidden flex-1 items-center justify-end gap-[clamp(20px,2.4vw,34px)] min-[1140px]:flex"
+        >
+          {nav.right.map(renderLink)}
           <Link
             href={nav.cta.href}
-            onClick={() => setOpen(false)}
-            style={{ transitionDelay: open ? `${nav.links.length * 40}ms` : "0ms" }}
-            className="mt-8 inline-flex items-center rounded-none bg-gold px-6 py-3.5 font-sans text-[0.8rem] uppercase tracking-[0.14em] text-bg-dark transition-colors duration-300 ease-out-quart hover:bg-gold-ink"
+            className="whitespace-nowrap border border-[rgba(244,241,234,.55)] px-[18px] py-[10px] text-[11.5px] uppercase tracking-[0.2em] transition-colors duration-[240ms] ease-linear hover:bg-cream hover:text-ink"
           >
             {nav.cta.label}
           </Link>
         </nav>
-      </div>
-    </header>
+
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label="Open menu"
+          aria-expanded={open}
+          className="absolute right-[clamp(24px,4.2vw,64px)] top-1/2 flex h-11 w-11 -translate-y-1/2 flex-col items-end justify-center gap-1.5 min-[1140px]:hidden"
+        >
+          <span className="block h-px w-[26px] bg-cream" />
+          <span className="block h-px w-[18px] bg-cream" />
+        </button>
+      </header>
+
+      <AnimatePresence>
+        {open ? (
+          <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[70] flex flex-col bg-ink-deep px-[clamp(24px,6vw,64px)] pb-[clamp(40px,8vh,80px)] pt-[30px] text-cream"
+          >
+            <div className="flex items-center justify-between gap-6">
+              <Link href="/" onClick={() => setOpen(false)} aria-label="CEO Rules, home">
+                <BrandLogo className="h-[16px] w-auto" />
+              </Link>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                aria-label="Close menu"
+                autoFocus
+                className="grid h-11 w-11 place-items-center text-[22px]"
+              >
+                ×
+              </button>
+            </div>
+            <nav aria-label="Menu" className="my-auto flex flex-col gap-[clamp(20px,3.4vh,32px)]">
+              {[...nav.left, ...nav.right].map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="text-[clamp(26px,7vw,38px)] leading-[1.1] tracking-[-0.025em] transition-colors hover:text-gold"
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
+            <Link
+              href={nav.cta.href}
+              onClick={() => setOpen(false)}
+              className="flex items-center justify-between gap-4 border border-[rgba(244,241,234,.5)] px-6 py-5 text-[12px] uppercase tracking-[0.2em]"
+            >
+              {nav.cta.label} <span aria-hidden>→</span>
+            </Link>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </>
   );
 }
