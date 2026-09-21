@@ -70,10 +70,10 @@ export const home = {
     kicker: "Mumbai · Since 1881",
     title: "Private tailoring for a more considered life.",
     cta: "Book a Private Appointment",
-    image: "/images/storefront.jpg",
-    alt: "The CEO Rules storefront on Dr Ambedkar Road, Bandra, at dusk",
+    image: "/images/storefront-day.jpg",
+    alt: "The CEO Rules storefront by day, suits on the stands behind the glass",
     audit:
-      "Replace · 1206×927 — daytime storefront, 3000px+ landscape master from across the road, open sky left for type. Also as an 8s loop.",
+      "Client-supplied · 1280×960, reads as a rendering — confirm it matches the real façade before launch. Want a 3000px photograph, plus an 8s loop.",
   },
   statement: {
     lead: "A house in Bandra, six generations in cloth, one man's eye.",
@@ -212,6 +212,32 @@ export const house = {
     { image: "/images/founder-stitching.webp", alt: "Hand stitching at the bench", position: "46% 60%" },
     { image: "/images/ties.jpg", alt: "Accessories and ties", position: "50% 45%" },
   ],
+  // The house abroad: Anis among the tailoring world.
+  world: {
+    kicker: "Beyond Bandra",
+    title: "The house travels.",
+    body: "The craft is a small world. Anis keeps his place in it — among master tailors in Kuala Lumpur, at exhibitions at home — and brings back what he sees to one room in Bandra.",
+    plates: [
+      {
+        image: "/images/world-record.jpg",
+        alt: "Anis Soomar holding the Malaysia Book of Records certificate at the KL International Suit Walk",
+        position: "50% 22%",
+        caption: "Kuala Lumpur, 2024 · the International Suit Walk, a Malaysia Book of Records national record",
+      },
+      {
+        image: "/images/world-suitwalk.jpg",
+        alt: "Anis Soomar in a bandhgala with a fellow guest at the KL International Suit Walk",
+        position: "50% 30%",
+        caption: "Among master tailors from across Asia",
+      },
+      {
+        image: "/images/world-exhibition.jpg",
+        alt: "Anis Soomar in a bandhgala beside a suit on the stand at an exhibition",
+        position: "60% 45%",
+        caption: "At an exhibition, in a bandhgala of the house",
+      },
+    ],
+  },
   portrait: {
     image: "/images/principals-portrait.png",
     alt: "Anis Soomar in the atelier",

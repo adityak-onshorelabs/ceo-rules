@@ -11,7 +11,7 @@ export function Hero() {
       <Photo
         src={h.image}
         alt={h.alt}
-        position="32% 45%"
+        position="50% 40%"
         grade="hero-base"
         scrims={["left", "base"]}
         motion="load"

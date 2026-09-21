@@ -53,6 +53,38 @@ export default function HousePage() {
           audit={house.portrait.audit}
         />
 
+        <section className="section bg-cream">
+          <div className="mx-auto max-w-wide">
+            <div className="breath">
+              <div>
+                <p className="kicker text-[rgba(28,26,23,.55)]">{house.world.kicker}</p>
+                <Reveal as="h2" className="h-breath">
+                  {house.world.title}
+                </Reveal>
+              </div>
+              <p className="body text-[rgba(28,26,23,.72)] min-[700px]:pt-[58px]">{house.world.body}</p>
+            </div>
+            <div className="mt-[clamp(56px,9vh,110px)] grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-[var(--grid-gap)]">
+              {house.world.plates.map((p) => (
+                <figure key={p.image}>
+                  <div className="relative aspect-[4/5]">
+                    <Photo
+                      src={p.image}
+                      alt={p.alt}
+                      position={p.position}
+                      grade="plate"
+                      sizes="(min-width: 960px) 33vw, 100vw"
+                    />
+                  </div>
+                  <figcaption className="mt-4 max-w-[36ch] text-[11px] uppercase leading-[1.7] tracking-[0.18em] text-[rgba(28,26,23,.55)]">
+                    {p.caption}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="section-accent on-cream bg-cream-deep">
           <div className="mx-auto max-w-page">
             <p className="kicker text-[rgba(28,26,23,.55)]">In their words</p>
