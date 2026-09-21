@@ -33,6 +33,9 @@ export const SCRIMS = {
   // never a wash over the photograph.
   "lift-tl": "radial-gradient(ellipse 30% 64% at 0% 4%, rgba(244,241,234,.8) 0%, rgba(244,241,234,.58) 46%, rgba(244,241,234,.16) 78%, rgba(244,241,234,0) 100%)",
   "deepen-l": "linear-gradient(90deg, rgba(14,13,11,.8) 0%, rgba(14,13,11,.7) 26%, rgba(14,13,11,.36) 38%, rgba(14,13,11,0) 50%)",
+  // Contact-sheet frames: a firm pool at the base, where the caption sits.
+  "frame-base": "linear-gradient(0deg, rgba(14,13,11,.92) 0%, rgba(14,13,11,.84) 24%, rgba(14,13,11,.5) 42%, rgba(14,13,11,0) 60%)",
+  "frame-base-tall": "linear-gradient(0deg, rgba(14,13,11,.94) 0%, rgba(14,13,11,.88) 34%, rgba(14,13,11,.55) 52%, rgba(14,13,11,0) 72%)",
   // Interior heroes: a pool of tone under the lower-left type block only.
   "deepen-bl": "radial-gradient(ellipse 92% 118% at 0% 100%, rgba(14,13,11,.9) 0%, rgba(14,13,11,.8) 36%, rgba(14,13,11,.46) 64%, rgba(14,13,11,0) 92%)",
   "deepen-b": "radial-gradient(ellipse 110% 55% at 30% 100%, rgba(14,13,11,.7) 0%, rgba(14,13,11,.25) 60%, rgba(14,13,11,0) 100%)",

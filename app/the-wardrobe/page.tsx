@@ -3,7 +3,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
-import { Sequence } from "@/components/Sequence";
+import { ContactSheet } from "@/components/ContactSheet";
 import { Closing } from "@/components/sections/Breath";
 import { wardrobe } from "@/lib/content";
 
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
     "Better combinations, not more clothes. Suits, shirts, jackets, tuxedos, bandhgalas and sherwanis, cut in Bandra.",
 };
 
-// What CEO Rules creates (brief §9, §18): the six garments as consecutive
-// moments beside one photograph, not a catalogue grid.
+// What CEO Rules creates (brief §9, §18): the six garments as a contact sheet
+// of two edge-to-edge strips, not a catalogue grid.
 export default function TheWardrobePage() {
   return (
     <>
@@ -27,17 +27,18 @@ export default function TheWardrobePage() {
           alt={wardrobe.hero.alt}
           position="50% 40%"
         />
-        <Sequence
+        <ContactSheet
           labelledBy="wardrobe-title"
+          perRow={3}
           header={
-            <>
+            <div className="breath">
               <Reveal as="h2" className="h-breath">
                 <span id="wardrobe-title">{wardrobe.breath.title}</span>
               </Reveal>
-              <p className="body mt-[clamp(24px,3.5vh,36px)] text-[rgba(28,26,23,.74)]">{wardrobe.breath.body}</p>
-            </>
+              <p className="body text-[rgba(244,241,234,.82)]">{wardrobe.breath.body}</p>
+            </div>
           }
-          moments={wardrobe.pieces.map((p) => ({ ...p, line: p.title }))}
+          frames={wardrobe.pieces.map((p) => ({ ...p, line: p.title }))}
         />
         <Closing kicker={wardrobe.close.kicker} title={wardrobe.close.title} ground="ink" />
       </main>

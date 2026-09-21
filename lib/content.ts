@@ -377,7 +377,7 @@ export const wardrobe = {
       body: "The closed collar is unforgiving. It is drafted here the way a coat is, not draped.",
       image: "/images/anis-bandhgala.jpg",
       alt: "Anis Soomar in a black bandhgala, the collar closed",
-      position: "50% 16%",
+      position: "50% 30%",
       audit: "Temporary · event snapshot crop · reshoot a client in a bandhgala, 3000px portrait",
     },
     {
