@@ -26,24 +26,26 @@ export default function HousePage() {
           image={house.hero.image}
           alt={house.hero.alt}
           position="32% 45%"
+          mobilePosition="45% 50%"
           height="min-h-[82vh]"
         />
         <Breath title={house.breath.title} body={house.breath.body} />
 
-        <section className="bg-cream pb-[clamp(120px,18vh,220px)]">
-          <div className="mx-auto grid max-w-wide grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-[var(--grid-gap)] px-[var(--gutter)]">
-            {house.plates.map((p) => (
-              <div key={p.image} className="relative min-h-[clamp(380px,56vh,620px)]">
-                <Photo
-                  src={p.image}
-                  alt={p.alt}
-                  position={p.position}
-                  grade="plate"
-                  sizes="(min-width: 960px) 33vw, 100vw"
-                />
-              </div>
-            ))}
-          </div>
+        {/* The house in three frames, edge to edge (brief §2: the photograph is
+            the section, not a card on a cream box). */}
+        <section aria-label="Inside the house" className="grid grid-cols-1 gap-[3px] bg-ink-deep sm:grid-cols-3">
+          {house.plates.map((p) => (
+            <div key={p.image} className="relative aspect-[4/5] sm:aspect-auto sm:min-h-[clamp(420px,72vh,760px)]">
+              <Photo
+                src={p.image}
+                alt={p.alt}
+                position={p.position}
+                grade="plate"
+                motion="reveal"
+                sizes="(min-width: 640px) 33vw, 100vw"
+              />
+            </div>
+          ))}
         </section>
 
         <TheEye
@@ -73,10 +75,11 @@ export default function HousePage() {
                       alt={p.alt}
                       position={p.position}
                       grade="plate"
+                      motion="reveal"
                       sizes="(min-width: 960px) 33vw, 100vw"
                     />
                   </div>
-                  <figcaption className="mt-4 max-w-[36ch] text-[11px] uppercase leading-[1.7] tracking-[0.18em] text-[rgba(28,26,23,.55)]">
+                  <figcaption className="mt-4 max-w-[36ch] text-[12px] uppercase leading-[1.7] tracking-[0.18em] text-[rgba(28,26,23,.55)]">
                     {p.caption}
                   </figcaption>
                 </figure>
@@ -92,7 +95,7 @@ export default function HousePage() {
               <blockquote className="max-w-[34ch] text-[clamp(22px,2.4vw,38px)] leading-[1.4] tracking-[-0.015em]">
                 “{testimonial.quote}”
               </blockquote>
-              <figcaption className="mt-7 text-[11px] uppercase tracking-[0.2em] text-[rgba(28,26,23,.55)]">
+              <figcaption className="mt-7 text-[12px] uppercase tracking-[0.2em] text-[rgba(28,26,23,.55)]">
                 {testimonial.by}
               </figcaption>
             </Reveal>

@@ -25,6 +25,7 @@ export default function AtelierPage() {
           image={atelier.hero.image}
           alt={atelier.hero.alt}
           position="32% 45%"
+          mobilePosition="45% 50%"
           height="min-h-[82vh]"
         />
         <Breath title={atelier.breath.title} body={atelier.breath.body} />

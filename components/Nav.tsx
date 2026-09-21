@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { BrandLogo } from "@/components/BrandLogo";
+import { SoundToggle } from "@/components/Sound";
 import { nav } from "@/lib/content";
 
 const linkCls =
@@ -72,6 +73,8 @@ export function Nav() {
         <nav aria-label="Primary" className="hidden flex-1 items-center gap-[clamp(20px,2.4vw,34px)] min-[1140px]:flex">
           {nav.left.map(renderLink)}
         </nav>
+        {/* Mobile: the sound control sits at the left of the bar. */}
+        <SoundToggle className="absolute left-[clamp(20px,4.2vw,64px)] top-1/2 -translate-y-1/2 min-[1140px]:hidden" />
 
         <Link href="/" aria-label="CEO Rules, home" className="mx-auto flex flex-none items-center">
           <BrandLogo tone="blue" priority className="h-[clamp(15px,1.45vw,20px)] w-auto" />
@@ -82,8 +85,10 @@ export function Nav() {
           className="hidden flex-1 items-center justify-end gap-[clamp(20px,2.4vw,34px)] min-[1140px]:flex"
         >
           {nav.right.map(renderLink)}
+          <SoundToggle className="text-[rgba(28,26,23,.7)] hover:text-ink" />
           <Link
             href={nav.cta.href}
+            data-track="book_appointment_click"
             className="whitespace-nowrap border border-[rgba(28,26,23,.4)] px-[18px] py-[10px] text-[12px] uppercase tracking-[0.2em] transition-colors duration-[240ms] ease-linear hover:bg-ink hover:text-cream"
           >
             {nav.cta.label}
@@ -141,7 +146,7 @@ export function Nav() {
                   aria-current={pathname === l.href ? "page" : undefined}
                   className="flex items-baseline gap-5 border-b border-[rgba(28,26,23,.12)] pb-[clamp(14px,2.6vh,26px)]"
                 >
-                  <span className="w-6 text-[11px] tracking-[0.2em] text-[rgba(28,26,23,.5)]">
+                  <span className="w-6 text-[12px] tracking-[0.2em] text-[rgba(28,26,23,.5)]">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="font-serif text-[clamp(30px,8vw,42px)] font-light leading-[1.05] tracking-[-0.02em]">

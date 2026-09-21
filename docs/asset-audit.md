@@ -9,39 +9,56 @@ landscape frame is 1280px. Nothing is FINAL yet. The shoot is the hard blocker.
 
 Checked 21 September 2026 against `public/images/`.
 
-## Homepage
+## By brief §4 category, as used now
 
-| Section | File | Size | Status | Why |
+Status: FINAL / TEMPORARY / REPLACE. Nothing is FINAL until the shoot.
+
+### The House (storefront, architecture, interiors, shelves, mirrors, walnut)
+| File | Size | Used on | Status | Note |
 |---|---|---|---|---|
-| 01 Hero | `storefront-day.jpg` | 1280×960 | TEMPORARY | Brief §5 asks for this frame, but it is half the resolution floor. It carries baked-in text (§4): a plaque reading "Master tailors since 1881 · A legacy of six generations", which contradicts §1 ("do not claim six generations of tailoring"), plus "EST. 1881" and a garment list on the cladding. Confirm it matches the real façade. |
-| 02 Cloth | `cloth-shelves.jpg` | 1206×1177 | REPLACE | Occasion brocade, not suiting cloth books; half the floor. |
-| 03 Craft · Cut | `craft-cut.jpg` | 793×799 | REPLACE | Far below the floor; phone frame. |
-| 03 Craft · Canvas | `canvas.jpg` | 1061×764 | TEMPORARY | Right subject, too small. |
-| 03 Craft · Fit | `anis-fitting.jpg` | 1075×1089 | REPLACE | Colour cast; too small. |
-| 03 Craft · Finish | `founder-stitching.webp` | 826×1020 | TEMPORARY | Usable crop, yellow grade, too small. |
-| 04 The Eye | `eye-poster.jpg` + `video/anis-cloth.mp4` | 1024×576, 67s | TEMPORARY | Right moment (Anis with Scabal cloth); phone video, low resolution, 11 MB, not a loop. |
-| 04 The Eye (old) | `atelier-conversation.webp` | 1020×1020 | REPLACE | A Dormeuil box is in shot (brief §6: Dormeuil not to be introduced). |
-| 05 Wardrobe | `checked-suit.jpg` | 1080×1085 | REPLACE | Baked-in "CEO RULES®" watermark (§4, §9). |
-| 06 From the House | `lapel.jpg` / `ties.jpg` | 1206×2089 / 1206×1491 | TEMPORARY | Stand-in posters until the three Reels are chosen. |
-| 06 From the House | `tuxedo-detail.webp` | 574×1020 | REPLACE | Too small for a 9:16 poster. |
-| 08 Visit | `interior.jpg` | 1206×1175 | TEMPORARY | Reads as retail shelving, not a salon. |
+| `storefront-day.jpg` | 1280×960 | Home hero | TEMPORARY | The client's enhanced daytime frame (§5). Half the resolution floor. Baked-in plaque "Master tailors since 1881 · A legacy of six generations" contradicts §1 and §4. Confirm against the real façade. |
+| `storefront.jpg` (dusk) | 1206×927 | House, Atelier heroes | TEMPORARY | The real façade; too small. |
+| `interior.jpg` | 1206×1175 | Home Visit, House band | TEMPORARY | Reads as retail shelving, not the salon. |
+| `cloth-shelves.jpg` | 1206×1177 | Home Cloth | REPLACE | Occasion brocade, not suiting cloth books. |
 
-## Interior pages
-
-| Page | File | Size | Status | Why |
+### The Man (Anis with clients, fitting, talking, selecting cloth)
+| File | Size | Used on | Status | Note |
 |---|---|---|---|---|
-| The House | `storefront.jpg` (night) | 1206×927 | TEMPORARY | The real façade at dusk; too small. |
-| The House | `principals-portrait.png` | 545×612 | REPLACE | Far too small for a split-screen portrait. |
-| The House | `world-record.jpg` | 1400×2610 | TEMPORARY | Authentic (KL Suit Walk 2024). Event backdrop with third-party branding; cropped clear of Holland & Sherry. |
-| The House | `world-suitwalk.jpg` | 1600×2133 | TEMPORARY | Authentic event snapshot; event branding on the fan. |
-| The House | `world-exhibition.jpg` | 720×1280 | REPLACE | Too small; a third-party artwork dominates. |
-| The Bespoke | `bolts.jpg` | 1074×1084 | TEMPORARY | Good tactile swatches; too small for a hero. |
-| The Bespoke | `bespoke-cloth.jpg` | 1024×576 | TEMPORARY | Still from the phone video. |
-| The Bespoke | `form-tape.jpg` | 1080×1320 | REPLACE | Baked-in watermark. |
-| The Bespoke | `buttonhole.jpg` | 1206×1158 | REPLACE | Grey border baked into the file. |
-| The Bespoke | `navy-cloth.jpg` | 1109×1027 | TEMPORARY | Woven-for-CEO-Rules selvedge; small. |
-| The Wardrobe | `anis-bandhgala.jpg` | 1440×3540 | TEMPORARY | Crop of an event snapshot; the only worn bandhgala on file. |
-| The Wardrobe | Sherwani | none | REPLACE | No usable photography exists. |
+| `video/anis-cloth-loop.mp4` + `eye-poster.jpg` | 1024×576, 12s, 2.1 MB | Home Eye, Bespoke stage 1, Appointment | TEMPORARY | Anis with Scabal suiting; phone video. Cut to a silent 12s loop from the 67s original (11 MB). |
+| `anis-fitting.jpg` | 1075×1089 | Craft · Fit, Bespoke stage 4, Wardrobe · Suits | REPLACE | Colour cast; too small. |
+| `principals-portrait.png` | 545×612 | House · The Eye | REPLACE | Far too small. |
+| `world-record.jpg`, `world-suitwalk.jpg` | 1400×2610, 1600×2133 | House · Beyond Bandra | TEMPORARY | Authentic event photos (KL, 2024); event branding in frame, Holland & Sherry cropped out. |
+| `world-exhibition.jpg` | 720×1280 | House · Beyond Bandra | REPLACE | Too small. |
+
+### The Hands (cutting, stitching, chalking, measuring, buttonholes, canvas)
+| File | Size | Used on | Status | Note |
+|---|---|---|---|---|
+| `craft-cut.jpg` | 793×799 | Craft · Cut, Bespoke stage 3 | REPLACE | Phone frame, far below the floor. |
+| `canvas.jpg` | 1061×764 | Craft · Canvas, Wardrobe · Jackets, The Rules | TEMPORARY | Right subject, too small. |
+| `founder-stitching.webp` | 826×1020 | Craft · Finish, Bespoke stage 5, House band | TEMPORARY | Usable; yellow grade. |
+
+### The Cloth (cloth books, swatches, wool, shirting, hands selecting)
+| File | Size | Used on | Status | Note |
+|---|---|---|---|---|
+| `bolts.jpg` | 1074×1084 | Bespoke hero, stage 2, Wardrobe · Sherwanis | TEMPORARY | Tactile swatches; too small for a hero. |
+| `navy-cloth.jpg` | 1109×1027 | The Cloth page, The Rules | TEMPORARY | Woven-for-CEO-Rules selvedge. |
+
+### The Garment (suits, jackets, tuxedos, bandhgala, sherwani, movement and fit)
+| File | Size | Used on | Status | Note |
+|---|---|---|---|---|
+| `anis-bandhgala.jpg` | 1440×3540 | Home Wardrobe, Wardrobe · Bandhgalas | TEMPORARY | A real, worn bandhgala (§9: a person, not a mannequin; no watermark). Crop of an event snapshot. |
+| `lapel.jpg` | 1206×2089 | Wardrobe hero, Shirts, Bespoke stage 6, Reel poster | TEMPORARY | Detail, not a finished garment in movement. |
+| `tuxedo-detail.webp` | 574×1020 | Wardrobe · Tuxedos, Reel poster | REPLACE | Mannequin; too small. |
+| `ties.jpg` | 1206×1491 | Reel poster, House band | TEMPORARY | Accessories. |
+| Sherwani | none | | REPLACE | No usable photography exists. |
+
+### Archive
+None on file. Brief §4: authentic historical material only; never generate fake historical photographs.
+
+### Removed from the site (21 Sept)
+Watermarked (`checked-suit.jpg`, `form-tape.jpg`), a banned mill in frame (`atelier-conversation.webp`,
+Dormeuil box), a baked-in grey border (`buttonhole.jpg`), and the unused Instagram-derived `IMG_37xx` set.
+All remain in git history.
 
 ## Brand
 
@@ -49,7 +66,6 @@ Checked 21 September 2026 against `public/images/`.
 |---|---|---|
 | `brand/ceo-rules-logo-blue.png` | TEMPORARY | Official wordmark in its original blue (§3), 700×105 PNG. Ask for the SVG. |
 | `brand/ceo-rules-logo-ivory.png` | Do not use on photography | §3: the logo keeps its blue; not recoloured white. |
-| `brand/mills/*.png` | Not used | §6: mill names are proof, not the visual hero; no logo carousel. |
 
 ## Shot list for every REPLACE
 
@@ -73,5 +89,6 @@ controlled warm grade, deliberate negative space where type will sit (§4).
 
 ## Still needed from the client (brief §26)
 
-Calendly event URL (brief names `anis-ceorules/30min`), the three Reels, the licensed jazz
-track for §16, the logo as SVG, and sign-off on the mill list and heritage wording.
+Calendly is live at `anis-ceorules/30min` but the event is configured as **1 hr**; confirm the length with Anis
+(the site no longer states a duration). Still needed: the three Reels, the licensed jazz track for §16,
+the logo as SVG, and sign-off on the mill list and heritage wording.

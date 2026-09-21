@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
-import { MillLogo } from "@/components/MillLogo";
 import { Photo } from "@/components/Photo";
 import { Reveal } from "@/components/Reveal";
 import { Closing } from "@/components/sections/Breath";
@@ -29,7 +28,8 @@ export default function TheClothPage() {
           titleWidth="max-w-[16ch]"
         />
 
-        {/* The houses, as a ledger: name and provenance, never a grid of logos. */}
+        {/* The houses, as a ledger: name and provenance. Names are proof, not a
+            wall of logos (brief §6, §28). */}
         <section className="section bg-cream">
           <div className="mx-auto max-w-wide">
             <p className="kicker text-[rgba(28,26,23,.55)]">{cloth.housesLabel}</p>
@@ -40,9 +40,7 @@ export default function TheClothPage() {
                   key={h.name}
                   className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] items-baseline gap-x-[var(--breath-gap)] gap-y-3 border-b border-[rgba(28,26,23,.18)] py-[clamp(32px,5vh,56px)]"
                 >
-                  <h2>
-                    <MillLogo name={h.name} logo={h.logo} tone="ink" className="h-auto w-[clamp(140px,14vw,200px)]" />
-                  </h2>
+                  <h2 className="text-[clamp(26px,2.6vw,40px)] leading-[1.1] tracking-[-0.03em]">{h.name}</h2>
                   <p className="body text-[rgba(28,26,23,.72)]">{h.line}</p>
                   <p className="label text-[rgba(28,26,23,.5)] min-[900px]:text-right">{h.place}</p>
                 </Reveal>

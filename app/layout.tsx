@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Instrument_Sans, Newsreader } from "next/font/google";
+import { SoundProvider } from "@/components/Sound";
+import { Track } from "@/components/Track";
 import "./globals.css";
 
 // Newsreader carries every display headline and pull-quote (weights 200/300 only).
@@ -35,7 +37,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${newsreader.variable} ${instrument.variable}`}>
-      <body>{children}</body>
+      <body>
+        <SoundProvider>{children}</SoundProvider>
+        <Track />
+      </body>
     </html>
   );
 }

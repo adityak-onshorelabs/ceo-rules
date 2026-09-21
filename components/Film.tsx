@@ -14,6 +14,7 @@ export function Film({
   poster,
   alt,
   position = "50% 50%",
+  mobilePosition,
   filter = "saturate(.72) contrast(1.06) brightness(.86)",
   sizes = "100vw",
   audit,
@@ -24,6 +25,8 @@ export function Film({
   poster: string;
   alt: string;
   position?: string;
+  /** Crop below 1024px (brief §21). */
+  mobilePosition?: string;
   filter?: string;
   sizes?: string;
   audit?: string;
@@ -55,11 +58,17 @@ export function Film({
     return () => obs.disconnect();
   }, [reduce]);
 
-  const media = { objectFit: "cover" as const, objectPosition: position, filter };
+  const media = {
+    objectFit: "cover" as const,
+    filter,
+    "--pos": position,
+    "--pos-m": mobilePosition ?? position,
+  } as React.CSSProperties;
+  const crop = "[object-position:var(--pos-m)] lg:[object-position:var(--pos)]";
 
   return (
     <div ref={box} className={`overflow-hidden bg-ink-deep ${className}`}>
-      <Image src={poster} alt={alt} fill sizes={sizes} quality={85} className="object-cover" style={media} />
+      <Image src={poster} alt={alt} fill sizes={sizes} quality={85} className={`object-cover ${crop}`} style={media} />
       {attach ? (
         <video
           ref={video}
@@ -71,7 +80,7 @@ export function Film({
           preload="auto"
           aria-hidden
           onPlaying={() => setPlaying(true)}
-          className={`absolute inset-0 h-full w-full transition-opacity duration-700 ${playing ? "opacity-100" : "opacity-0"}`}
+          className={`absolute inset-0 h-full w-full ${crop} transition-opacity duration-700 ${playing ? "opacity-100" : "opacity-0"}`}
           style={media}
         />
       ) : null}

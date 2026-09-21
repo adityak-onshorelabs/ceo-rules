@@ -10,23 +10,25 @@ export function TheEye({
   image,
   alt,
   position,
+  mobilePosition,
   video,
   audit,
 }: {
   image: string;
   alt: string;
   position: string;
+  mobilePosition?: string;
   video?: string;
   audit?: string;
 }) {
   const sizes = "(min-width: 860px) 50vw, 100vw";
   return (
     <section id="eye" className="split on-dark relative bg-eye">
-      <div className="relative min-h-[clamp(440px,92vh,900px)]">
+      <div className="relative aspect-[4/5] lg:aspect-auto lg:min-h-[clamp(440px,92vh,900px)]">
         {video ? (
-          <Film src={video} poster={image} alt={alt} position={position} sizes={sizes} audit={audit} />
+          <Film src={video} poster={image} alt={alt} position={position} mobilePosition={mobilePosition} sizes={sizes} audit={audit} />
         ) : (
-          <Photo src={image} alt={alt} position={position} grade="plate" sizes={sizes} audit={audit} auditAt="bl" />
+          <Photo src={image} alt={alt} position={position} mobilePosition={mobilePosition} grade="plate" motion="reveal" sizes={sizes} audit={audit} auditAt="bl" />
         )}
       </div>
       <div className="flex flex-col justify-center px-[clamp(24px,6vw,110px)] py-[clamp(100px,15vh,200px)]">

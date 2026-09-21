@@ -34,14 +34,14 @@ export function Cloth() {
         <p className="kicker !mb-[26px] text-[rgba(244,241,234,.92)]">{c.kicker}</p>
         <Reveal
           as="h2"
-          className="max-w-[12ch] font-serif text-[clamp(36px,9vw,48px)] font-light leading-[1.02] tracking-[-0.025em] lg:text-[clamp(40px,3.8vw,64px)]"
+          className="max-w-[12ch] text-[clamp(34px,8.6vw,46px)] leading-[1.04] tracking-[-0.035em] lg:text-[clamp(38px,3.6vw,60px)]"
         >
           {c.title}
         </Reveal>
         <p className="body mt-[clamp(22px,3.4vh,34px)] max-w-[40ch] text-[rgba(244,241,234,.92)]">{c.body}</p>
 
         <div className="mt-[clamp(36px,6vh,64px)] border-t border-[rgba(244,241,234,.22)] pt-6">
-          <p className="label mb-4 !text-[11px] text-[rgba(244,241,234,.82)]">{c.millsLabel}</p>
+          <p className="label mb-4 !text-[12px] text-[rgba(244,241,234,.82)]">{c.millsLabel}</p>
           <ul className="flex flex-wrap gap-x-7 gap-y-2 text-[clamp(14px,1.05vw,15.5px)] leading-[1.6] tracking-[0.04em] text-cream">
             {mills.map((m) => (
               <li key={m.name}>{m.name}</li>

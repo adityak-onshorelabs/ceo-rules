@@ -35,7 +35,7 @@ export function Insights() {
             <ol className="space-y-4">
               {entries.map((e, i) => (
                 <li key={e.id} className="flex items-baseline gap-4">
-                  <span className="text-[10.5px] tracking-[0.2em] tabular-nums text-[rgba(28,26,23,.4)]">
+                  <span className="text-[12px] tracking-[0.2em] tabular-nums text-[rgba(28,26,23,.4)]">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <a

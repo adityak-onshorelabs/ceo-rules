@@ -27,6 +27,7 @@ export default function Home() {
           image={home.eye.image}
           alt={home.eye.alt}
           position={home.eye.position}
+          mobilePosition={home.eye.mobilePosition}
           audit={home.eye.audit}
         />
         <Wardrobe />

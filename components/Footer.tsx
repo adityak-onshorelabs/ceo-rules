@@ -17,7 +17,7 @@ export function Footer() {
               href={l.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[11px] uppercase tracking-[0.18em] transition-colors hover:text-cream"
+              className="text-[12px] uppercase tracking-[0.18em] transition-colors hover:text-cream"
             >
               {l.label}
             </a>
@@ -25,7 +25,7 @@ export function Footer() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-[11px] uppercase tracking-[0.18em] transition-colors hover:text-cream"
+              className="text-[12px] uppercase tracking-[0.18em] transition-colors hover:text-cream"
             >
               {l.label}
             </Link>

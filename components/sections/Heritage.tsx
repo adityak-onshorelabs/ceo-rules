@@ -21,7 +21,7 @@ export function Heritage() {
             <blockquote className="text-[clamp(18px,1.6vw,23px)] leading-[1.5] tracking-[-0.01em]">
               “{testimonial.quote}”
             </blockquote>
-            <figcaption className="mt-[18px] text-[11px] uppercase tracking-[0.2em] text-[rgba(28,26,23,.55)]">
+            <figcaption className="mt-[18px] text-[12px] uppercase tracking-[0.2em] text-[rgba(28,26,23,.55)]">
               {testimonial.by}
             </figcaption>
           </figure>

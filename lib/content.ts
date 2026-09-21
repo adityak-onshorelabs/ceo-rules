@@ -130,10 +130,11 @@ export const home = {
     ],
   },
   eye: {
-    video: "/video/anis-cloth.mp4",
+    video: "/video/anis-cloth-loop.mp4",
     image: "/images/eye-poster.jpg",
-    alt: "Anis Soomar at his desk, a length of Scabal cloth under his hand",
-    position: "12% 50%",
+    alt: "Anis Soomar at his desk, a length of grey suiting in his hands",
+    position: "23% 50%",
+    mobilePosition: "15% 50%",
     audit:
       "Temporary · 1024×576 phone video, 67s — right moment, low resolution. Reshoot in 4K: Anis handling cloth, warm light, 10–15s loop.",
   },
@@ -142,10 +143,10 @@ export const home = {
     title: "This is what the house can make for you.",
     categories: ["Suits", "Shirts", "Jackets", "Tuxedos", "Bandhgalas", "Sherwanis"],
     cta: "The Wardrobe",
-    image: "/images/checked-suit.jpg",
-    alt: "A finished bespoke checked jacket, adjusted at the cuff",
+    image: "/images/anis-bandhgala.jpg",
+    alt: "Anis Soomar in a black bandhgala, the collar closed",
     audit:
-      "Replace · watermarked — baked-in CEO RULES® mark. Need a real client, 3/4, movement, 3000px portrait, space at base for type.",
+      "Temporary · crop of an event snapshot. Need a real client in a finished garment, 3/4, movement, 3000px, space at the base for type.",
   },
   reels: {
     kicker: "From the House",
@@ -154,18 +155,21 @@ export const home = {
     items: [
       {
         line: "The details speak before you do.",
+        href: "https://www.instagram.com/ceorules/",
         image: "/images/lapel.jpg",
         alt: "Reel: folded pocket squares in the house patterns",
         position: "50% 40%",
       },
       {
         line: "True luxury is never loud.",
+        href: "https://www.instagram.com/ceorules/",
         image: "/images/tuxedo-detail.webp",
         alt: "Reel: a finished tuxedo on the stand, satin lapel and pleated shirt",
         position: "50% 42%",
       },
       {
         line: "Better combinations, not more clothes.",
+        href: "https://www.instagram.com/ceorules/",
         image: "/images/ties.jpg",
         alt: "Reel: silk ties laid out in combination",
         position: "50% 45%",
@@ -182,7 +186,7 @@ export const home = {
   visit: {
     kicker: "Visit",
     title: "Come sit with us in Bandra.",
-    body: "Thirty minutes, a cup of coffee, and no obligation to commission anything. Anis will tell you honestly whether we are the right house for you.",
+    body: "A cup of coffee, and no obligation to commission anything. Anis will tell you honestly whether we are the right house for you.",
     cta: "Book a Private Appointment",
     image: "/images/interior.jpg",
     alt: "Inside the house in Bandra",
@@ -254,7 +258,7 @@ export const bespoke = {
   hero: {
     kicker: "The Bespoke",
     title: "One garment, cut for one man.",
-    lede: "A commission takes four to six weeks and three visits. Here is exactly what happens between the first conversation and the finished coat.",
+    lede: "Here is exactly what happens between the first conversation and the finished coat.",
     image: "/images/bolts.jpg",
     alt: "Folded bolts of cloth in the atelier",
   },
@@ -262,46 +266,55 @@ export const bespoke = {
     title: "Bespoke is a process, not a purchase.",
     body: "There is no rail to choose from and no size to fall into. A pattern is drafted for your body, cut by hand, and adjusted on you across fittings until the garment does what you need it to do. That is the whole of it.",
   },
+  // Brief §15: six stages, shown one at a time in a large photographic field.
   steps: [
     {
-      title: "The Conversation",
-      when: "Visit one · 45 minutes",
+      title: "Private Consultation",
+      when: "The first visit",
       body: "We talk before we measure. What rooms you walk into, what your week looks like, what you already own and never wear. Anis will tell you what to commission and, more usefully, what not to.",
-      image: "/images/atelier-conversation.webp",
-      alt: "A client conversation at the table",
-      position: "50% 40%",
+      image: "/images/eye-poster.jpg",
+      alt: "Anis Soomar at his desk with a length of suiting",
+      position: "30% 50%",
     },
     {
-      title: "The Cloth",
+      title: "Fabric Selection",
       when: "Same visit",
       body: "The books come out. Weight, weave and season matter more than the name on the selvedge, and Mumbai narrows the field further than most men expect. You will handle the cloth before you choose it.",
-      image: "/images/bespoke-cloth.jpg",
-      alt: "Anis Soomar's hand on a length of grey suiting, fresh from its box",
-      position: "55% 60%",
-    },
-    {
-      title: "The Measure & The Pattern",
-      when: "Drafted in house",
-      body: "Around thirty measurements, then a paper pattern drafted for your posture — one shoulder lower than the other, as it is for almost everyone. The pattern is kept, so the second commission is easier than the first.",
-      image: "/images/form-tape.jpg",
-      alt: "Tape and form on the cutting table",
-      position: "50% 45%",
-    },
-    {
-      title: "The Fittings",
-      when: "Visits two and three",
-      body: "A basted garment first, held together loosely so it can be opened and moved. You walk in it, sit in it, reach in it. Two fittings is typical; we will take a third if the coat asks for one.",
-      image: "/images/canvas.jpg",
-      alt: "Basted canvas inside a jacket",
-      position: "50% 45%",
-    },
-    {
-      title: "The Finish",
-      when: "Four to six weeks from the first visit",
-      body: "Buttonholes, lining, pressing. The work nobody sees and everybody feels. The garment stays ours until it is right, and it comes back to us for alterations for as long as you wear it.",
-      image: "/images/buttonhole.jpg",
-      alt: "A finished hand buttonhole",
+      image: "/images/bolts.jpg",
+      alt: "Swatches of suiting and jacketing fanned on the table",
       position: "50% 50%",
+    },
+    {
+      title: "Measurement",
+      when: "Drafted in house",
+      body: "Around thirty measurements, then a paper pattern drafted for your posture: one shoulder lower than the other, as it is for almost everyone. The pattern is kept, so the second commission is easier than the first.",
+      image: "/images/craft-cut.jpg",
+      alt: "Anis Soomar cutting cloth with shears on the table",
+      position: "50% 50%",
+    },
+    {
+      title: "Fitting & Reshaping",
+      when: "At the fittings",
+      body: "A basted garment first, held together loosely so it can be opened and moved. You walk in it, sit in it, reach in it. It is reshaped on you until the line is right.",
+      image: "/images/anis-fitting.jpg",
+      alt: "Anis Soomar adjusting a jacket at the shoulder during a fitting",
+      position: "62% 40%",
+    },
+    {
+      title: "Final Hand-Finishing",
+      when: "In the atelier",
+      body: "Buttonholes, lining, pressing. The work nobody sees and everybody feels, done by hand.",
+      image: "/images/founder-stitching.webp",
+      alt: "Hand-stitching at the lapel, green thread through canvas",
+      position: "46% 60%",
+    },
+    {
+      title: "Delivery",
+      when: "When it is right",
+      body: "The garment stays ours until it is right. It is yours when it disappears on you, and it comes back to us for alterations for as long as you wear it.",
+      image: "/images/lapel.jpg",
+      alt: "A finished jacket lapel with a folded pocket square",
+      position: "50% 40%",
     },
   ],
   price: {
@@ -330,24 +343,24 @@ export const wardrobe = {
       label: "01 / Suits",
       title: "The one that has to work everywhere.",
       body: "Two or three-piece, single or double breasted, in weights that survive a Mumbai afternoon.",
-      image: "/images/checked-suit.jpg",
-      alt: "A bespoke checked suit",
-      position: "44% 30%",
+      image: "/images/anis-fitting.jpg",
+      alt: "A client in a suit jacket, adjusted at the shoulder",
+      position: "40% 40%",
     },
     {
       label: "02 / Shirts",
       title: "Where fit is noticed first.",
       body: "Collar, cuff and yoke drafted to you. ALUMO, Canclini and S.I.C. Tess cottons.",
-      image: "/images/cloth-shelves.jpg",
-      alt: "Shirting cloth on the shelves",
-      position: "58% 50%",
+      image: "/images/lapel.jpg",
+      alt: "A patterned shirt under a jacket lapel and pocket square",
+      position: "30% 40%",
     },
     {
       label: "03 / Jackets",
       title: "The most used thing you will own.",
       body: "Softer in the shoulder, lighter in the canvas. Worn six days out of seven.",
-      image: "/images/form-tape.jpg",
-      alt: "Tape and tailor's form on the cutting table",
+      image: "/images/canvas.jpg",
+      alt: "A jacket on the form, its canvas basted by hand",
       position: "50% 45%",
     },
     {
@@ -387,15 +400,16 @@ export const wardrobe = {
 // Appointment
 // ---------------------------------------------------------------------------
 export const appointment = {
-  image: "/images/atelier-conversation.webp",
-  alt: "A conversation at the table in the atelier",
+  image: "/images/eye-poster.jpg",
+  alt: "Anis Soomar at his desk with a length of suiting",
   place: "Bandra West · Mumbai",
-  pull: "Thirty minutes, a cup of coffee, and no obligation to commission anything.",
+  pull: "A cup of coffee, and no obligation to commission anything.",
   kicker: "Appointment",
   title: "Come sit with us.",
   body: "Appointments are held one at a time, so the room is yours. Tell us roughly what you have in mind and we will hold the hour.",
-  // Pending the client's Calendly link and event type.
-  calendly: null as string | null,
+  // Brief §12: Anis's intended event. Confirm the final URL, location, buffers,
+  // reminders and intake questions in Calendly before production.
+  calendly: "https://calendly.com/anis-ceorules/30min" as string | null,
   fallback: "Message us on WhatsApp with a day and time that suits you, and we will confirm the hour.",
 };
 
@@ -495,7 +509,7 @@ export const insights = {
       tag: "On style",
       title: "Trends come and go. Style stays.",
       body: "Oversized is not always stylish, and true elegance is never accidental. Dress for lasting impact, not for the fashion of a season.",
-      image: "/images/form-tape.jpg",
+      image: "/images/canvas.jpg",
       imageAlt: "Tape and tailor's form on the cutting table",
     },
     {
@@ -538,4 +552,30 @@ export const insights = {
     list?: string[];
     coda?: string;
   }[],
+};
+
+// ---------------------------------------------------------------------------
+// Sound (brief §16). Optional atelier ambience: fades in to ~12% after the
+// visitor's first genuine interaction, with a persistent Sound on/off control.
+// `src` must be a properly licensed commercial track hosted locally
+// (public/audio). Until one is supplied the control stays hidden.
+// ---------------------------------------------------------------------------
+export const sound = {
+  // Set to the licensed track once supplied, e.g. "/audio/atelier.mp3"
+  // (file in public/audio). While null, nothing is requested and the Sound
+  // control stays hidden.
+  src: null as string | null,
+  volume: 0.12,
+  fadeMs: 2000,
+};
+
+// ---------------------------------------------------------------------------
+// /kazim (brief §19): standalone QR contact card, not linked from the site.
+// ---------------------------------------------------------------------------
+export const kazim = {
+  name: "Kazim Soomar",
+  place: "CEO Rules · Mumbai",
+  whatsapp: "https://wa.me/919833817791",
+  // The site root, so the card works on whatever domain the site ships on.
+  website: "/",
 };

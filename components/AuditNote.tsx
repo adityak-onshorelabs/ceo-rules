@@ -24,9 +24,9 @@ export function AuditNote({ text, at = "br" }: { text: string; at?: AuditPlaceme
 
   return (
     <p
-      className={`absolute z-20 max-w-[280px] border border-[rgba(232,160,60,.55)] bg-[rgba(14,13,11,.75)] px-3.5 py-3 text-[11.5px] leading-[1.5] text-[rgba(244,241,234,.86)] ${PLACE[at]}`}
+      className={`absolute z-20 max-w-[280px] border border-[rgba(232,160,60,.55)] bg-[rgba(14,13,11,.75)] px-3.5 py-3 text-[12px] leading-[1.5] text-[rgba(244,241,234,.86)] ${PLACE[at]}`}
     >
-      <span className="mb-1.5 block text-[9.5px] uppercase tracking-[0.2em] text-[#E8A03C]">
+      <span className="mb-1.5 block text-[12px] uppercase tracking-[0.2em] text-[#E8A03C]">
         Photo note
       </span>
       {text}

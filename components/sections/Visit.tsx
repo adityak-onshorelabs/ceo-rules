@@ -23,7 +23,7 @@ export function VisitDetails({ dark = true }: { dark?: boolean }) {
           href={site.mapHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="link-line mt-3 !pb-1 !text-[11px] !tracking-[0.18em]"
+          className="link-line mt-3 !pb-1 !text-[12px] !tracking-[0.18em]"
         >
           Directions <span aria-hidden>↗</span>
         </a>
@@ -76,6 +76,8 @@ export function Visit() {
           src={v.image}
           alt={v.alt}
           position="46% 50%"
+          mobilePosition="40% 50%"
+          motion="reveal"
           grade="plate"
           sizes="(min-width: 860px) 50vw, 100vw"
           audit={v.audit}

@@ -3,8 +3,11 @@ import { Photo } from "@/components/Photo";
 import { Reveal } from "@/components/Reveal";
 import { home, site } from "@/lib/content";
 
-// 06 From the House. Three Instagram Reels as 9:16 posters. The poster frames
-// are stand-ins until the client picks the three Reels.
+// 06 From the House (brief §13). Three selected Reels as editorial vertical
+// films: approved posters that open the Reel, never Instagram's own embed
+// chrome, feed grids or follower counts. Desktop sets the three side by side;
+// mobile is a row you swipe, each poster near full width, so they are watched
+// the natural vertical way. Posters are stand-ins until the Reels are chosen.
 export function Reels() {
   const r = home.reels;
   return (
@@ -27,14 +30,18 @@ export function Reels() {
           </div>
         </div>
 
-        <div className="mt-[clamp(48px,7vh,84px)] grid grid-cols-[repeat(auto-fit,minmax(min(100%,270px),1fr))] gap-[clamp(26px,3.2vw,52px)]">
+        <div
+          aria-label="Three Reels from the house"
+          className="no-scrollbar -mx-[var(--gutter)] mt-[clamp(48px,7vh,84px)] flex snap-x snap-mandatory scroll-px-[var(--gutter)] gap-4 overflow-x-auto px-[var(--gutter)] lg:mx-0 lg:grid lg:snap-none lg:grid-cols-3 lg:gap-[clamp(26px,3.2vw,52px)] lg:overflow-visible lg:px-0"
+        >
           {r.items.map((it, i) => (
             <a
               key={it.line}
-              href={site.instagram}
+              href={it.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="on-dark group relative block aspect-[9/16] overflow-hidden bg-ink-deep"
+              aria-label={`Watch on Instagram: ${it.line}`}
+              className="on-dark group relative block aspect-[9/16] w-[78vw] max-w-[360px] flex-none snap-start overflow-hidden bg-ink-deep lg:w-auto lg:max-w-none"
             >
               <Photo
                 src={it.image}
@@ -52,7 +59,7 @@ export function Reels() {
                 </p>
                 <span
                   aria-hidden
-                  className="grid h-[30px] w-[30px] flex-none place-items-center border border-[rgba(244,241,234,.6)] text-[10px] transition-colors duration-[240ms] group-hover:border-gold"
+                  className="grid h-[30px] w-[30px] flex-none place-items-center border border-[rgba(244,241,234,.6)] text-[12px] transition-colors duration-[240ms] group-hover:border-gold"
                 >
                   ▶
                 </span>
