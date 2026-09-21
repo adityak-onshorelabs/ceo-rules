@@ -2,16 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
-import { Plate } from "@/components/Plate";
+import { MediaField } from "@/components/MediaField";
+import { InsightsMediaSlot } from "@/components/InsightsMediaSlot";
 import { insights } from "@/lib/content";
+import { img } from "@/lib/images";
 
-// The founder's insights as a long-form reading page: a sticky contents rail that
-// tracks the active essay, quiet serif numerals as anchors, and the fit checklist
-// pulled into a recessed field so no two entries read the same.
 export function Insights() {
   const entries = insights.entries;
   const [active, setActive] = useState(entries[0]?.id);
   const refs = useRef<Record<string, HTMLElement | null>>({});
+  const lapel = img("lapelSquare");
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -29,7 +29,6 @@ export function Insights() {
 
   return (
     <section id="insights" data-nav="light" className="section mx-auto max-w-editorial">
-      {/* Header */}
       <header className="grid grid-cols-1 items-end gap-y-8 stitch-bottom pb-[clamp(2.5rem,6vh,4rem)] lg:grid-cols-[1fr_auto]">
         <div className="max-w-[42rem]">
           <p className="eyebrow mb-8">{insights.eyebrow}</p>
@@ -41,9 +40,7 @@ export function Insights() {
         </p>
       </header>
 
-      {/* Reading layout: contents rail + essays */}
       <div className="mt-[clamp(3rem,8vh,6rem)] grid grid-cols-1 gap-x-[clamp(3rem,7vw,7rem)] lg:grid-cols-[0.42fr_1fr]">
-        {/* Sticky contents */}
         <aside className="hidden lg:block">
           <nav className="sticky top-28" aria-label="Contents">
             <p className="eyebrow mb-6">Contents</p>
@@ -69,7 +66,6 @@ export function Insights() {
           </nav>
         </aside>
 
-        {/* Essays */}
         <div>
           {entries.map((n, i) => (
             <Reveal
@@ -118,16 +114,20 @@ export function Insights() {
                     </p>
                   ) : null}
 
-                  {"image" in n && n.image ? (
-                    <figure className="mt-8">
-                      <Plate
-                        src={n.image}
-                        alt={typeof n.imageAlt === "string" ? n.imageAlt : ""}
-                        sizes="(min-width: 1024px) 42vw, 100vw"
-                        className="aspect-[3/2] w-full"
+                  {n.id === "details" ? (
+                    <figure className="mt-10">
+                      <MediaField
+                        image={lapel}
+                        fit="intrinsic"
+                        width={1206}
+                        height={2089}
+                        sizes="(min-width: 1024px) 24rem, 92vw"
+                        className="w-full max-w-[24rem]"
                       />
                     </figure>
                   ) : null}
+
+                  {n.id === "legend" ? <InsightsMediaSlot name="closing" /> : null}
                 </div>
               </div>
             </Reveal>

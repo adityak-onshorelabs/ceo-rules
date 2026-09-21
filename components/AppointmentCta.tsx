@@ -15,7 +15,7 @@ export function AppointmentCta({
       ? "group inline-flex flex-col items-start gap-1 font-sans text-[0.95rem] text-bg"
       : tone === "current"
         ? "group inline-flex flex-col items-start gap-1 font-sans text-[0.95rem] text-current transition-opacity duration-200 ease-out-quart hover:opacity-80"
-        : "group inline-flex flex-col items-start gap-1 font-sans text-[0.95rem] text-ink transition-colors duration-200 ease-out-quart hover:text-walnut";
+        : "group inline-flex flex-col items-start gap-1 font-sans text-[0.95rem] text-ink transition-opacity duration-200 ease-out-quart hover:opacity-80";
 
   return (
     <a
@@ -33,7 +33,7 @@ export function AppointmentCta({
             ? "bg-bg opacity-[0.58] transition-opacity duration-200 ease-out-quart group-hover:opacity-100"
             : tone === "current"
               ? "bg-current opacity-40"
-              : "bg-brass"
+              : "bg-ink"
         }`}
       />
     </a>

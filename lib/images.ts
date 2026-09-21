@@ -33,10 +33,26 @@ export const images = {
     mobileAspect: "3/2",
     quality: 84,
     notes:
-      "Approved fitting campaign. Native 1024×682 — do not request wider. Cloth-book spines are baked and not mill proof. Dedicated mobile plate when supplied.",
+      "Approved fitting campaign. Unused on the homepage hero. Native 1024×682. Available for later Craft / Bespoke. Do not delete.",
     temporary: true,
     sourceType: "ai-concept",
     replacementRequired: true,
+  },
+  heroStorefront: {
+    id: "heroStorefront",
+    desktopSrc: "/images/hero_section.png",
+    mobileSrc: "/images/hero_section.png",
+    alt: "The CEO Rules atelier in daylight, with the wooden house sign above the entrance",
+    category: "house",
+    desktopObjectPosition: "center 42%",
+    tabletObjectPosition: "center 40%",
+    mobileObjectPosition: "42% 38%",
+    desktopAspect: "1448/1086",
+    mobileAspect: "1448/1086",
+    quality: 84,
+    notes:
+      "Homepage hero. Native 1448×1086. Full-bleed opener with type on pavement only — never cover the CEO Rules fascia. KEEP WITH NEW CROP.",
+    sourceType: "photograph",
   },
   clothSelection: {
     id: "clothSelection",
@@ -44,13 +60,14 @@ export const images = {
     mobileSrc: "/images/campaign/cloth-selection.jpg",
     alt: "Hands choosing cloth from open sample books",
     category: "hands",
-    desktopObjectPosition: "center 42%",
-    tabletObjectPosition: "center 40%",
-    mobileObjectPosition: "center 38%",
+    desktopObjectPosition: "62% 42%",
+    tabletObjectPosition: "58% 40%",
+    mobileObjectPosition: "55% 38%",
     desktopAspect: "3/2",
     mobileAspect: "3/2",
     quality: 82,
-    notes: "Approved cloth selection. Native 1024×682. Cap ~512 CSS. Human choice, not a mill ad.",
+    notes:
+      "TEMPORARY. Native 1024×682 — soft at 1440 full-bleed. Full-bleed Cloth chapter; type upper-left; protect hands/swatches. Upgrade to ≥2400px later.",
   },
   clothLoroBook: {
     id: "clothLoroBook",
@@ -65,7 +82,7 @@ export const images = {
     mobileAspect: "4/5",
     quality: 80,
     notes:
-      "Approved overhead book. Native 1024×1024. Square crop toward swatches and the right hand — not the mill title page. Cap ~320 CSS.",
+      "Approved overhead book. Native 1024×1024. /the-cloth Mode C opener. Crop toward swatches and the right hand — not the mill title page. Near-native square; do not force 16/9.",
   },
   clothTable: {
     id: "clothTable",
@@ -80,7 +97,7 @@ export const images = {
     mobileAspect: "3/2",
     quality: 80,
     notes:
-      "Approved but unused on the homepage. Native 1024×1024 with letterbox bars — crop 3/2 from centre if placed. Fallback if clothSelection feels too clinical.",
+      "Approved but unused. Native 1024×1024 with letterbox bars. Do not use as an opener until cropped. Fallback if clothSelection feels too clinical.",
   },
   craftCutShears: {
     id: "craftCutShears",
@@ -94,7 +111,9 @@ export const images = {
     desktopAspect: "16/9",
     mobileAspect: "16/9",
     quality: 82,
-    notes: "Approved cut. Native 1024×576. Keep 16/9. Cap ~512 CSS.",
+    temporary: true,
+    notes:
+      "TEMPORARY. Native 1024×576. Full-bleed Cut + Craft intro overlay; type left; protect shears/hands. Upgrade to ≥2400px.",
   },
   craftFitBasted: {
     id: "craftFitBasted",
@@ -102,15 +121,16 @@ export const images = {
     mobileSrc: "/images/campaign/craft-fit-basted.png",
     alt: "A tailor fitting a brown basted jacket on the client",
     category: "man",
-    desktopObjectPosition: "center 42%",
-    tabletObjectPosition: "center 40%",
-    mobileObjectPosition: "center 38%",
+    desktopObjectPosition: "62% 42%",
+    tabletObjectPosition: "58% 40%",
+    mobileObjectPosition: "55% 38%",
     desktopAspect: "3/2",
     mobileAspect: "3/2",
     quality: 80,
     replacementRequired: true,
+    temporary: true,
     notes:
-      "Approved basted fitting. Native 600×400 — do not exceed 360 CSS. Emphasize by placement, not scale.",
+      "REPLACE IMAGE. Native 600×400 — cannot carry campaign full-bleed. Used temporarily as full-bleed layout proof only. Need ≥2400px real fitting with left negative space.",
   },
   craftFinishThread: {
     id: "craftFinishThread",
@@ -124,7 +144,9 @@ export const images = {
     desktopAspect: "3/2",
     mobileAspect: "3/2",
     quality: 82,
-    notes: "Approved finish / handwork. Native 1024×682. Cap ~512 CSS.",
+    temporary: true,
+    notes:
+      "TEMPORARY. Native 1024×682. Full-bleed Finish overlay. Authenticity risk — prefer dedicated garment hand-finish plate.",
   },
   storefrontDay: {
     id: "storefrontDay",
@@ -139,7 +161,7 @@ export const images = {
     mobileAspect: "4/5",
     quality: 80,
     notes:
-      "1360×1020. Honest max ~680 CSS at 2×. Contained 3/2 plate — never 21:9 full-bleed. Street clutter; crop toward the sign and door.",
+      "1360×1020. /atelier Mode B opener (and /kazim card). Never 21:9 full-bleed. Street clutter; crop toward the sign and door. Not on the homepage.",
   },
   storefrontNight: {
     id: "storefrontNight",
@@ -164,7 +186,7 @@ export const images = {
     mobileAspect: "4/5",
     quality: 78,
     notes:
-      "1020×1020. Strongest authentic Anis plate. Cap near 512 CSS on desktop so 2× stays honest. Faces sit centre — do not force landscape.",
+      "1020×1020. /atelier Process Mode B only. Cap near 512 CSS. Faces sit centre — do not force landscape. Do not reuse on The Eye or Visit.",
   },
   jacketOnForm: {
     id: "jacketOnForm",
@@ -179,7 +201,7 @@ export const images = {
     mobileAspect: "1/1",
     quality: 82,
     notes:
-      "1080×1320. Watermark at the bottom. Square crop from the top hides the mark. Cap ~496 CSS.",
+      "1080×1320. Watermark at the bottom. /the-cloth construction field — square crop from the top hides the mark. Cap ~496 CSS.",
   },
   canvasChest: {
     id: "canvasChest",
@@ -193,7 +215,8 @@ export const images = {
     desktopAspect: "3/2",
     mobileAspect: "3/2",
     quality: 78,
-    notes: "1061×764. Intimate construction detail. Cap ~320 CSS. Prefer 3/2 over a tall crop.",
+    notes:
+      "KEEP WITH NEW CROP. 1061×764. Full-bleed Canvas; type on right blur; never across white basting. Do not reuse on /the-cloth.",
   },
   lapelSquare: {
     id: "lapelSquare",
@@ -207,7 +230,7 @@ export const images = {
     desktopAspect: "3/4",
     mobileAspect: "3/4",
     quality: 80,
-    notes: "Highest-resolution still (1206×2089). Precision detail only — keep around 320 CSS.",
+    notes: "Highest-resolution still (1206×2089). /philosophy Mode C — native portrait, never 3/2.",
   },
   clothEdges: {
     id: "clothEdges",
@@ -221,7 +244,7 @@ export const images = {
     desktopAspect: "3/2",
     mobileAspect: "3/2",
     quality: 80,
-    notes: "1074×1084. Contained landscape ~540 CSS. Do not full-bleed 16/9.",
+    notes: "1074×1084. /the-cloth material interruption. Prefer 3/2. Do not full-bleed 16/9.",
   },
   anisFitting: {
     id: "anisFitting",
@@ -235,7 +258,10 @@ export const images = {
     desktopAspect: "1/1",
     mobileAspect: "4/5",
     quality: 80,
-    notes: "1075×1089. Human fit moment. Cap ~540 CSS. Wide crops eat the heads.",
+    replacementRequired: true,
+    temporary: true,
+    notes:
+      "REPLACE IMAGE. 1075×1089 square — TEMPORARY full-bleed The Eye. Protect faces/hands. Need ≥2400px observational Anis plate with type-safe negative space.",
   },
   anisStitching: {
     id: "anisStitching",
@@ -263,8 +289,10 @@ export const images = {
     desktopAspect: "3/2",
     mobileAspect: "5/4",
     quality: 80,
+    replacementRequired: true,
+    temporary: true,
     notes:
-      "1080×1085 with a bottom watermark. 3/2 from the top hides the mark. Cap ~540 CSS. Do not 4/5.",
+      "REPLACE IMAGE. 1080×1085 with bottom watermark. TEMPORARY full-bleed Wardrobe — crop from top. Need watermark-free finished-man campaign plate ≥2400px.",
   },
   tuxedoDetail: {
     id: "tuxedoDetail",
@@ -291,7 +319,7 @@ export const images = {
     desktopAspect: "3/4",
     mobileAspect: "3/4",
     quality: 80,
-    notes: "1206×1491. Rules by Anis vertical. Cap ~360 CSS.",
+    notes: "1206×1491. /the-wardrobe Mode B/C vertical material. Do not overlay type on the silk.",
   },
   exclusiveCloth: {
     id: "exclusiveCloth",
@@ -331,7 +359,7 @@ export const images = {
     mobileAspect: "4/3",
     quality: 82,
     notes:
-      "1024×767. The House page hero. Near-native 4/3 frame; if any crop is required, take it equally from all sides (center).",
+      "1024×767. /house Mode B opener. Near-native 4/3; center crop only. Do not wallpaper-crop heads.",
   },
   clothBook: {
     id: "clothBook",

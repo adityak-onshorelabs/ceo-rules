@@ -19,7 +19,7 @@ export default function Home() {
         <TheEye />
         <Wardrobe />
         <House />
-        <Visit variant="arrival" />
+        <Visit />
       </main>
       <Footer />
     </>

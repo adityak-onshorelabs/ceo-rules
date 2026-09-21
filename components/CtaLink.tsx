@@ -14,7 +14,7 @@ export function CtaLink({
   const className =
     tone === "ivory"
       ? "group inline-flex flex-col items-start gap-1 font-sans text-[0.95rem] text-bg"
-      : "group inline-flex flex-col items-start gap-1 font-sans text-[0.95rem] text-ink transition-colors duration-200 ease-out-quart hover:text-walnut";
+      : "group inline-flex flex-col items-start gap-1 font-sans text-[0.95rem] text-ink transition-opacity duration-200 ease-out-quart hover:opacity-80";
 
   const inner = (
     <>
@@ -24,7 +24,7 @@ export function CtaLink({
         className={`h-px w-full origin-left transition-transform duration-300 ease-out-quart group-hover:scale-y-[1.6] ${
           tone === "ivory"
             ? "bg-bg opacity-[0.58] transition-opacity duration-200 ease-out-quart group-hover:opacity-100"
-            : "bg-brass"
+            : "bg-ink"
         }`}
       />
     </>

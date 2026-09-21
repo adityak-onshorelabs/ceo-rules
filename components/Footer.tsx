@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { footer, nav } from "@/lib/content";
+import { BrandLogo } from "@/components/BrandLogo";
 import { FooterMark } from "@/components/FooterMark";
 
 export function Footer() {
@@ -14,9 +15,9 @@ export function Footer() {
       <div className="relative mx-auto max-w-editorial px-[var(--page-pad)] py-[clamp(3.25rem,7vh,5.25rem)]">
         <div className="grid grid-cols-1 gap-x-[clamp(2rem,5vw,5rem)] gap-y-12 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr]">
           <div>
-            <p className="font-sans text-sm font-medium uppercase tracking-[0.18em] text-bg">
-              {footer.wordmark}
-            </p>
+            <div className="w-[168px]">
+              <BrandLogo variant="ivory" size="footer" />
+            </div>
             <p className="t-annotate mt-3 text-bg/65">{footer.line}</p>
             <p className="t-annotate mt-2 max-w-[22ch] text-bg/55">{footer.heritage}</p>
           </div>

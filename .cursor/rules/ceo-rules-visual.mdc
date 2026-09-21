@@ -1,0 +1,134 @@
+---
+description: CEO Rules visual implementation standard — photography as architecture, brand restraint, mandatory visual validation
+alwaysApply: true
+---
+
+# CEO Rules — Visual Implementation Standard
+
+Governs all visual/UI work. Do not treat a passing build, typecheck, or HTTP 200 as visual completion.
+
+## Brand
+
+CEO Rules is a private tailoring house in Mumbai. The site should feel like a contemporary luxury menswear / fashion house with old-world clothing expertise behind it.
+
+Desired: cultivated, assured, personal, exacting, warm, tactile, editorial, architectural.
+
+Must not feel like: SaaS, e-commerce, a generic luxury template, a hotel website, a wedding website, a portfolio template, or a collection of React sections.
+
+Internal principles:
+
+- Luxury is expressed through restraint, materiality, photography, typography and knowledge, never through decoration.
+- Heritage gives CEO Rules permission to have history. It does not give CEO Rules permission to look historical.
+
+## Primary visual principle
+
+**Photography creates the architecture of the page.** Photography should occupy space, not decorate space.
+
+When photography is present, explore whether it can touch a viewport edge, span the viewport, become a section background, create an architectural plane, overlap the page grid, establish the section's proportions, create negative space for typography, or function as material/texture rather than illustration.
+
+Contained images are allowed only when the composition deliberately requires them.
+
+Do not default to:
+
+```
+TEXT | RECTANGULAR IMAGE
+
+HEADING
+PARAGRAPH
+IMAGE CARD
+```
+
+or a small image floating inside a large padded container.
+
+## Full-bleed means full-bleed
+
+If a design instruction says FULL-BLEED, the media must physically reach the intended viewport edges.
+
+A large image inside `max-w-editorial` is not full-bleed. A large image with page padding around it is not full-bleed. A 90%-width centered rectangle is not full-bleed. Do not approximate this instruction.
+
+## Composition
+
+Do not make every section symmetrical. Do not repeatedly center heading / copy / image / CTA. Do not repeatedly use 50/50 split layouts.
+
+Use disciplined editorial asymmetry: different image scales and aspect ratios, off-axis typography, intentional cropping, large photographic fields, controlled negative space, sections that break the standard content grid.
+
+Asymmetry must feel composed, not random. Every screen should have one obvious primary visual focus.
+
+Do not make every section full-screen photography. Luxury requires contrast. Alternate immersive photographic moments, material/detail moments, human moments, quiet typography, and light and dark environments. The visitor should feel movement through a fashion house, not repetition of a component library.
+
+## Image + text
+
+Text may sit over photography only when the photograph has genuine negative space, contrast is naturally sufficient, and important subjects are not obscured.
+
+Do not solve every photograph with a generic dark overlay.
+
+Do not put typography across faces, hands when they are the subject, CEO Rules signage, important garments, important fabric detail, or watermarks.
+
+If overlay is inappropriate, integrate typography beside, before, after, or partially overlapping the photographic field.
+
+## Typography
+
+- Primary: Instrument Sans
+- Editorial serif: Newsreader — selective only
+- Do not automatically use serif type because a section should feel luxurious
+- Typography should feel confident, spacious, and deliberate
+- Avoid excessive microcopy and tiny luxury-template typography
+
+## Color
+
+- Foundation: House Ivory / Parchment, House Ink
+- Atmosphere: Midnight Wool
+- Signature: official CEO Rules Blue — a restrained accent
+
+Do not turn the website into a blue website. Do not introduce generic black-and-gold luxury styling. Avoid decorative gradients.
+
+## Official logo
+
+Use the actual CEO Rules wordmark asset. Never approximate the logo with typed text. The primary official logo must preserve its original CEO Rules blue where specified.
+
+## Materiality
+
+Communicate cloth, tailoring, canvas, chalk, stitching, hands, fittings, garments, wood, and atelier architecture through imagery and composition. Do not fake materiality with decorative CSS textures.
+
+## Banned default patterns
+
+Avoid unless explicitly requested: cards for everything; floating rectangular photographs; repetitive 50/50 splits; glassmorphism; pill-heavy UI; excessive rounded corners; gradient text; gold buttons everywhere; fake paper/wood textures; generic dark overlays; film grain; page loaders; route curtains; scroll hijacking; stock luxury imagery; AI imagery presented as authentic CEO Rules photography; decorative animations with no narrative purpose.
+
+## Responsive art direction
+
+Mobile is not simply desktop with `flex-direction: column`. For significant photographic compositions, consider mobile independently.
+
+Mobile may require a different crop, object-position, image height, type moved outside the photograph, secondary imagery removed, reordered composition, or reduced decorative elements.
+
+Protect faces, hands, garments, signage, and architectural subjects. No accidental horizontal overflow.
+
+## Visual validation is mandatory
+
+A successful build or typecheck does not mean a visual task is complete.
+
+For visual implementation tasks:
+
+1. Render the actual page whenever browser tooling is available.
+2. Inspect the result visually.
+3. Inspect at approximately 1440px desktop width.
+4. Inspect at approximately 390px mobile width.
+5. Compare against supplied references and explicit spatial requirements.
+6. Correct obvious visual problems before declaring completion.
+
+If browser/rendering capability is unavailable: do not claim that the visual implementation has been validated. Explicitly state that visual validation remains outstanding and request screenshots from the user.
+
+Never describe a visual implementation as complete solely because TypeScript passes, the production build passes, routes return HTTP 200, or DOM structure appears correct.
+
+## Reference images
+
+When visual references or screenshots are supplied, treat them as primary implementation context.
+
+Analyze image-to-page ratio, crop, whitespace, typography position, visual hierarchy, viewport occupation, alignment, density, and section transition. Do not merely copy colors or superficial styling. Reproduce the visual principle behind the reference.
+
+## Implementation discipline
+
+For major visual redesign work, do not redesign the entire site blindly in one pass.
+
+Prefer: reference → implement a limited visual area → render → screenshot → compare → correct → continue.
+
+When a visual checkpoint is requested, stop after that checkpoint. Do not continue into later sections.

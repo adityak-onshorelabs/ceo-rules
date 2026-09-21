@@ -1,5 +1,5 @@
 import { Reveal } from "@/components/Reveal";
-import { Plate } from "@/components/Plate";
+import { MediaField } from "@/components/MediaField";
 
 export function PageHero({
   eyebrow,
@@ -8,9 +8,12 @@ export function PageHero({
   image,
   imageAlt,
   objectPosition,
+  objectPositionTablet,
+  objectPositionMobile,
   imageClassName,
   sizes = "100vw",
   quality,
+  videoReady = false,
 }: {
   eyebrow: string;
   title: string;
@@ -18,22 +21,26 @@ export function PageHero({
   image: string;
   imageAlt: string;
   objectPosition?: string;
+  objectPositionTablet?: string;
+  objectPositionMobile?: string;
   imageClassName?: string;
   sizes?: string;
   quality?: number;
+  videoReady?: boolean;
 }) {
   return (
     <section className="bg-bg pt-24">
-      <Plate
+      <MediaField
         src={image}
         alt={imageAlt}
         priority
+        videoReady={videoReady}
         sizes={sizes}
         quality={quality}
         objectPosition={objectPosition}
-        objectPositionTablet={objectPosition}
-        objectPositionMobile={objectPosition}
-        className={imageClassName ?? "h-[min(70svh,36rem)] w-full"}
+        objectPositionTablet={objectPositionTablet ?? objectPosition}
+        objectPositionMobile={objectPositionMobile ?? objectPosition}
+        className={imageClassName ?? "aspect-[3/2] w-full"}
       />
       <div className="mx-auto max-w-editorial px-[var(--page-pad)] py-[clamp(2.5rem,6vh,4.5rem)]">
         <Reveal as="p" className="eyebrow mb-5">

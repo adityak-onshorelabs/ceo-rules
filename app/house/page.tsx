@@ -4,6 +4,9 @@ import { PageHero } from "@/components/PageHero";
 import { Lineage } from "@/components/sections/Lineage";
 import { Footer } from "@/components/Footer";
 import { house } from "@/lib/content";
+import { img } from "@/lib/images";
+
+const opening = img("houseHero");
 
 export const metadata: Metadata = {
   title: "The House — CEO Rules",
@@ -20,10 +23,13 @@ export default function HousePage() {
           eyebrow={house.hero.eyebrow}
           title={house.hero.title}
           lede={house.hero.lede}
-          image={house.hero.image}
-          imageAlt={house.hero.imageAlt}
-          objectPosition="center"
+          image={opening.desktopSrc}
+          imageAlt={opening.alt}
+          objectPosition={opening.desktopObjectPosition}
+          objectPositionTablet={opening.tabletObjectPosition}
+          objectPositionMobile={opening.mobileObjectPosition}
           imageClassName="aspect-[4/3] w-full"
+          quality={opening.quality}
         />
         <Lineage />
       </main>

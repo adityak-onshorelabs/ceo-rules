@@ -58,16 +58,16 @@ export const testimonials = {
 
 export const hero = {
   eyebrow: "Mumbai · Since 1881",
-  headline: "CEO RULES",
-  lede: "Private tailoring for a more considered life.",
+  statement: ["Private tailoring for", "a more considered life."] as const,
   cta: { label: "Book a Private Appointment →", href: "appointment" },
-  imageId: "heroCampaign" as const,
+  imageId: "heroStorefront" as const,
 };
 
 export const homeCloth = {
   kicker: "The Cloth",
-  observation: "A wardrobe begins in the book.",
-  body: "The house keeps a broad range of the mills a serious wardrobe uses — jacketing and shirting, not a short seasonal edit.",
+  observation: ["A wardrobe begins", "in the book."] as const,
+  body: "An exceptional range of suiting, jacketing and shirting from the world's leading cloth houses.",
+  housesEyebrow: "The Houses",
   suiting: [{ name: "Loro Piana" }, { name: "Zegna" }, { name: "Scabal" }],
   shirting: [{ name: "ALUMO" }, { name: "Söktas" }],
   primaryImageId: "clothSelection" as const,
@@ -75,7 +75,7 @@ export const homeCloth = {
 };
 
 export const homeCraft = {
-  observation: "Most of the work never shows.",
+  observation: ["Most of the work", "never shows."] as const,
   beats: [
     {
       label: "01 / The Cut",
@@ -377,40 +377,30 @@ export const insights = {
       tag: "The detail",
       title: "The details make all the difference.",
       body: "Timeless style is decided in the details. From the lapel to the shoulder, and every stitch in between, each choice shapes a suit that stands out without asking to.",
-      image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3726.jpg",
-      imageAlt: "A jacket lapel with a folded pocket square",
     },
     {
       id: "winchester",
       tag: "The shirt",
       title: "The Winchester, evolved.",
       body: "Not every classic belongs in the past; some evolve with it. The Winchester shirt has long stood for refinement and authority. We reimagine it with coordinated collars and cuffs, and bring heritage tailoring into the modern wardrobe.",
-      image: "/images/tuxedo-detail.webp",
-      imageAlt: "A pleated dress shirt and satin lapel on the stand",
     },
     {
       id: "combinations",
       tag: "The wardrobe",
       title: "Better combinations, not more clothes.",
       body: "A well-dressed man does not need more clothes. He needs better combinations. A timeless wardrobe is not dozens of outfits; it is a few versatile essentials that work together effortlessly. Build one that works smarter, not bigger.",
-      image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3730.jpg",
-      imageAlt: "A man in a bespoke checked suit",
     },
     {
       id: "trends",
       tag: "On style",
       title: "Trends come and go. Style stays.",
       body: "Oversized is not always stylish, and true elegance is never accidental. Dress for lasting impact, not for the fashion of a season.",
-      image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3731.jpg",
-      imageAlt: "A jacket taking shape on the form, tape measure across the chest",
     },
     {
       id: "solaro",
       tag: "The cloth",
       title: "True luxury is never loud.",
       body: "It is thoughtful, timeless, and made with purpose. Solaro is more than a fabric; it is a legacy of intelligent tailoring, cut to keep its wearer comfortable while carrying an effortless ease. Chosen not for trends, but for the finer details. Style fades. Class endures.",
-      image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3735.jpg",
-      imageAlt: "Navy cloth woven exclusively for CEO Rules by Huddersfield",
     },
     {
       id: "fit",
@@ -423,16 +413,12 @@ export const insights = {
         "Lapels in proportion to your chest and frame.",
       ],
       coda: "True elegance is not about the price. It is about precision.",
-      image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3728.jpg",
-      imageAlt: "Anis Soomar fitting a jacket at the shoulder",
     },
     {
       id: "legend",
       tag: "The craft",
       title: "What makes a tailor a legend.",
       body: "The eye to notice the smallest detail. Craftsmanship is not only stitching cloth; it is seeing what others miss. Here, every cut, every seam, and every finish is worked with a precision that speaks for itself.",
-      image: "/images/founder-stitching.webp",
-      imageAlt: "Anis Soomar hand-stitching, green thread through cloth",
     },
   ],
 };
@@ -544,7 +530,9 @@ export const cloth = {
   eyebrow: "The cloth",
   headline: "The cloth remembers where it came from.",
   lead: "The house keeps a broad range of the mills a serious wardrobe uses, then chooses for the man, the climate, and the life the garment will lead.",
-  clothImageId: "clothSelection" as const,
+  openingImageId: "clothLoroBook" as const,
+  edgesImageId: "clothEdges" as const,
+  formImageId: "jacketOnForm" as const,
   housesLabel: "The houses we keep",
   suitingLabel: "Suiting & jacketing",
   shirtingLabel: "Shirting",
@@ -557,23 +545,19 @@ export const cloth = {
   cut: {
     label: "The Cut",
     body: "Every line begins on the table.",
-    imageId: "craftCutShears" as const,
   },
   canvas: {
     label: "The Canvas",
     line: "Canvas, not glue.",
     body: "A chest shaped by hand holds the cloth to you and lets it breathe.",
-    imageId: "canvasChest" as const,
   },
   fit: {
     label: "The Fit",
     body: "Adjusted on the man, not the form.",
-    imageId: "craftFitBasted" as const,
   },
   finish: {
     label: "The Finish",
     body: "The work most people never see.",
-    imageId: "craftFinishThread" as const,
   },
   teach: {
     link: { label: "More from the founder", href: "/philosophy" },

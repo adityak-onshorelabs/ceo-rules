@@ -16,6 +16,7 @@
   --hairline: #b9aea0;
   --plate: #e7ded0;
   --navy: #101a2a;
+  --brand-blue: #0d3088;
   --canvas: #b08968;
 
   --s-1: 0.25rem;
@@ -45,6 +46,7 @@
     text-rendering: optimizeLegibility;
     scroll-padding-top: 5rem;
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -61,6 +63,7 @@
     font-weight: 400;
     line-height: 1.65;
     letter-spacing: -0.011em;
+    overflow-x: clip;
   }
 
   ::selection {
@@ -69,7 +72,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--brass);
+    outline: 2px solid var(--brand-blue);
     outline-offset: 3px;
     border-radius: 1px;
   }
@@ -85,6 +88,26 @@
 }
 
 @layer components {
+  .brand-logo-nav {
+    width: 176px;
+    height: auto;
+  }
+
+  @media (min-width: 1024px) {
+    .brand-logo-nav {
+      width: 220px;
+    }
+  }
+
+  .brand-logo-footer {
+    width: 168px;
+    height: auto;
+  }
+
+  .brand-rule {
+    background-color: var(--brand-blue);
+  }
+
   .section {
     padding-block: var(--section-y);
     padding-inline: var(--page-pad);
@@ -222,17 +245,41 @@
     font-size: 0.8125rem;
   }
 
-  .plate-art img {
+  .plate-art img,
+  .media-field img {
     object-position: var(--pos-d, center);
   }
   @media (max-width: 767px) {
-    .plate-art img {
+    .plate-art img,
+    .media-field img {
       object-position: var(--pos-m, var(--pos-d, center));
     }
   }
   @media (min-width: 768px) and (max-width: 1023px) {
-    .plate-art img {
+    .plate-art img,
+    .media-field img {
       object-position: var(--pos-t, var(--pos-d, center));
+    }
+  }
+
+  .field-full {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+
+  .field-edge-left {
+    margin-left: calc(-1 * var(--page-pad));
+  }
+
+  .field-edge-right {
+    margin-right: calc(-1 * var(--page-pad));
+  }
+
+  @media (min-width: 1024px) {
+    .field-min-a {
+      min-height: min(72svh, 40rem);
     }
   }
 }

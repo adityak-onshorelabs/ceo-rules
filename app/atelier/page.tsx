@@ -5,6 +5,9 @@ import { Process } from "@/components/sections/Process";
 import { Visit } from "@/components/sections/Visit";
 import { Footer } from "@/components/Footer";
 import { process } from "@/lib/content";
+import { img } from "@/lib/images";
+
+const storefront = img("storefrontDay");
 
 export const metadata: Metadata = {
   title: "The Atelier — CEO Rules",
@@ -21,8 +24,14 @@ export default function AtelierPage() {
           eyebrow="The Atelier"
           title="Come sit with us in Bandra."
           lede={process.lead}
-          image="/images/storefront.webp"
-          imageAlt="The CEO Rules storefront at dusk, Bandra"
+          image={storefront.desktopSrc}
+          imageAlt={storefront.alt}
+          objectPosition={storefront.desktopObjectPosition}
+          objectPositionTablet={storefront.tabletObjectPosition}
+          objectPositionMobile={storefront.mobileObjectPosition}
+          imageClassName="aspect-[3/2] w-full"
+          quality={storefront.quality}
+          videoReady
         />
         <Process />
         <Visit includeProcessLink={false} />

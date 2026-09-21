@@ -1,5 +1,5 @@
 import { Reveal } from "@/components/Reveal";
-import { Plate } from "@/components/Plate";
+import { MediaField } from "@/components/MediaField";
 import { CtaLink } from "@/components/CtaLink";
 import { MeasureTicks } from "@/components/MeasureTicks";
 import { cloth } from "@/lib/content";
@@ -12,15 +12,7 @@ export function Cloth() {
         <MeasureTicks className="mb-10 h-2.5 w-32 text-walnut" />
       </Reveal>
 
-      <Reveal as="figure">
-        <Plate
-          image={img(cloth.clothImageId)}
-          sizes="(min-width: 1024px) 512px, 92vw"
-          className="aspect-[3/2] w-full max-w-[32rem]"
-        />
-      </Reveal>
-
-      <div className="mt-12 house-grid items-start lg:mt-14">
+      <div className="house-grid items-start">
         <div className="col-span-4 md:col-span-6 lg:col-span-12">
           <Reveal as="p" className="t-meta text-ink-muted">
             {cloth.housesLabel}
@@ -51,50 +43,42 @@ export function Cloth() {
         </div>
       </div>
 
-      <div className="mt-12 lg:mt-16">
+      <div className="mt-16 lg:mt-20">
         <Reveal as="p" className="t-meta text-ink-muted">
           {cloth.cut.label}
         </Reveal>
         <p className="t-annotate mt-2 max-w-[28ch] text-ink">{cloth.cut.body}</p>
-        <figure className="mt-6">
-          <Plate
-            image={img(cloth.cut.imageId)}
-            sizes="(min-width: 1024px) 512px, 92vw"
-            className="aspect-[16/9] w-full max-w-[32rem]"
-          />
-        </figure>
       </div>
 
-      <div className="mt-12 lg:mt-16">
+      <figure className="field-edge-right mt-8">
+        <MediaField
+          image={img(cloth.edgesImageId)}
+          sizes="(min-width: 1024px) 70vw, 100vw"
+          className="aspect-[3/2] w-full"
+        />
+      </figure>
+
+      <div className="mt-16 lg:mt-20">
         <Reveal as="p" className="t-meta text-ink-muted">
           {cloth.canvas.label}
         </Reveal>
         <p className="t-serif mt-3 max-w-[16ch] text-ink">{cloth.canvas.line}</p>
         <p className="t-annotate mt-3 max-w-[36ch] text-ink-muted">{cloth.canvas.body}</p>
 
-        <figure className="mt-8 w-[70%] max-w-[20rem]">
-          <Plate
-            image={img(cloth.canvas.imageId)}
-            sizes="(min-width: 1024px) 320px, 70vw"
-            className="aspect-[3/2] w-full"
+        <figure className="mt-8 max-w-[31rem]">
+          <MediaField
+            image={img(cloth.formImageId)}
+            sizes="496px"
+            className="aspect-square w-full"
           />
         </figure>
       </div>
 
-      <div className="mt-12 flex flex-col items-end lg:mt-16">
-        <div className="w-[80%] max-w-[20rem]">
-          <Reveal as="p" className="t-meta text-ink-muted">
-            {cloth.fit.label}
-          </Reveal>
-          <p className="t-annotate mt-2 max-w-[22ch] text-ink">{cloth.fit.body}</p>
-          <figure className="mt-5">
-            <Plate
-              image={img(cloth.fit.imageId)}
-              sizes="320px"
-              className="aspect-[3/2] w-full"
-            />
-          </figure>
-        </div>
+      <div className="mt-16 lg:mt-20">
+        <Reveal as="p" className="t-meta text-ink-muted">
+          {cloth.fit.label}
+        </Reveal>
+        <p className="t-annotate mt-2 max-w-[22ch] text-ink">{cloth.fit.body}</p>
       </div>
 
       <div className="mt-12 max-w-[32rem] lg:mt-16">
@@ -102,13 +86,6 @@ export function Cloth() {
           {cloth.finish.label}
         </Reveal>
         <p className="t-annotate mt-2 max-w-[26ch] text-ink-muted">{cloth.finish.body}</p>
-        <figure className="mt-5">
-          <Plate
-            image={img(cloth.finish.imageId)}
-            sizes="(min-width: 1024px) 512px, 92vw"
-            className="aspect-[3/2] w-full"
-          />
-        </figure>
         <div className="mt-10">
           <CtaLink href={cloth.teach.link.href}>{cloth.teach.link.label}</CtaLink>
         </div>

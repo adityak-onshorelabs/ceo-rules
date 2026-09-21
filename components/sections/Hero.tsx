@@ -1,41 +1,44 @@
-import { Plate } from "@/components/Plate";
 import { AppointmentCta } from "@/components/AppointmentCta";
+import { MediaField } from "@/components/MediaField";
 import { hero } from "@/lib/content";
 import { img } from "@/lib/images";
 
 export function Hero() {
   const image = img(hero.imageId);
-  const [ceo, rules] = hero.headline.split(" ");
 
   return (
-    <section id="top" className="relative bg-navy">
-      <div className="relative min-h-[94svh] w-full md:min-h-[100svh] md:aspect-[1024/682]">
-        <div className="absolute inset-0">
-          <Plate
-            image={image}
-            priority
-            quality={84}
-            sizes="(min-width: 1024px) 1024px, 100vw"
-            className="h-full w-full"
-          />
-        </div>
-
-        <div className="relative z-10 flex min-h-[94svh] flex-col justify-end px-[var(--page-pad)] pb-12 pt-28 md:absolute md:inset-0 md:min-h-0 md:justify-start md:pb-16 md:pt-28 lg:pt-32">
-          <div className="max-w-[17rem] text-bg md:max-w-[20rem] lg:ml-[clamp(0.25rem,2vw,2rem)]">
-            <p className="t-meta opacity-[0.82]">{hero.eyebrow}</p>
-            <h1 className="mt-5 font-sans text-[clamp(2.6rem,6.4vw,4.1rem)] font-medium uppercase leading-[0.9] tracking-[-0.04em]">
-              <span className="block">{ceo}</span>
-              <span className="block">{rules}</span>
+    <section id="top" className="bg-bg pt-[4.5rem]">
+      <MediaField
+        image={image}
+        priority
+        videoReady
+        sizes="100vw"
+        objectPosition="center 42%"
+        objectPositionTablet="center 40%"
+        objectPositionMobile="42% 36%"
+        className="h-[min(78svh,36rem)] w-full sm:h-[82svh] lg:h-[85svh]"
+      >
+        {/* Soft local lift on pavement only — not a full-image scrim */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[36%] bg-gradient-to-t from-[color-mix(in_srgb,var(--bg)_55%,transparent)] via-[color-mix(in_srgb,var(--bg)_18%,transparent)] to-transparent"
+        />
+        <div className="absolute inset-x-0 bottom-0 z-[2] px-[var(--page-pad)] pb-[clamp(1.75rem,5vh,3.25rem)] pt-16">
+          <div className="max-w-[34ch]">
+            <p className="t-meta text-ink-muted">{hero.eyebrow}</p>
+            <h1 className="mt-4 font-sans text-[clamp(1.85rem,3.2vw,2.65rem)] font-medium leading-[1.12] tracking-[-0.03em] text-ink">
+              {hero.statement.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
             </h1>
-            <p className="mt-6 max-w-[22ch] text-[1.0625rem] leading-snug opacity-90 md:text-[1.125rem]">
-              {hero.lede}
-            </p>
-            <div className="mt-8">
-              <AppointmentCta label={hero.cta.label} tone="ivory" />
+            <div className="mt-7">
+              <AppointmentCta label={hero.cta.label} tone="ink" />
             </div>
           </div>
         </div>
-      </div>
+      </MediaField>
     </section>
   );
 }

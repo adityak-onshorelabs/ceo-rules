@@ -14,6 +14,7 @@ const config: Config = {
         stone: "var(--stone)",
         hairline: "var(--hairline)",
         navy: "var(--navy)",
+        "brand-blue": "var(--brand-blue)",
         canvas: "var(--canvas)",
       },
       fontFamily: {

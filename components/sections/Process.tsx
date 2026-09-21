@@ -1,11 +1,12 @@
 import { Reveal } from "@/components/Reveal";
-import { Plate } from "@/components/Plate";
+import { MediaField } from "@/components/MediaField";
 import { MeasureTicks } from "@/components/MeasureTicks";
 import { process } from "@/lib/content";
+import { img } from "@/lib/images";
 
-// The Atelier (Aman model): the visit as an unhurried sequence. Numbered beats
-// beside the one photograph of the thing itself, a conversation over coffee.
 export function Process() {
+  const conversation = img("conversation");
+
   return (
     <section
       id="process"
@@ -27,8 +28,7 @@ export function Process() {
         </Reveal>
       </div>
 
-      <div className="mt-[clamp(3.5rem,9vh,7rem)] grid grid-cols-1 gap-x-[clamp(3rem,7vw,7rem)] gap-y-14 lg:grid-cols-[1fr_0.72fr]">
-        {/* The sequence */}
+      <div className="mt-[clamp(3.5rem,9vh,7rem)] grid grid-cols-1 items-start gap-x-[clamp(3rem,7vw,7rem)] gap-y-14 lg:grid-cols-[1fr_minmax(0,32rem)]">
         <ol>
           {process.steps.map((s, i) => (
             <Reveal
@@ -51,13 +51,12 @@ export function Process() {
           ))}
         </ol>
 
-        {/* The photograph */}
         <Reveal as="figure" delay={0.1} className="lg:sticky lg:top-28 lg:self-start">
-          <Plate
-            src={process.image}
-            alt={process.imageAlt}
-            sizes="(min-width: 1024px) 38vw, 100vw"
-            className="aspect-[4/5] w-full"
+          <MediaField
+            image={conversation}
+            videoReady
+            sizes="(min-width: 1024px) 512px, 100vw"
+            className="aspect-[4/5] w-full max-w-[32rem]"
           />
         </Reveal>
       </div>

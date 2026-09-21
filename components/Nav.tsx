@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { nav } from "@/lib/content";
+import { BrandLogo } from "@/components/BrandLogo";
 import { CtaLink } from "@/components/CtaLink";
 
 function NavLink({
@@ -20,9 +21,10 @@ function NavLink({
       <span className="font-sans text-[0.8rem] uppercase tracking-[0.12em]">{label}</span>
       <span
         aria-hidden
-        className={`mt-1 h-px w-full origin-left bg-brass transition-transform duration-300 ease-out-quart ${
+        className={`mt-1 h-px w-full origin-left transition-transform duration-300 ease-out-quart ${
           active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
         }`}
+        style={{ backgroundColor: "var(--brand-blue)" }}
       />
     </Link>
   );
@@ -31,35 +33,15 @@ function NavLink({
 export function Nav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [overHero, setOverHero] = useState(pathname === "/");
   const panelId = useId();
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const links = [...nav.leftLinks, ...nav.rightLinks];
-  const onDarkHero = pathname === "/" && overHero && !open;
 
   const isActive = (href: string) => pathname === href;
 
   useEffect(() => {
     setOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    if (pathname !== "/") {
-      setOverHero(false);
-      return;
-    }
-    const hero = document.getElementById("top");
-    if (!hero) {
-      setOverHero(false);
-      return;
-    }
-    const observer = new IntersectionObserver(
-      ([entry]) => setOverHero(entry.isIntersecting),
-      { threshold: 0, rootMargin: "0px 0px -72% 0px" },
-    );
-    observer.observe(hero);
-    return () => observer.disconnect();
   }, [pathname]);
 
   useEffect(() => {
@@ -98,11 +80,7 @@ export function Nav() {
   }, [open]);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ease-out-quart ${
-        onDarkHero ? "bg-transparent text-bg" : "bg-bg text-ink"
-      }`}
-    >
+    <header className="fixed inset-x-0 top-0 z-50 bg-bg text-ink">
       <nav
         className="relative flex w-full items-center justify-center px-[var(--page-pad)] py-5"
         aria-label="Primary"
@@ -113,18 +91,15 @@ export function Nav() {
           ))}
         </div>
 
-        <Link
-          href="/"
-          className="relative z-10 font-sans text-[1.0625rem] font-medium uppercase tracking-[0.2em]"
-        >
-          {nav.wordmark}
+        <Link href="/" aria-label="CEO Rules" className="relative z-10 block w-[176px] lg:w-[220px]">
+          <BrandLogo variant="blue" size="nav" priority decorative />
         </Link>
 
         <div className="absolute right-[var(--page-pad)] hidden items-center gap-x-[clamp(1.25rem,2.2vw,2.25rem)] lg:flex">
           {nav.rightLinks.map((l) => (
             <NavLink key={l.href} href={l.href} label={l.label} active={isActive(l.href)} />
           ))}
-          <CtaLink href={nav.cta.href} tone={onDarkHero ? "ivory" : "ink"}>
+          <CtaLink href={nav.cta.href} tone="ink">
             {nav.cta.label}
           </CtaLink>
         </div>
