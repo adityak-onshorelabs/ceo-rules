@@ -1,10 +1,10 @@
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/sections/Hero";
-import { ClothHome } from "@/components/sections/ClothHome";
-import { Craft } from "@/components/sections/Craft";
-import { TheEye } from "@/components/sections/TheEye";
-import { Wardrobe } from "@/components/sections/Wardrobe";
-import { House } from "@/components/sections/House";
+import { Manifesto } from "@/components/sections/Manifesto";
+import { Identity } from "@/components/sections/Identity";
+import { MeetAnis } from "@/components/sections/MeetAnis";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { Heritage } from "@/components/sections/Heritage";
 import { Visit } from "@/components/sections/Visit";
 import { Footer } from "@/components/Footer";
 
@@ -12,13 +12,13 @@ export default function Home() {
   return (
     <>
       <Nav />
-      <main id="main">
+      <main>
         <Hero />
-        <ClothHome />
-        <Craft />
-        <TheEye />
-        <Wardrobe />
-        <House />
+        <Manifesto />
+        <Identity />
+        <MeetAnis />
+        <Testimonials />
+        <Heritage />
         <Visit />
       </main>
       <Footer />

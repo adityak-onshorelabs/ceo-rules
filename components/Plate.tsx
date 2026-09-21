@@ -1,98 +1,56 @@
 "use client";
 
 import Image from "next/image";
-import type { CSSProperties } from "react";
-import type { ImageEntry } from "@/lib/images";
+import { useState } from "react";
 
+// Prototype image plate. A warm tonal gradient always sits underneath, so if a
+// (stand-in stock) image fails to load, the section still reads warm and intentional
+// instead of broken. Real photography replaces these later (brief: authentic only).
 export function Plate({
-  image,
   src,
   alt,
   priority = false,
   className = "",
-  sizes,
-  objectPosition,
-  objectPositionTablet,
-  objectPositionMobile,
-  quality,
+  scrim = "none",
 }: {
-  image?: ImageEntry;
-  src?: string;
-  alt?: string;
+  src: string;
+  alt: string;
   priority?: boolean;
   className?: string;
-  sizes: string;
-  objectPosition?: string;
-  objectPositionTablet?: string;
-  objectPositionMobile?: string;
-  quality?: number;
+  scrim?: "none" | "bottom" | "full";
 }) {
-  const desktopSrc = image?.desktopSrc ?? src ?? "";
-  const mobileSrc = image?.mobileSrc ?? desktopSrc;
-  const splitSrc = Boolean(desktopSrc && mobileSrc && desktopSrc !== mobileSrc);
-  const resolvedAlt = image?.alt ?? alt ?? "";
-  const posD = objectPosition ?? image?.desktopObjectPosition ?? "center";
-  const posT =
-    objectPositionTablet ??
-    image?.tabletObjectPosition ??
-    posD;
-  const posM =
-    objectPositionMobile ??
-    image?.mobileObjectPosition ??
-    posD;
-  const q = quality ?? image?.quality ?? 75;
-
-  const imgClass = "object-cover";
+  const [ok, setOk] = useState(true);
 
   return (
     <div
-      className={`plate-art relative overflow-hidden ${className}`}
-      style={
-        {
-          background: "var(--plate)",
-          "--pos-d": posD,
-          "--pos-t": posT,
-          "--pos-m": posM,
-        } as CSSProperties
-      }
+      className={`relative overflow-hidden ${className}`}
+      style={{ background: "var(--plate)" }}
     >
-      {splitSrc ? (
-        <>
-          <div className="absolute inset-0 md:hidden">
-            <Image
-              src={mobileSrc}
-              alt={resolvedAlt}
-              fill
-              priority={priority}
-              sizes={sizes}
-              quality={q}
-              className={imgClass}
-            />
-          </div>
-          <div className="absolute inset-0 hidden md:block">
-            <Image
-              src={desktopSrc}
-              alt=""
-              fill
-              priority={priority}
-              sizes={sizes}
-              quality={q}
-              aria-hidden
-              className={imgClass}
-            />
-          </div>
-        </>
-      ) : desktopSrc ? (
+      {ok && (
         <Image
-          src={desktopSrc}
-          alt={resolvedAlt}
+          src={src}
+          alt={alt}
           fill
           priority={priority}
-          sizes={sizes}
-          quality={q}
-          className={imgClass}
+          sizes="100vw"
+          quality={90}
+          onError={() => setOk(false)}
+          className="object-cover"
+          style={{ filter: "saturate(0.84) contrast(1.09) brightness(0.97)" }}
         />
-      ) : null}
+      )}
+      {scrim !== "none" && (
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              scrim === "full"
+                ? "linear-gradient(180deg, oklch(0.185 0.012 58 / 0.35), oklch(0.185 0.012 58 / 0.6))"
+                : "linear-gradient(180deg, transparent 35%, oklch(0.185 0.012 58 / 0.72))",
+          }}
+        />
+      )}
     </div>
   );
 }

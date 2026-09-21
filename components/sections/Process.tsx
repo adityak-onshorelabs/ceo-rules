@@ -1,12 +1,11 @@
 import { Reveal } from "@/components/Reveal";
-import { MediaField } from "@/components/MediaField";
+import { Plate } from "@/components/Plate";
 import { MeasureTicks } from "@/components/MeasureTicks";
 import { process } from "@/lib/content";
-import { img } from "@/lib/images";
 
+// The Atelier (Aman model): the visit as an unhurried sequence. Numbered beats
+// beside the one photograph of the thing itself, a conversation over coffee.
 export function Process() {
-  const conversation = img("conversation");
-
   return (
     <section
       id="process"
@@ -15,7 +14,7 @@ export function Process() {
     >
       <div className="max-w-[44rem]">
         <Reveal>
-          <MeasureTicks className="mb-6 h-2.5 w-32 text-walnut" />
+          <MeasureTicks className="mb-6 h-2.5 w-32 text-gold-ink" />
         </Reveal>
         <Reveal as="p" className="eyebrow mb-8">
           {process.eyebrow}
@@ -28,7 +27,8 @@ export function Process() {
         </Reveal>
       </div>
 
-      <div className="mt-[clamp(3.5rem,9vh,7rem)] grid grid-cols-1 items-start gap-x-[clamp(3rem,7vw,7rem)] gap-y-14 lg:grid-cols-[1fr_minmax(0,32rem)]">
+      <div className="mt-[clamp(3.5rem,9vh,7rem)] grid grid-cols-1 gap-x-[clamp(3rem,7vw,7rem)] gap-y-14 lg:grid-cols-[1fr_0.72fr]">
+        {/* The sequence */}
         <ol>
           {process.steps.map((s, i) => (
             <Reveal
@@ -39,7 +39,7 @@ export function Process() {
             >
               <span
                 aria-hidden
-                className="font-serif leading-none text-ink-muted text-[clamp(1.75rem,3.5vw,2.75rem)]"
+                className="font-serif leading-none text-ink-faint text-[clamp(1.75rem,3.5vw,2.75rem)]"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -51,12 +51,12 @@ export function Process() {
           ))}
         </ol>
 
+        {/* The photograph */}
         <Reveal as="figure" delay={0.1} className="lg:sticky lg:top-28 lg:self-start">
-          <MediaField
-            image={conversation}
-            videoReady
-            sizes="(min-width: 1024px) 512px, 100vw"
-            className="aspect-[4/5] w-full max-w-[32rem]"
+          <Plate
+            src={process.image}
+            alt={process.imageAlt}
+            className="aspect-[4/5] w-full"
           />
         </Reveal>
       </div>

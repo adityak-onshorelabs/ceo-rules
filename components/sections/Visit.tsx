@@ -1,61 +1,73 @@
-import { AppointmentCta } from "@/components/AppointmentCta";
+import { Reveal } from "@/components/Reveal";
+import { Plate } from "@/components/Plate";
 import { visit } from "@/lib/content";
 
-export function Visit({
-  includeProcessLink: _includeProcessLink = true,
-}: {
-  includeProcessLink?: boolean;
-}) {
+// The natural ending: an invitation, not a pitch. Everything here removes friction.
+export function Visit() {
   return (
-    <section
-      id="visit"
-      className="bg-bg px-[var(--page-pad)] py-[clamp(2.75rem,7svh,4.5rem)]"
-    >
-      <div className="mx-auto max-w-editorial">
-        <div className="max-w-[28rem]">
-          <h2 className="t-observation max-w-[14ch] text-ink">{visit.headline}</h2>
-          <p className="t-body mt-4 max-w-measure text-ink-muted">{visit.lead}</p>
+    <section id="visit" data-nav="light" className="section mx-auto max-w-editorial">
+      <div className="grid grid-cols-1 items-center gap-x-[clamp(2.5rem,6vw,6rem)] gap-y-14 lg:grid-cols-[1fr_0.85fr]">
+        <div>
+          <Reveal as="p" className="eyebrow mb-8">
+            {visit.eyebrow}
+          </Reveal>
+          <Reveal>
+            <h2 className="t-h1 max-w-[16ch] text-balance text-ink">
+              {visit.headline}
+            </h2>
+          </Reveal>
+          <Reveal delay={0.06}>
+            <p className="mt-6 max-w-measure t-lede text-ink">{visit.lead}</p>
+          </Reveal>
+
+          <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2">
+            <Reveal delay={0.08}>
+              <p className="eyebrow mb-3">{visit.addressLabel}</p>
+              <address className="not-italic text-ink-muted">
+                {visit.address.map((l) => (
+                  <span key={l} className="block">
+                    {l}
+                  </span>
+                ))}
+              </address>
+              <a
+                href={visit.mapHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-block border-b border-gold pb-0.5 text-[0.9rem] text-ink transition-colors duration-300 hover:text-gold-ink"
+              >
+                {visit.mapLabel}
+              </a>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <p className="eyebrow mb-3">{visit.hoursLabel}</p>
+              <p className="text-ink-muted">
+                {visit.hours.map((l) => (
+                  <span key={l} className="block">
+                    {l}
+                  </span>
+                ))}
+              </p>
+              <a
+                href={visit.whatsapp.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-block border-b border-gold pb-0.5 text-[0.9rem] text-ink transition-colors duration-300 hover:text-gold-ink"
+              >
+                {visit.whatsapp.label}
+              </a>
+            </Reveal>
+          </div>
         </div>
 
-        <div
-          id="appointment"
-          className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10"
-        >
-          <div>
-            <p className="t-meta mb-2.5 text-ink-muted">The House</p>
-            <address className="t-annotate not-italic text-ink-muted">
-              {visit.address.map((l) => (
-                <span key={l} className="block">
-                  {l}
-                </span>
-              ))}
-            </address>
-          </div>
-
-          <div>
-            <p className="t-meta mb-2.5 text-ink-muted">{visit.hoursLabel}</p>
-            <p className="t-annotate text-ink-muted">
-              {visit.hours.map((l) => (
-                <span key={l} className="block">
-                  {l}
-                </span>
-              ))}
-            </p>
-            <a
-              href={visit.mapHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${visit.mapLabel} (opens in a new tab)`}
-              className="mt-3 inline-block border-b border-ink pb-0.5 text-[0.9rem] text-ink transition-opacity duration-200 hover:opacity-80"
-            >
-              {visit.mapLabel}
-            </a>
-          </div>
-
-          <div className="flex flex-col justify-end sm:col-span-2 lg:col-span-1">
-            <AppointmentCta label={visit.appointmentLabel} />
-          </div>
-        </div>
+        <Reveal as="figure" delay={0.14} className="hidden lg:block">
+          <Plate
+            src={visit.image}
+            alt={visit.imageAlt}
+            className="aspect-[4/3] w-full"
+          />
+        </Reveal>
       </div>
     </section>
   );

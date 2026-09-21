@@ -1,59 +1,48 @@
-import Link from "next/link";
-import { footer, nav } from "@/lib/content";
-import { BrandLogo } from "@/components/BrandLogo";
-import { FooterMark } from "@/components/FooterMark";
+import { footer } from "@/lib/content";
+import { FooterDoodle } from "@/components/Illustrations";
 
+// The closing frame. Minimal, but complete: the houses, hours, a way to reach them.
+// A faint scissors-and-thread doodle drifts across the background.
 export function Footer() {
-  const links = [...nav.leftLinks, ...nav.rightLinks, nav.cta];
-
   return (
-    <footer className="relative overflow-hidden bg-navy text-bg">
-      <div className="pointer-events-none absolute bottom-[-2.5rem] right-[-3rem] text-bg sm:bottom-[-1.5rem] sm:right-[-1rem]">
-        <FooterMark />
-      </div>
-
-      <div className="relative mx-auto max-w-editorial px-[var(--page-pad)] py-[clamp(3.25rem,7vh,5.25rem)]">
-        <div className="grid grid-cols-1 gap-x-[clamp(2rem,5vw,5rem)] gap-y-12 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr]">
+    <footer className="on-dark stitch-top-dark relative overflow-hidden">
+      <FooterDoodle
+        className="pointer-events-none absolute -right-8 top-1/2 hidden w-[min(56rem,72%)] -translate-y-1/2 text-ink-dark opacity-[0.1] lg:block"
+      />
+      <div className="relative z-10 mx-auto max-w-editorial px-[clamp(1.75rem,6vw,7rem)] py-[clamp(3.5rem,8vh,6rem)]">
+        <div className="grid grid-cols-1 gap-x-[clamp(2.5rem,6vw,6rem)] gap-y-12 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr]">
+          {/* The house */}
           <div>
-            <div className="w-[168px]">
-              <BrandLogo variant="ivory" size="footer" />
-            </div>
-            <p className="t-annotate mt-3 text-bg/65">{footer.line}</p>
-            <p className="t-annotate mt-2 max-w-[22ch] text-bg/55">{footer.heritage}</p>
+            <p className="font-sans text-sm font-semibold uppercase tracking-[0.22em] text-ink-dark">
+              {footer.wordmark}
+            </p>
+            <p className="mt-3 max-w-[30ch] text-[0.9rem] text-ink-dark-muted">
+              {footer.line}
+            </p>
           </div>
 
+          {/* The house */}
           <div>
-            <p className="t-meta mb-4 text-bg/50">The house</p>
-            <nav className="flex flex-col gap-2" aria-label="Footer">
-              {links.map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  className="text-[0.95rem] text-bg/70 transition-colors duration-200 hover:text-bg"
-                >
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          <div>
-            <p className="t-meta mb-4 text-bg/50">{footer.addressLabel}</p>
-            <address className="space-y-1 text-[0.9rem] not-italic text-bg/65">
+            <p className="eyebrow">{footer.addressLabel}</p>
+            <address className="mt-4 space-y-1 text-[0.9rem] not-italic text-ink-dark-muted">
               {footer.address.map((line) => (
                 <span key={line} className="block">
                   {line}
                 </span>
               ))}
             </address>
-            <p className="mt-4 text-[0.9rem] text-bg/65">{footer.hours}</p>
+          </div>
+
+          {/* Hours + how to reach */}
+          <div>
+            <p className="eyebrow">{footer.hoursLabel}</p>
+            <p className="mt-4 text-[0.9rem] text-ink-dark-muted">{footer.hours}</p>
             <div className="mt-6 flex flex-col gap-2">
               <a
                 href={footer.whatsapp.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`${footer.whatsapp.label} (opens WhatsApp)`}
-                className="text-[0.9rem] text-bg transition-colors duration-200 hover:text-bg/80"
+                className="text-[0.9rem] text-ink-dark transition-colors duration-300 hover:text-gold-on-dark"
               >
                 {footer.whatsapp.label}
               </a>
@@ -61,13 +50,18 @@ export function Footer() {
                 href={footer.instagram.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`${footer.instagram.label} (opens in a new tab)`}
-                className="text-[0.9rem] text-bg/70 transition-colors duration-200 hover:text-bg"
+                className="font-sans text-[0.8rem] uppercase tracking-[0.14em] text-ink-dark-muted transition-colors duration-300 hover:text-ink-dark"
               >
                 {footer.instagram.label}
               </a>
             </div>
           </div>
+        </div>
+
+        <div className="mt-[clamp(3rem,7vh,5rem)] flex items-center justify-between stitch-top-dark pt-6">
+          <span className="font-sans text-[0.8rem] uppercase tracking-[0.14em] text-ink-dark-muted">
+            {footer.since}
+          </span>
         </div>
       </div>
     </footer>

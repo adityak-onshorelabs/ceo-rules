@@ -1,36 +1,27 @@
-import type { ImageId } from "@/lib/images";
-
 // PROVISIONAL copy. Voice follows docs/CEO-Rules-Content-Foundation.md.
 // Not final. Final copy comes from the founder interview + copy phase.
 
 export const nav = {
   wordmark: "CEO RULES",
-  // Labels follow the approved IA. Canonical routes (/bespoke, /the-rules)
-  // land in Phase 3; until then these point at the existing pages.
-  leftLinks: [
+  // Root-relative so the nav works from any page. Quiet links + one gold CTA
+  // (DESIGN.md): the whole site drives toward the visit, so it is the one
+  // action set apart.
+  links: [
     { label: "The House", href: "/house" },
-    { label: "The Bespoke", href: "/the-cloth" },
-  ],
-  rightLinks: [
+    { label: "The Cloth", href: "/the-cloth" },
     { label: "The Wardrobe", href: "/the-wardrobe" },
-    { label: "The Rules", href: "/philosophy" },
+    { label: "Philosophy", href: "/philosophy" },
   ],
   cta: { label: "Visit the Atelier", href: "/atelier" },
 };
 
 // Real client reviews (lightly edited for length). The airport/Goa story is featured.
 export const testimonials = {
-  eyebrow: "Client stories",
+  eyebrow: "In their words",
   featured: {
-    // COPY: "legendary service" is generic-luxury; keep the specific story.
     lead: "They don't just make great suits. They deliver legendary service.",
     body: "Our family has gone to CEO Rules for nearly twenty years. I once flew into Mumbai for a wedding with no time to spare; Anis fitted me the same day, then flew a tailor with our finished suits to Goa. When I noticed a tiny flaw on a button heading back to the US, his tailor met me at the airport and fixed it in five minutes outside baggage claim.",
     author: "Mujtaba Khambatti",
-  },
-  supporting: {
-    quote:
-      "Mr. Anis patiently, personally walked me through every characteristic of making a suit. I bought a bespoke one, and it has been my favourite piece of clothing ever since.",
-    author: "Raunak",
   },
   items: [
     {
@@ -57,100 +48,14 @@ export const testimonials = {
 };
 
 export const hero = {
-  eyebrow: "Mumbai · Since 1881",
-  statement: ["Private tailoring for", "a more considered life."] as const,
-  cta: { label: "Book a Private Appointment →", href: "appointment" },
-  imageId: "heroStorefront" as const,
-};
-
-export const homeCloth = {
-  kicker: "The Cloth",
-  observation: ["A wardrobe begins", "in the book."] as const,
-  body: "An exceptional range of suiting, jacketing and shirting from the world's leading cloth houses.",
-  housesEyebrow: "The Houses",
-  suiting: [{ name: "Loro Piana" }, { name: "Zegna" }, { name: "Scabal" }],
-  shirting: [{ name: "ALUMO" }, { name: "Söktas" }],
-  primaryImageId: "clothSelection" as const,
-  secondaryImageId: "clothLoroBook" as const,
-};
-
-export const homeCraft = {
-  observation: ["Most of the work", "never shows."] as const,
-  beats: [
-    {
-      label: "01 / The Cut",
-      body: "Every line begins on the table.",
-      imageId: "craftCutShears" as const,
-    },
-    {
-      label: "02 / The Canvas",
-      body: "Structure without stiffness.",
-      imageId: "canvasChest" as const,
-    },
-    {
-      label: "03 / The Fit",
-      body: "Adjusted on the man, not the form.",
-      imageId: "craftFitBasted" as const,
-    },
-    {
-      label: "04 / The Finish",
-      body: "The work most people never see.",
-      imageId: "craftFinishThread" as const,
-    },
-  ],
-};
-
-export const homeEye = {
-  kicker: "The Eye",
-  name: "Anis Soomar",
-  title: null as string | null,
-  approach: "He would rather teach the cloth and the fit than sell the room.",
-  body: "Anis takes the measure himself. The visit is a conversation about the life you actually lead, then the cloth and the cut that belong to it.",
-  workImageId: "anisFitting" as const,
-  relationImageId: "conversation" as const,
-  notes: [] as { id: string; title: string; href: string; permalink: string | null }[],
-  feedMode: "off" as const,
-};
-
-export const homeWardrobe = {
-  observation: "What the house can create.",
-  lead: "Cut for the life you actually lead — not a catalogue.",
-  imageId: "suitWorn" as const,
-  pieces: [
-    { name: "Suits" },
-    { name: "Shirts" },
-    { name: "Jackets" },
-    { name: "Tuxedos" },
-    { name: "Bandhgalas" },
-    { name: "Sherwanis" },
-  ],
-  link: { label: "Explore the Wardrobe", href: "/the-wardrobe" },
-};
-
-export const homeHouse = {
-  headline: "Six generations in the clothing industry.",
-  body: "The house of Haji Soomar opened in Crawford Market in 1881. Today CEO Rules continues that line in Bandra: a family atelier where a man is measured, taught, and sent back into the room in cloth that belongs to him.",
-  meta: "1881  ·  Haji Soomar  ·  Mumbai",
-  story: {
-    body: "Our family has gone to CEO Rules for nearly twenty years. I once flew into Mumbai for a wedding with no time to spare. When I noticed a tiny flaw on a button heading back to the US, his tailor met me at the airport and fixed it in five minutes outside baggage claim.",
-    author: "Mujtaba Khambatti",
-  },
-  supporting: {
-    quote:
-      "Mr. Anis patiently, personally walked me through every characteristic of making a suit. I bought a bespoke one, and it has been my favourite piece of clothing ever since.",
-    author: "Raunak",
-  },
-};
-
-export const houseIntro = {
-  eyebrow: "The house",
-  wordmark: "CEO Rules",
-  headline: "Six generations in Mumbai.",
-  meta: "Since 1881",
-  body: "The house of Haji Soomar opened in Crawford Market in 1881. Today CEO Rules continues that line in Bandra: a family atelier where a man is measured, taught, and sent back into the room in cloth that belongs to him.",
-  lineage: "1881  ·  Haji Soomar  ·  Bandra",
-  imageId: "atelierCloth" as const,
-  link: { label: "The house since 1881", href: "/house" },
+  eyebrow: "Bandra · Mumbai",
+  headline: ["The quiet language", "of confidence."],
+  lede: "We have dressed self-made men longer than most houses have existed. Quietly.",
+  cta: { label: "Visit the Atelier", href: "#visit" },
+  scrollHint: "Scroll",
+  // Authentic CEO Rules imagery (from their Instagram).
+  image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3731.jpg",
+  imageAlt: "A jacket taking shape on the form, tape measure across the chest",
 };
 
 export const manifesto = {
@@ -191,88 +96,53 @@ export const craft = {
 // Heritage as a plot twist (brief Part II §12): the year lands late, after the
 // visitor is already invested, so 145 years suddenly means something.
 export const heritage = {
-  eyebrow: "Heritage",
-  lead: "The work did not begin as a tailoring house. It began as cloth.",
+  lead: "We have told you what the house believes. We have not told you how long it has believed it.",
   year: "1881",
-  beats: [
-    {
-      marker: "1881",
-      label: "A house of fabrics",
-      body: "The family opens in Crawford Market, trading in cloth. First a trade, and then, slowly, a language.",
-    },
-    {
-      marker: "Six",
-      label: "Six generations",
-      body: "The knowledge is handed down, hand to hand, each generation adding a little and letting nothing essential fall away.",
-    },
-    {
-      marker: "Today",
-      label: "CEO Rules, Bandra",
-      body: "One house, where a man is measured, taught, and sent back into the room a little more himself.",
-    },
-  ],
-  link: { label: "Read the line", href: "/house" },
+  years: "One hundred and forty-five years.",
+  body: "The house of Haji Soomar opened in Crawford Market in 1881, and has been cutting cloth ever since. What began as one man's trade became a family's language, handed down generation after generation.",
+  close: "Now the number means something.",
 };
 
+// The Craft (brief §5): mastery shown through visuals, not paragraphs.
 export const mastery = {
   eyebrow: "The craft",
   headline: "Most of the work never shows.",
-  lead: "Canvas, not glue. A chest shaped by hand, and stitches a room will never see.",
+  lead: "Canvas, not glue. A chest shaped by hand, and stitches you will never see. Mastery is quiet, and mostly hidden inside the jacket.",
   pieces: [
+    { src: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3727.jpg", alt: "Cloth waiting in the atelier", label: "Fabric" },
     {
-      label: "The Cloth",
-      body: "The jacket is only ever as honest as the cloth beneath it.",
-      imageId: "clothEdges" as const,
-      layout: "wide" as const,
+      src: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3739.jpg",
+      alt: "A hand-basted canvas chest taking shape",
+      label: "Construction",
     },
     {
-      label: "The Cut",
-      body: "The shoulder is the one line a tailor cannot fake, and the first thing a room reads.",
-      imageId: "jacketOnForm" as const,
-      layout: "portrait" as const,
-    },
-    {
-      label: "The Canvas",
-      body: "A chest shaped by hand holds the cloth to you and lets it breathe.",
-      imageId: "canvasChest" as const,
-      layout: "feature" as const,
-    },
-    {
-      label: "The Fit",
-      body: "Anis takes the measure himself. It is taken slowly.",
-      imageId: "anisFitting" as const,
-      layout: "fit" as const,
-    },
-    {
-      label: "The Finish",
-      body: "The last things a room notices: the lapel, the square, the work you never see.",
-      imageId: "lapelSquare" as const,
-      layout: "detail" as const,
+      src: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3729.jpg",
+      alt: "Working buttonholes and the finish",
+      label: "Finish",
     },
   ],
 };
 
+// The wardrobe: the outcome as identity, editorial, never a catalogue (brief §7).
 export const wardrobe = {
   eyebrow: "The wardrobe",
-  headline: "What the house can create.",
-  lead: "Cut for the life you actually lead — not a catalogue.",
-  imageId: "suitWorn" as const,
+  headline: "A wardrobe is a kind of autobiography.",
+  lead: "Not a collection of clothes. A record of who a man has decided to be.",
   pieces: [
-    { name: "Suits", line: "Cut for the life you actually lead." },
-    { name: "Shirts", line: "Cut to the same measure as the jacket." },
-    { name: "Jackets", line: "The jacket is built, not sewn." },
-    { name: "Tuxedos", line: "For the evenings that ask for black." },
+    { name: "Bespoke suits", line: "Cut for the life you actually lead." },
     { name: "Bandhgalas", line: "For the rooms that ask for a little more." },
     { name: "Sherwanis", line: "For the days you will want to remember." },
+    { name: "The finishing", line: "The tie, the square, the things that speak last." },
   ],
-  link: { label: "The wardrobe", href: "/the-wardrobe" },
+  image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3730.jpg",
+  imageAlt: "A man in a bespoke checked suit",
 };
 
 // Visit: the natural ending. Remove friction, do not sell (brief §9).
 export const visit = {
-  eyebrow: "The atelier",
+  eyebrow: "Visit",
   headline: "Come sit with us in Bandra.",
-  lead: "A first visit is a conversation. Nothing to buy today.",
+  lead: "There is nothing to buy today. Only a conversation, and a good cup of coffee.",
   addressLabel: "The house",
   address: [
     "CEO Rules",
@@ -286,82 +156,8 @@ export const visit = {
   mapHref:
     "https://www.google.com/maps/search/?api=1&query=CEO+Rules+Shabistan+CHSL+Dr+Ambedkar+Road+Bandra+West+Mumbai",
   whatsapp: { label: "+91 98333 14141", href: "https://wa.me/919833314141" },
-  appointmentLabel: "Book a Private Appointment",
-  imageId: "conversation" as const,
-  moreHref: "/atelier",
-  moreLabel: "Visit the Atelier",
-};
-
-export const instagramProfile = {
-  handle: "@ceorules",
-  href: "https://www.instagram.com/ceorules/",
-} as const;
-
-export type AnisDispatch = {
-  id: string;
-  title: string;
-  caption: string;
-  imageId?: ImageId;
-  href: string;
-  permalink: string | null;
-  source: "editorial" | "instagram";
-};
-
-export const rulesByAnis = {
-  eyebrow: "From Anis",
-  headline: "Rules by Anis",
-  framing:
-    "Fit, cloth, and proportion — written so it can leave the atelier.",
-  follow: {
-    label: "Follow Anis on Instagram →",
-    href: instagramProfile.href,
-  },
-  sourceNote: "Instagram",
-  // Phase A: native editorial dispatches. `permalink` is reserved for real
-  // Instagram post/Reel URLs. Until those exist, every href points at the
-  // confirmed profile. Do not invent permalinks.
-  // Future: a Meta-supported feed can populate `items` (and set permalinks)
-  // without changing the section layout. mode remains "editorial" until then.
-  feedMode: "editorial" as const,
-  items: [
-    {
-      id: "details",
-      title: "The details make all the difference.",
-      caption: "From the lapel to the shoulder, each choice speaks before you do.",
-      imageId: "silkTies",
-      href: instagramProfile.href,
-      permalink: null,
-      source: "editorial",
-    },
-    {
-      id: "fit",
-      title: "An expensive suit means nothing if it does not fit.",
-      caption: "The perfect fit never demands attention. It moves with you.",
-      href: instagramProfile.href,
-      permalink: null,
-      source: "editorial",
-    },
-    {
-      id: "cloth",
-      title: "The jacket is only as honest as the cloth.",
-      caption: "Chosen not for the season, but for the life you actually lead.",
-      href: instagramProfile.href,
-      permalink: null,
-      source: "editorial",
-    },
-  ] satisfies AnisDispatch[],
-};
-
-export const rulesTeasers = {
-  eyebrow: "The Rules",
-  intro: "A few things the house will tell you whether or not you commission a suit.",
-  link: { label: "All the rules", href: "/philosophy" },
-  items: [
-    { id: "fit", tag: "Fit", title: "An expensive suit means nothing if it does not fit." },
-    { id: "details", tag: "Proportion", title: "The details make all the difference." },
-    { id: "solaro", tag: "Fabric", title: "Solaro is cut to keep its wearer comfortable." },
-    { id: "combinations", tag: "Personal style", title: "Better combinations, not more clothes." },
-  ],
+  image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3732.jpg",
+  imageAlt: "The CEO Rules storefront at night, Bandra",
 };
 
 // Insights: the founder sharing knowledge (education as generosity, brief §13).
@@ -377,30 +173,40 @@ export const insights = {
       tag: "The detail",
       title: "The details make all the difference.",
       body: "Timeless style is decided in the details. From the lapel to the shoulder, and every stitch in between, each choice shapes a suit that stands out without asking to.",
+      image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3726.jpg",
+      imageAlt: "A jacket lapel with a folded pocket square",
     },
     {
       id: "winchester",
       tag: "The shirt",
       title: "The Winchester, evolved.",
       body: "Not every classic belongs in the past; some evolve with it. The Winchester shirt has long stood for refinement and authority. We reimagine it with coordinated collars and cuffs, and bring heritage tailoring into the modern wardrobe.",
+      image: "/images/tuxedo-detail.webp",
+      imageAlt: "A pleated dress shirt and satin lapel on the stand",
     },
     {
       id: "combinations",
       tag: "The wardrobe",
       title: "Better combinations, not more clothes.",
       body: "A well-dressed man does not need more clothes. He needs better combinations. A timeless wardrobe is not dozens of outfits; it is a few versatile essentials that work together effortlessly. Build one that works smarter, not bigger.",
+      image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3730.jpg",
+      imageAlt: "A man in a bespoke checked suit",
     },
     {
       id: "trends",
       tag: "On style",
       title: "Trends come and go. Style stays.",
       body: "Oversized is not always stylish, and true elegance is never accidental. Dress for lasting impact, not for the fashion of a season.",
+      image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3731.jpg",
+      imageAlt: "A jacket taking shape on the form, tape measure across the chest",
     },
     {
       id: "solaro",
       tag: "The cloth",
       title: "True luxury is never loud.",
       body: "It is thoughtful, timeless, and made with purpose. Solaro is more than a fabric; it is a legacy of intelligent tailoring, cut to keep its wearer comfortable while carrying an effortless ease. Chosen not for trends, but for the finer details. Style fades. Class endures.",
+      image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3735.jpg",
+      imageAlt: "Navy cloth woven exclusively for CEO Rules by Huddersfield",
     },
     {
       id: "fit",
@@ -413,20 +219,23 @@ export const insights = {
         "Lapels in proportion to your chest and frame.",
       ],
       coda: "True elegance is not about the price. It is about precision.",
+      image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/images/IMG_3728.jpg",
+      imageAlt: "Anis Soomar fitting a jacket at the shoulder",
     },
     {
       id: "legend",
       tag: "The craft",
       title: "What makes a tailor a legend.",
       body: "The eye to notice the smallest detail. Craftsmanship is not only stitching cloth; it is seeing what others miss. Here, every cut, every seam, and every finish is worked with a precision that speaks for itself.",
+      image: "/images/founder-stitching.webp",
+      imageAlt: "Anis Soomar hand-stitching, green thread through cloth",
     },
   ],
 };
 
 export const footer = {
   wordmark: "CEO RULES",
-  line: "Mumbai · Since 1881",
-  heritage: "Six generations in the clothing industry.",
+  line: "A family house of bespoke tailoring, in Mumbai.",
   since: "Est. 1881",
   instagram: { label: "Instagram", href: "https://www.instagram.com/ceorules/" },
   addressLabel: "The house",
@@ -443,15 +252,15 @@ export const footer = {
 // The founder is not an "About Us" (brief Part II §8): he is the house, a mentor
 // and teacher, never simply "founder."
 export const founder = {
-  kicker: "The founder",
-  name: "Anis Soomar",
+  eyebrow: "The house is a person",
   quote:
     "I have never sold a man a suit. I have only ever taught him how to wear one.",
   attribution: "Anis Soomar",
-  body: "Anis Soomar is the living voice of the house: a teacher more than a salesman. He does not enjoy selling. He enjoys teaching — fit, cloth, and how a man occupies a room.",
-  aside:
-    "The six-generation line that began with Haji Soomar in 1881 continues in Bandra under Anis, with his brother Arshad as co-keeper of the house. He takes the measure himself. It is taken slowly.",
-  imageId: "conversation" as const,
+  body: "For most of a lifetime he has done the same two things each morning: measure a man, and listen to him. He will steer you away from the loud cloth, toward what your life actually asks for.",
+  roles: "Mentor. Teacher. Craftsman. Guide. Storyteller.",
+  note: "The word founder never quite fit him.",
+  image: "/images/founder-stitching.webp",
+  imageAlt: "Anis Soomar at work, hand-stitching a lapel",
 };
 
 // The brand's central contradiction (brief Part II): the name sounds like hustle;
@@ -490,8 +299,8 @@ export const house = {
   hero: {
     eyebrow: "Since 1881",
     title: "Clothiers and tailors of impeccable pedigree.",
-    lede: "Six generations of one family, and the same quiet work: dressing a man so the room believes him before he speaks.",
-    image: "/images/house-hero.jpg",
+    lede: "Four generations of one family, and the same quiet work: dressing a man so the room believes him before he speaks.",
+    image: "/images/atelier-conversation.webp",
     imageAlt: "Anis Soomar in the atelier, in conversation over coffee",
   },
   lineage: {
@@ -504,8 +313,8 @@ export const house = {
         body: "The family opens in Crawford Market, trading in cloth. First a trade, and then, slowly, a language.",
       },
       {
-        marker: "VI",
-        label: "Six generations",
+        marker: "IV",
+        label: "Four generations",
         body: "The knowledge is handed down, hand to hand, each generation adding a little and letting nothing essential fall away.",
       },
       {
@@ -525,41 +334,26 @@ export const house = {
 };
 
 
-// The Cloth / Bespoke page. Provenance over mill advertising.
+// The Cloth (Loro Piana model): material as hero, provenance over paragraphs.
 export const cloth = {
   eyebrow: "The cloth",
   headline: "The cloth remembers where it came from.",
-  lead: "The house keeps a broad range of the mills a serious wardrobe uses, then chooses for the man, the climate, and the life the garment will lead.",
-  openingImageId: "clothLoroBook" as const,
-  edgesImageId: "clothEdges" as const,
-  formImageId: "jacketOnForm" as const,
+  lead: "A jacket is only ever as honest as the cloth beneath it. We keep the finest houses in the world, and we keep them for what they do, not for what they say.",
   housesLabel: "The houses we keep",
-  suitingLabel: "Suiting & jacketing",
-  shirtingLabel: "Shirting",
-  suiting: [
-    { name: "Loro Piana", place: "Quarona" },
-    { name: "Zegna", place: "Trivero" },
-    { name: "Scabal", place: "Brussels / Huddersfield" },
+  houses: [
+    { name: "Dormeuil", place: "Paris, since 1842", line: "Sportex and Tonik, cloths with a memory of their own." },
+    { name: "Loro Piana", place: "Quarona, Italy", line: "The gift of kings: the world's finest wool and cashmere." },
+    { name: "Ermenegildo Zegna", place: "Trivero, Italy", line: "Trofeo and 15milmil15, milled from the longest fibres." },
+    { name: "Holland & Sherry", place: "Peebles, Scotland", line: "English and Scottish cloth, cut for weather and for weight." },
+    { name: "Scabal", place: "Brussels and Huddersfield", line: "Super 150s and diamond chip, cloth worn like jewellery." },
   ],
-  shirting: [{ name: "ALUMO" }, { name: "Söktas" }],
-  cut: {
-    label: "The Cut",
-    body: "Every line begins on the table.",
-  },
-  canvas: {
-    label: "The Canvas",
-    line: "Canvas, not glue.",
-    body: "A chest shaped by hand holds the cloth to you and lets it breathe.",
-  },
-  fit: {
-    label: "The Fit",
-    body: "Adjusted on the man, not the form.",
-  },
-  finish: {
-    label: "The Finish",
-    body: "The work most people never see.",
-  },
+  detailImage: "/images/tuxedo-detail.webp",
+  detailAlt: "A black tuxedo on the stand, satin lapel and pleated shirt",
+  fabricImage: "/images/IMG_3735.jpg",
+  fabricAlt: "Navy cloth woven exclusively for CEO Rules by Huddersfield",
   teach: {
+    eyebrow: "Why it matters",
+    body: "Canvas, not glue. A chest shaped by hand holds the cloth to you and lets it breathe, so a suit only looks better with the years.",
     link: { label: "More from the founder", href: "/philosophy" },
   },
 };

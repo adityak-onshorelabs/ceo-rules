@@ -1,45 +1,58 @@
-import { MediaField } from "@/components/MediaField";
-import { CtaLink } from "@/components/CtaLink";
-import { homeWardrobe } from "@/lib/content";
-import { img } from "@/lib/images";
+import { Reveal } from "@/components/Reveal";
+import { Plate } from "@/components/Plate";
+import { wardrobe } from "@/lib/content";
 
+// Editorial, not a catalogue. On a dark band, the garments framed as identity.
 export function Wardrobe() {
   return (
-    <section id="wardrobe">
-      <MediaField
-        image={img(homeWardrobe.imageId)}
-        videoReady
-        sizes="100vw"
-        objectPosition="center 12%"
-        objectPositionTablet="center 10%"
-        objectPositionMobile="center 8%"
-        className="h-[min(82svh,36rem)] w-full sm:h-[88svh] lg:h-[92svh]"
-      >
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[46%] bg-gradient-to-b from-[color-mix(in_srgb,var(--navy)_46%,transparent)] via-[color-mix(in_srgb,var(--navy)_14%,transparent)] to-transparent"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[28%] bg-gradient-to-t from-[color-mix(in_srgb,var(--navy)_40%,transparent)] via-[color-mix(in_srgb,var(--navy)_10%,transparent)] to-transparent"
-        />
-        <div className="absolute inset-0 z-[2] flex flex-col justify-between px-[var(--page-pad)] py-[clamp(1.75rem,4.5vh,3rem)]">
-          <div className="max-w-[28ch]">
-            <p className="t-meta text-bg/70">The Wardrobe</p>
-            <h2 className="t-observation mt-4 text-bg">{homeWardrobe.observation}</h2>
-            <p className="t-body mt-4 max-w-[32ch] text-bg/80">{homeWardrobe.lead}</p>
-            <div className="mt-7">
-              <CtaLink href={homeWardrobe.link.href} tone="ivory">
-                {homeWardrobe.link.label}
-              </CtaLink>
-            </div>
-          </div>
+    <section
+      id="wardrobe"
+      data-nav="dark"
+      className="on-dark section mx-auto max-w-editorial"
+    >
+      <div className="grid grid-cols-1 items-center gap-x-[clamp(2.5rem,6vw,6rem)] gap-y-14 lg:grid-cols-[1fr_0.72fr]">
+        <div>
+          <Reveal as="p" className="eyebrow mb-10">
+            {wardrobe.eyebrow}
+          </Reveal>
+          <Reveal>
+            <h2 className="t-h1 max-w-[16ch] text-balance text-ink-dark">
+              {wardrobe.headline}
+            </h2>
+          </Reveal>
+          <Reveal delay={0.06}>
+            <p className="mt-6 max-w-measure t-lede text-ink-dark-muted">
+              {wardrobe.lead}
+            </p>
+          </Reveal>
 
-          <p className="t-meta max-w-[48rem] text-bg/65">
-            {homeWardrobe.pieces.map((p) => p.name.toUpperCase()).join(" · ")}
-          </p>
+          {/* the pieces, each with a reason, not a price */}
+          <div className="mt-12 max-w-measure stitch-top-dark">
+            {wardrobe.pieces.map((p, i) => (
+              <Reveal
+                key={p.name}
+                delay={i * 0.05}
+                className="flex items-baseline justify-between gap-6 stitch-bottom-dark py-5"
+              >
+                <span className="font-serif text-[clamp(1.15rem,1.6vw,1.5rem)] text-ink-dark">
+                  {p.name}
+                </span>
+                <span className="max-w-[24ch] text-right text-[0.9rem] text-ink-dark-muted">
+                  {p.line}
+                </span>
+              </Reveal>
+            ))}
+          </div>
         </div>
-      </MediaField>
+
+        <Reveal as="figure" delay={0.12} className="hidden lg:block">
+          <Plate
+            src={wardrobe.image}
+            alt={wardrobe.imageAlt}
+            className="aspect-[4/5] w-full"
+          />
+        </Reveal>
+      </div>
     </section>
   );
 }

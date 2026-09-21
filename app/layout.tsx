@@ -1,27 +1,30 @@
 import type { Metadata } from "next";
-import { Instrument_Sans, Newsreader } from "next/font/google";
-import { SkipLink } from "@/components/SkipLink";
+import { Fraunces, Montserrat } from "next/font/google";
+import { SmoothScroll } from "@/components/SmoothScroll";
+import { Loader } from "@/components/Loader";
 import "./globals.css";
 
-const instrumentSans = Instrument_Sans({
+// Serif for headlines.
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  axes: ["opsz"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+// Montserrat for body, UI, eyebrows.
+const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-sans",
   style: ["normal", "italic"],
   display: "swap",
 });
 
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  style: ["normal", "italic"],
-  display: "swap",
-  adjustFontFallback: false,
-});
-
 export const metadata: Metadata = {
-  title: "CEO Rules — Bespoke tailoring, Bandra, Mumbai",
+  title: "CEO Rules — The quiet language of confidence",
   description:
-    "A family house of bespoke tailoring in Bandra, Mumbai. Six generations since 1881.",
+    "A house that teaches self-made men the quiet language of confidence through timeless craftsmanship. Bespoke tailoring, Bandra, Mumbai.",
 };
 
 export default function RootLayout({
@@ -30,12 +33,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${instrumentSans.variable} ${newsreader.variable}`}
-    >
+    <html lang="en" className={`${fraunces.variable} ${montserrat.variable}`}>
       <body>
-        <SkipLink />
+        <Loader />
+        <SmoothScroll />
         {children}
       </body>
     </html>
