@@ -410,9 +410,6 @@ export const appointment = {
   kicker: "Appointment",
   title: "Come sit with us.",
   body: "Appointments are held one at a time, so the room is yours. Tell us roughly what you have in mind and we will hold the hour.",
-  // Brief §12: Anis's intended event. Confirm the final URL, location, buffers,
-  // reminders and intake questions in Calendly before production.
-  calendly: "https://calendly.com/anis-ceorules/30min" as string | null,
   fallback: "Message us on WhatsApp with a day and time that suits you, and we will confirm the hour.",
 };
 

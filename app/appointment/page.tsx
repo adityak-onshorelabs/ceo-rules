@@ -3,9 +3,9 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Photo } from "@/components/Photo";
 import { Reveal } from "@/components/Reveal";
-import { CalendlyEmbed } from "@/components/CalendlyEmbed";
+import { BookingFlow } from "@/components/BookingFlow";
 import { VisitDetails } from "@/components/sections/Visit";
-import { appointment as a, site } from "@/lib/content";
+import { appointment as a } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Book a Private Appointment — CEO Rules",
@@ -14,8 +14,9 @@ export const metadata: Metadata = {
 };
 
 // The appointment experience (brief §12): the house's branding at the top, a
-// short introduction, then Anis's Calendly flow set into the page, not a raw
-// frame dropped onto the homepage. Every header and homepage CTA routes here.
+// short introduction, then the booking itself in the house's own design,
+// backed by Anis's Calendly through its Scheduling API: no iframe, no
+// Calendly-hosted page. Every header and homepage CTA routes here.
 export default function AppointmentPage() {
   return (
     <>
@@ -47,23 +48,9 @@ export default function AppointmentPage() {
           </Reveal>
           <p className="body mt-[clamp(22px,3.4vh,32px)] max-w-[46ch] text-[rgba(28,26,23,.76)]">{a.body}</p>
 
-          <div className="mt-[clamp(32px,5vh,48px)] border-t border-[rgba(28,26,23,.16)] pt-2">
-            {a.calendly ? <CalendlyEmbed url={a.calendly} /> : null}
+          <div className="mt-[clamp(32px,5vh,48px)]">
+            <BookingFlow />
           </div>
-
-          <p className="mt-8 text-[15px] leading-[1.7] text-[rgba(28,26,23,.76)]">
-            Rather speak first?{" "}
-            <a
-              href={site.whatsapp.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-track="whatsapp_click"
-              className="border-b border-[rgba(28,26,23,.35)] pb-0.5 text-ink transition-colors hover:border-gold"
-            >
-              Message us on WhatsApp
-            </a>{" "}
-            and we will hold the hour.
-          </p>
 
           <div className="mt-[clamp(48px,7vh,80px)]">
             <VisitDetails dark={false} />
