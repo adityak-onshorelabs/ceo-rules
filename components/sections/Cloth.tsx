@@ -1,32 +1,88 @@
-import Link from "next/link";
-import { Photo } from "@/components/Photo";
 import { Reveal } from "@/components/Reveal";
-import { home } from "@/lib/content";
+import { Plate } from "@/components/Plate";
+import { CtaLink } from "@/components/CtaLink";
+import { MeasureTicks } from "@/components/MeasureTicks";
+import { MillLogo } from "@/components/MillLogo";
+import { cloth, mills } from "@/lib/content";
 
-// 02 Material. The cloth books, and the houses we keep.
+// The Cloth (Loro Piana model): material as hero. The finest houses read as an
+// editorial ledger, name and provenance, never a grid of logos.
 export function Cloth() {
-  const c = home.cloth;
   return (
-    <section id="cloth" className="on-dark relative flex min-h-screen items-center overflow-hidden bg-ink-deep">
-      <Photo
-        src={c.image}
-        alt={c.alt}
-        position="58% 50%"
-        grade="hero-left"
-        scrims={["side"]}
-        motion="drift"
-        audit={c.audit}
-      />
-      <div className="relative z-10 max-w-[720px] px-[var(--gutter)] py-[clamp(120px,18vh,210px)]">
-        <p className="kicker text-[rgba(244,241,234,.7)]">{c.kicker}</p>
-        <Reveal as="h2" className="h-section !max-w-[14ch] !text-[clamp(36px,5vw,82px)]">
-          {c.title}
+    <section
+      id="cloth"
+      data-nav="light"
+      className="section mx-auto max-w-editorial"
+    >
+      {/* Opening statement */}
+      <div className="max-w-[46rem]">
+        <Reveal>
+          <MeasureTicks className="mb-6 h-2.5 w-32 text-gold-ink" />
         </Reveal>
-        <p className="body mt-[clamp(28px,4vh,44px)] max-w-[46ch] text-[rgba(244,241,234,.74)]">{c.body}</p>
-        <Link href={c.cta.href} className="link-line mt-[clamp(32px,4vh,48px)]">
-          {c.cta.label} <span aria-hidden>→</span>
-        </Link>
+        <Reveal as="p" className="eyebrow mb-8">
+          {cloth.eyebrow}
+        </Reveal>
+        <Reveal>
+          <h2 className="t-h1 text-balance text-ink">{cloth.headline}</h2>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <p className="mt-8 max-w-measure t-lede text-ink">{cloth.lead}</p>
+        </Reveal>
       </div>
+
+      {/* The houses, as a ledger + a tall detail plate alongside */}
+      <div className="mt-[clamp(3.5rem,9vh,7rem)] grid grid-cols-1 gap-x-[clamp(3rem,7vw,7rem)] gap-y-14 lg:grid-cols-[1fr_0.62fr]">
+        <div>
+          <Reveal as="p" className="eyebrow mb-8 text-ink-faint">
+            {cloth.housesLabel}
+          </Reveal>
+          <ul>
+            {cloth.houses.map((h, i) => (
+              <Reveal
+                as="li"
+                key={h.name}
+                delay={0.03}
+                className={`grid grid-cols-1 gap-y-1 stitch-top py-[clamp(1.25rem,3vh,2rem)] sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-x-8 ${
+                  i === cloth.houses.length - 1 ? "stitch-bottom" : ""
+                }`}
+              >
+                <div>
+                  <MillLogo
+                    name={h.name}
+                    logo={mills.find((m) => m.name === h.name)?.logo ?? ""}
+                    tone="ink"
+                    className="h-[clamp(3.25rem,5vw,4.25rem)] w-auto"
+                  />
+                  <p className="mt-1.5 max-w-measure text-[0.95rem] text-ink-muted">
+                    {h.line}
+                  </p>
+                </div>
+                <p className="eyebrow text-ink-faint sm:text-right">{h.place}</p>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+
+        <Reveal as="figure" delay={0.1} className="hidden lg:sticky lg:top-28 lg:block lg:self-start">
+          <Plate
+            src={cloth.detailImage}
+            alt={cloth.detailAlt}
+            className="aspect-[3/4] w-full"
+          />
+        </Reveal>
+      </div>
+
+      {/* One education pull, then out to Philosophy */}
+      <Reveal
+        delay={0.06}
+        className="mt-[clamp(3.5rem,8vh,6rem)] max-w-measure stitch-top-gold pt-10"
+      >
+        <p className="eyebrow mb-4 text-gold-ink">{cloth.teach.eyebrow}</p>
+        <p className="t-lede italic text-ink">{cloth.teach.body}</p>
+        <div className="mt-8">
+          <CtaLink href={cloth.teach.link.href}>{cloth.teach.link.label}</CtaLink>
+        </div>
+      </Reveal>
     </section>
   );
 }

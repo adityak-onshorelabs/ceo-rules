@@ -14,7 +14,7 @@ export function Film({
   poster,
   alt,
   position = "50% 50%",
-  filter = "saturate(.72) contrast(1.06) brightness(.86)",
+  filter = "saturate(0.84) contrast(1.09) brightness(0.97)",
   sizes = "100vw",
   audit,
   auditAt = "bl",
@@ -58,7 +58,7 @@ export function Film({
   const media = { objectFit: "cover" as const, objectPosition: position, filter };
 
   return (
-    <div ref={box} className={`overflow-hidden bg-ink-deep ${className}`}>
+    <div ref={box} className={`overflow-hidden bg-bg-dark ${className}`}>
       <Image src={poster} alt={alt} fill sizes={sizes} quality={85} className="object-cover" style={media} />
       {attach ? (
         <video
