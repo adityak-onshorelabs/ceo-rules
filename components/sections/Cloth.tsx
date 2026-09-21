@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MillLogo } from "@/components/MillLogo";
 import { Photo } from "@/components/Photo";
 import { Reveal } from "@/components/Reveal";
 import { home, mills } from "@/lib/content";
@@ -23,13 +24,15 @@ export function Cloth() {
           {c.title}
         </Reveal>
         <p className="body mt-[clamp(28px,4vh,44px)] max-w-[46ch] text-[rgba(244,241,234,.74)]">{c.body}</p>
-        <div className="mt-[clamp(52px,7.5vh,88px)] flex flex-wrap items-baseline gap-x-11 gap-y-5 border-t border-[rgba(244,241,234,.22)] pt-[30px]">
-          <span className="label w-full text-[rgba(244,241,234,.5)]">{c.millsLabel}</span>
-          {mills.map((m) => (
-            <span key={m} className="text-[clamp(13px,1.1vw,16px)] tracking-[0.06em]">
-              {m}
-            </span>
-          ))}
+        <div className="mt-[clamp(52px,7.5vh,88px)] border-t border-[rgba(244,241,234,.22)] pt-[30px]">
+          <p className="label mb-5 text-[rgba(244,241,234,.5)]">{c.millsLabel}</p>
+          <ul className="grid grid-cols-4 items-center gap-x-[clamp(16px,2vw,32px)] gap-y-3">
+            {mills.map((m) => (
+              <li key={m.name}>
+                <MillLogo name={m.name} logo={m.logo} className="h-auto w-full max-w-[128px]" />
+              </li>
+            ))}
+          </ul>
         </div>
         <Link href={c.cta.href} className="link-line mt-[clamp(32px,4vh,48px)]">
           {c.cta.label} <span aria-hidden>→</span>

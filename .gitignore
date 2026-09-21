@@ -11,3 +11,7 @@ desktop.ini
 # Root /images is a local source dump; not served. public/images IS served
 # (secondary pages reference local /images/* assets), so it is committed.
 /images
+
+# Raw client/design drops; curated copies live in public/
+assets/
+*.zip

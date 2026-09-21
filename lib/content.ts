@@ -49,7 +49,18 @@ export const theEye = {
   cta: "Sit with Anis",
 };
 
-export const mills = ["Loro Piana", "Zegna", "Scabal", "ALUMO", "Söktas"];
+// The houses we keep. Logos supplied by the client (public/brand/mills),
+// transparent PNGs, 300×123.
+export const mills = [
+  { name: "Loro Piana", logo: "/brand/mills/loro-piana.png" },
+  { name: "Zegna", logo: "/brand/mills/zegna.png" },
+  { name: "Scabal", logo: "/brand/mills/scabal.png" },
+  { name: "ALUMO", logo: "/brand/mills/alumo.png" },
+  { name: "Canclini", logo: "/brand/mills/canclini.png" },
+  { name: "S.I.C. Tess", logo: "/brand/mills/sic-tess.png" },
+  { name: "Roger La Viale", logo: "/brand/mills/roger-la-viale.png" },
+  { name: "Raymond", logo: "/brand/mills/raymond.png" },
+];
 
 // ---------------------------------------------------------------------------
 // Homepage: the brief's eight-act sequence.
@@ -118,11 +129,12 @@ export const home = {
     ],
   },
   eye: {
-    image: "/images/atelier-conversation.webp",
-    alt: "Anis Soomar in conversation with a client over an open cloth book",
-    position: "34% 46%",
+    video: "/video/anis-cloth.mp4",
+    image: "/images/eye-poster.jpg",
+    alt: "Anis Soomar at his desk, a length of Scabal cloth under his hand",
+    position: "12% 50%",
     audit:
-      "Replace · 1020×1020 — Dormeuil box in shot (banned mill). Reshoot: Anis explaining cloth to a client, 3/4, warm salon light, 3000px portrait.",
+      "Temporary · 1024×576 phone video, 67s — right moment, low resolution. Reshoot in 4K: Anis handling cloth, warm light, 10–15s loop.",
   },
   wardrobe: {
     kicker: "The Wardrobe",
@@ -236,9 +248,9 @@ export const bespoke = {
       title: "The Cloth",
       when: "Same visit",
       body: "The books come out. Weight, weave and season matter more than the name on the selvedge, and Mumbai narrows the field further than most men expect. You will handle the cloth before you choose it.",
-      image: "/images/navy-cloth.jpg",
-      alt: "Navy suiting cloth",
-      position: "50% 50%",
+      image: "/images/bespoke-cloth.jpg",
+      alt: "Anis Soomar's hand on a length of grey suiting, fresh from its box",
+      position: "55% 60%",
     },
     {
       title: "The Measure & The Pattern",
@@ -298,7 +310,7 @@ export const wardrobe = {
     {
       label: "02 / Shirts",
       title: "Where fit is noticed first.",
-      body: "Collar, cuff and yoke drafted to you. ALUMO, Canclini and Söktas cottons.",
+      body: "Collar, cuff and yoke drafted to you. ALUMO, Canclini and S.I.C. Tess cottons.",
       image: "/images/cloth-shelves.jpg",
       alt: "Shirting cloth on the shelves",
       position: "58% 50%",
@@ -323,10 +335,10 @@ export const wardrobe = {
       label: "05 / Bandhgalas",
       title: "Cut with a tailor's discipline.",
       body: "The closed collar is unforgiving. It is drafted here the way a coat is, not draped.",
-      image: "/images/anis-fitting.jpg",
-      alt: "A jacket adjusted at the shoulder during a fitting",
-      position: "62% 38%",
-      audit: "No bandhgala photography exists · worn garment, closed collar clearly read",
+      image: "/images/anis-bandhgala.jpg",
+      alt: "Anis Soomar in a black bandhgala, the collar closed",
+      position: "50% 16%",
+      audit: "Temporary · event snapshot crop · reshoot a client in a bandhgala, 3000px portrait",
     },
     {
       label: "06 / Sherwanis",
@@ -372,13 +384,17 @@ export const cloth = {
     alt: "Cloth books and folded bolts on the shelves of the atelier",
   },
   housesLabel: "The houses we keep",
+  // Provenance kept to what is certain; lines are provisional copy for sign-off.
   houses: [
-    { name: "Loro Piana", place: "Quarona, Italy", line: "The world's finest wool and cashmere, kept for what it does in the hand." },
-    { name: "Zegna", place: "Trivero, Italy", line: "Trofeo and 15milmil15, milled from the longest fibres." },
-    { name: "Scabal", place: "Brussels", line: "Suiting worn like jewellery, woven in Huddersfield." },
-    { name: "ALUMO", place: "Appenzell, Switzerland", line: "Swiss two-ply cottons: the shirting that holds a collar all day." },
-    { name: "Söktas", place: "Söke, Turkey", line: "Aegean cotton, grown and woven in one valley." },
-  ],
+    { name: "Loro Piana", place: "Italy", line: "The finest wool and cashmere, kept for what it does in the hand." },
+    { name: "Zegna", place: "Italy", line: "Suiting milled from the longest fibres, for cloth that holds its line." },
+    { name: "Scabal", place: "Brussels", line: "Suiting worn like jewellery. The Noble Diamond book lives on our desk." },
+    { name: "ALUMO", place: "Switzerland", line: "Swiss two-ply cottons: the shirting that holds a collar all day." },
+    { name: "Canclini", place: "Italy", line: "Italian shirting in weaves that read from across a room." },
+    { name: "S.I.C. Tess", place: "Italy · since 1924", line: "Italian shirting cloth, a century in the making." },
+    { name: "Roger La Viale", place: "Since 1932", line: "Shirting with a quiet pattern and a long memory." },
+    { name: "Raymond", place: "India", line: "The house cloth of India, for everyday suiting done properly." },
+  ].map((h) => ({ ...h, logo: mills.find((m) => m.name === h.name)?.logo ?? "" })),
   teach: {
     kicker: "Why it matters",
     title: "Weight, weave and season matter more than the name on the selvedge.",

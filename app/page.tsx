@@ -23,6 +23,7 @@ export default function Home() {
         <Cloth />
         <Craft />
         <TheEye
+          video={home.eye.video}
           image={home.eye.image}
           alt={home.eye.alt}
           position={home.eye.position}
