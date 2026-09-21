@@ -220,6 +220,33 @@
     color: var(--cream);
   }
 
+  /* ---- Marquee (mills band) ----
+     Track holds the set twice; sliding it by half its width loops seamlessly. */
+  .marquee-track {
+    animation: marquee 48s linear infinite;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  /* Reduced motion: no drift; the single set becomes a row you can scroll. */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      overflow-x: auto !important;
+      scrollbar-width: none;
+    }
+    .marquee-track > ul:first-child {
+      padding-left: var(--gutter) !important;
+    }
+    .marquee-dup {
+      display: none !important;
+    }
+  }
+
   /* ---- Grounds ---- */
   .on-dark {
     color: var(--cream);

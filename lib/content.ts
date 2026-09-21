@@ -50,16 +50,17 @@ export const theEye = {
 };
 
 // The houses we keep. Logos supplied by the client (public/brand/mills),
-// transparent PNGs, 300×123.
+// transparent PNGs, 300×123. `scale` evens out optical weight: each file has
+// different padding around its mark, so thin wordmarks are drawn larger.
 export const mills = [
-  { name: "Loro Piana", logo: "/brand/mills/loro-piana.png" },
-  { name: "Zegna", logo: "/brand/mills/zegna.png" },
-  { name: "Scabal", logo: "/brand/mills/scabal.png" },
-  { name: "ALUMO", logo: "/brand/mills/alumo.png" },
-  { name: "Canclini", logo: "/brand/mills/canclini.png" },
-  { name: "S.I.C. Tess", logo: "/brand/mills/sic-tess.png" },
-  { name: "Roger La Viale", logo: "/brand/mills/roger-la-viale.png" },
-  { name: "Raymond", logo: "/brand/mills/raymond.png" },
+  { name: "Loro Piana", logo: "/brand/mills/loro-piana.png", scale: 1.3 },
+  { name: "Zegna", logo: "/brand/mills/zegna.png", scale: 1.5 },
+  { name: "Scabal", logo: "/brand/mills/scabal.png", scale: 1 },
+  { name: "ALUMO", logo: "/brand/mills/alumo.png", scale: 1.05 },
+  { name: "Canclini", logo: "/brand/mills/canclini.png", scale: 1.15 },
+  { name: "S.I.C. Tess", logo: "/brand/mills/sic-tess.png", scale: 1 },
+  { name: "Roger La Viale", logo: "/brand/mills/roger-la-viale.png", scale: 1.05 },
+  { name: "Raymond", logo: "/brand/mills/raymond.png", scale: 0.95 },
 ];
 
 // ---------------------------------------------------------------------------

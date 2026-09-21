@@ -7,11 +7,13 @@ export function MillLogo({
   logo,
   tone = "cream",
   className = "h-[clamp(34px,3.4vw,46px)] w-auto",
+  style,
 }: {
   name: string;
   logo: string;
   tone?: "cream" | "ink";
   className?: string;
+  style?: React.CSSProperties;
 }) {
   return (
     <Image
@@ -23,6 +25,7 @@ export function MillLogo({
       style={{
         filter: tone === "cream" ? "brightness(0) invert(0.95)" : "brightness(0.15)",
         opacity: tone === "cream" ? 0.86 : 0.9,
+        ...style,
       }}
     />
   );
