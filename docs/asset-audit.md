@@ -118,3 +118,15 @@ controlled warm grade, deliberate negative space where type will sit (§4).
 Calendly is live at `anis-ceorules/30min` but the event is configured as **1 hr**; confirm the length with Anis
 (the site no longer states a duration). Still needed: the three Reels, the licensed jazz track for §16,
 the logo as SVG, and sign-off on the mill list and heritage wording.
+
+## From the House: Instagram (added 2026-09-21)
+
+Chosen by the client from @ceorules; self-hosted in `public/media/reels/` because Instagram CDN links expire. Originals kept in `assets/instagram/`.
+
+| File | Source | Note |
+|---|---|---|
+| suits-fit.mp4 / .jpg | reel DbLdyTnoTEm | Contains stills of Gabriel Macht from the TV series *Suits* and its poster. Third-party footage: confirm the client is comfortable hosting it on the site. Poster is a clean frame of Anis (t=15s). |
+| italian-concepts-1..6.webp | post DZc4DlOmfDn | Carousel slides at 1080px. |
+| wardrobe-essentials.mp4 / .jpg | reel DLh57Y1t95U | Poster is a frame of Anis in the green chair (t=4.5s). |
+
+Mill logos: `public/brand/mills/*.png` from `assets/brand_images/` (client-supplied, 300×123).

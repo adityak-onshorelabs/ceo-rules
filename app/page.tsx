@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { Statement } from "@/components/sections/Statement";
 import { Cloth } from "@/components/sections/Cloth";
+import { Houses } from "@/components/sections/Houses";
 import { Craft } from "@/components/sections/Craft";
 import { TheEye } from "@/components/sections/TheEye";
 import { Wardrobe } from "@/components/sections/Wardrobe";
@@ -21,6 +22,7 @@ export default function Home() {
         <Hero />
         <Statement />
         <Cloth />
+        <Houses />
         <Craft />
         <TheEye
           video={home.eye.video}

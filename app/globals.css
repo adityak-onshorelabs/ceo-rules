@@ -267,3 +267,30 @@
     color: var(--ink);
   }
 }
+
+/* The houses we keep: a slow, unbroken run of the mills' marks. The track
+   holds two identical sets and travels exactly one set's width, so the loop
+   has no seam. It rests under the pointer or keyboard focus, and reduced
+   motion shows one still set, wrapped. */
+@keyframes houses-run {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.houses-track {
+  animation: houses-run 48s linear infinite;
+}
+.houses:hover .houses-track,
+.houses:focus-within .houses-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .houses-track {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .houses-track > [aria-hidden="true"] {
+    display: none;
+  }
+}

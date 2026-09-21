@@ -85,6 +85,26 @@ export function SoundProvider({ children }: { children: ReactNode }) {
     return remove;
   }, [available, play]);
 
+  // A Reel given its sound takes the room: the ambience fades out under it
+  // and returns when the Reel falls silent. The visitor's own choice is untouched.
+  const ducked = useRef(false);
+  useEffect(() => {
+    const onReel = (e: Event) => {
+      const speaking = (e as CustomEvent<string | null>).detail !== null;
+      const el = audio.current;
+      if (!el) return;
+      if (speaking && !el.paused) {
+        ducked.current = true;
+        ramp(0, () => el.pause());
+      } else if (!speaking && ducked.current) {
+        ducked.current = false;
+        if (on) el.play().then(() => ramp(sound.volume), () => {});
+      }
+    };
+    window.addEventListener("ceo:reel-sound", onReel);
+    return () => window.removeEventListener("ceo:reel-sound", onReel);
+  }, [on, ramp]);
+
   const toggle = useCallback(() => {
     const next = !on;
     try {

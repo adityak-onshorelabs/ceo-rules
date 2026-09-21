@@ -1,13 +1,13 @@
 import Link from "next/link";
-import { Photo } from "@/components/Photo";
+import { ReelFilm, ReelSlides } from "@/components/ReelTiles";
 import { Reveal } from "@/components/Reveal";
 import { home, site } from "@/lib/content";
 
-// 06 From the House (brief §13). Three selected Reels as editorial vertical
-// films: approved posters that open the Reel, never Instagram's own embed
-// chrome, feed grids or follower counts. Desktop sets the three side by side;
-// mobile is a row you swipe, each poster near full width, so they are watched
-// the natural vertical way. Posters are stand-ins until the Reels are chosen.
+// 06 From the House (brief §13). The three posts the client chose from
+// @ceorules, as editorial vertical films in the house's own frame: no
+// Instagram embed chrome, feed grid or follower count. Desktop sets the three
+// side by side; mobile is a row you swipe, each near full width, so they are
+// watched the natural vertical way. Each opens the original post.
 export function Reels() {
   const r = home.reels;
   return (
@@ -34,37 +34,27 @@ export function Reels() {
           aria-label="Three Reels from the house"
           className="no-scrollbar -mx-[var(--gutter)] mt-[clamp(48px,7vh,84px)] flex snap-x snap-mandatory scroll-px-[var(--gutter)] gap-4 overflow-x-auto px-[var(--gutter)] lg:mx-0 lg:grid lg:snap-none lg:grid-cols-3 lg:gap-[clamp(26px,3.2vw,52px)] lg:overflow-visible lg:px-0"
         >
-          {r.items.map((it, i) => (
-            <a
-              key={it.line}
-              href={it.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Watch on Instagram: ${it.line}`}
-              className="on-dark group relative block aspect-[9/16] w-[78vw] max-w-[360px] flex-none snap-start overflow-hidden bg-ink-deep lg:w-auto lg:max-w-none"
-            >
-              <Photo
-                src={it.image}
-                alt={it.alt}
-                position={it.position}
-                grade="reel"
-                scrims={["reel"]}
-                sizes="(min-width: 900px) 33vw, 100vw"
-                audit={i === 0 ? r.audit : undefined}
-                auditAt="tl"
-              />
-              <div className="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-3 p-7">
-                <p className="max-w-[18ch] font-serif text-[clamp(18px,1.5vw,21px)] font-light leading-[1.3]">
-                  {it.line}
-                </p>
-                <span
-                  aria-hidden
-                  className="grid h-[30px] w-[30px] flex-none place-items-center border border-[rgba(244,241,234,.6)] text-[12px] transition-colors duration-[240ms] group-hover:border-gold"
-                >
-                  ▶
-                </span>
+          {r.items.map((it) => (
+            <figure key={it.href} className="w-[78vw] max-w-[380px] flex-none snap-start lg:w-auto lg:max-w-none">
+              <div className="on-dark relative aspect-[9/16] overflow-hidden bg-ink-deep">
+                {it.kind === "film" ? (
+                  <ReelFilm video={it.video} poster={it.poster} alt={it.alt} label={it.label} line={it.line} />
+                ) : (
+                  <ReelSlides slides={it.slides} alt={it.alt} label={it.label} line={it.line} />
+                )}
               </div>
-            </a>
+              <figcaption className="mt-4">
+                <a
+                  href={it.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-track="instagram_click"
+                  className="link-line !pb-1.5 text-[rgba(28,26,23,.76)]"
+                >
+                  Watch on Instagram <span aria-hidden>↗</span>
+                </a>
+              </figcaption>
+            </figure>
           ))}
         </div>
       </div>

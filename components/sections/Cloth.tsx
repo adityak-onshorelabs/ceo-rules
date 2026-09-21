@@ -1,15 +1,14 @@
 import Link from "next/link";
 import { Photo } from "@/components/Photo";
 import { Reveal } from "@/components/Reveal";
-import { home, mills } from "@/lib/content";
+import { home } from "@/lib/content";
 
 // 02 Material (brief §6). The photograph is the section: the cloth shelves in
 // low atelier light. On desktop the type sits in the dark run of shelves at the
 // left, with only a local deepening of tone behind it. The frame has no quiet
 // area in a portrait crop, so on mobile the photograph leads and the type
 // follows on House Ink beneath it rather than fighting the pattern. The mills
-// are listed as names, quiet proof rather than the visual hero: no logos, no
-// carousel.
+// follow directly beneath, in the Houses band.
 export function Cloth() {
   const c = home.cloth;
   return (
@@ -39,15 +38,6 @@ export function Cloth() {
           {c.title}
         </Reveal>
         <p className="body mt-[clamp(22px,3.4vh,34px)] max-w-[40ch] text-[rgba(244,241,234,.92)]">{c.body}</p>
-
-        <div className="mt-[clamp(36px,6vh,64px)] border-t border-[rgba(244,241,234,.22)] pt-6">
-          <p className="label mb-4 !text-[12px] text-[rgba(244,241,234,.82)]">{c.millsLabel}</p>
-          <ul className="flex flex-wrap gap-x-7 gap-y-2 text-[clamp(14px,1.05vw,15.5px)] leading-[1.6] tracking-[0.04em] text-cream">
-            {mills.map((m) => (
-              <li key={m.name}>{m.name}</li>
-            ))}
-          </ul>
-        </div>
 
         <Link href={c.cta.href} className="link-line mt-[clamp(28px,4vh,40px)]">
           {c.cta.label} <span aria-hidden>→</span>
