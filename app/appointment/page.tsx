@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 export default function AppointmentPage() {
   return (
     <>
-      <Nav />
+      <Nav spacer />
       <main className="lg:grid lg:grid-cols-[0.9fr_1.1fr]">
         {/* The photograph holds its place while you book (desktop). */}
         <div className="on-dark relative h-[46svh] min-h-[300px] overflow-hidden bg-ink-deep lg:sticky lg:top-[var(--nav-h)] lg:h-[calc(100svh-var(--nav-h))]">

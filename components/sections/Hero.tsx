@@ -22,7 +22,7 @@ export function Hero({ content = home.hero }: { content?: HeroContent }) {
   return (
     <section
       id="top"
-      className="relative overflow-hidden bg-cream lg:grid lg:h-[calc(100svh-var(--nav-h))] lg:min-h-[600px] lg:grid-cols-[min(36vw,540px)_1fr]"
+      className="relative overflow-hidden bg-cream lg:grid lg:h-[100svh] lg:min-h-[680px] lg:grid-cols-[min(36vw,540px)_1fr]"
     >
       <div className="relative h-[62svh] min-h-[360px] lg:order-2 lg:h-auto lg:min-h-0">
         <Photo
@@ -38,7 +38,7 @@ export function Hero({ content = home.hero }: { content?: HeroContent }) {
         />
       </div>
 
-      <div className="relative z-10 flex flex-col bg-cream px-[var(--gutter)] pb-[clamp(48px,8vh,72px)] pt-[clamp(32px,5vh,44px)] lg:order-1 lg:justify-end lg:px-[clamp(32px,3.2vw,60px)] lg:pb-[clamp(48px,8vh,88px)] lg:pt-[clamp(40px,6vh,68px)]">
+      <div className="relative z-10 flex flex-col bg-cream px-[var(--gutter)] pb-[clamp(48px,8vh,72px)] pt-[clamp(32px,5vh,44px)] lg:order-1 lg:justify-end lg:px-[clamp(32px,3.2vw,60px)] lg:pb-[clamp(48px,8vh,88px)] lg:pt-[calc(var(--nav-h)+clamp(40px,6vh,68px))]">
         <Reveal onLoad as="p" className="kicker !mb-[22px] text-[rgba(28,26,23,.72)]">
           {h.kicker}
         </Reveal>

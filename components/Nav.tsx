@@ -11,12 +11,15 @@ const linkCls =
   "whitespace-nowrap border-b pb-[3px] text-[12px] uppercase tracking-[0.2em] transition-colors duration-[240ms] ease-linear hover:border-gold";
 
 // Brief §17: House + Bespoke left, the official logo centred, Wardrobe + The
-// Rules + Visit the Atelier right. The bar sits on House Ivory so the wordmark
-// keeps its original blue (brief §3: never recoloured white over photography).
-// A spacer of the same height follows, so every page begins below the bar and
-// photographs are never covered. Below 1140px the groups give way to a
-// full-screen menu, art-directed for the phone rather than a shrunk desktop bar.
-export function Nav() {
+// Rules + Visit the Atelier right. The bar is frosted glass: see-through
+// ivory with a blur (.nav-glass), so the photograph beneath shows through
+// while the links stay legible and the wordmark keeps its original blue
+// (brief §3: never recoloured white over photography). Pages open with their
+// hero photograph running up behind it; `spacer` keeps a page's content clear
+// of the bar instead (used where text starts at the very top). Below 1140px
+// the groups give way to a full-screen menu, art-directed for the phone
+// rather than a shrunk desktop bar.
+export function Nav({ spacer = false }: { spacer?: boolean }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -65,7 +68,7 @@ export function Nav() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-[60] flex h-[var(--nav-h)] items-center gap-8 border-b bg-cream px-[clamp(20px,4.2vw,64px)] text-ink transition-[border-color] duration-300 ${
+        className={`fixed inset-x-0 top-0 z-[60] flex h-[var(--nav-h)] items-center gap-8 nav-glass border-b px-[clamp(20px,4.2vw,64px)] text-ink transition-[border-color] duration-300 ${
           scrolled ? "border-[rgba(28,26,23,.12)]" : "border-transparent"
         }`}
       >
@@ -103,8 +106,7 @@ export function Nav() {
           <span className="block h-px w-[18px] bg-ink" />
         </button>
       </header>
-      {/* Reserve the bar's height so no page starts underneath it. */}
-      <div aria-hidden className="h-[var(--nav-h)]" />
+      {spacer ? <div aria-hidden className="h-[var(--nav-h)]" /> : null}
 
       <AnimatePresence>
         {open ? (
