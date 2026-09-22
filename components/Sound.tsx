@@ -7,9 +7,10 @@ import { sound } from "@/lib/content";
 // Optional atelier ambience (brief §16).
 // - Lives in the root layout, so it carries on across page changes; loops
 //   endlessly, and resumes from the same moment after a reload or in a new tab.
-// - Starts only after the visitor's first genuine interaction (a click, tap or
-//   key press; never on scroll, never a splash screen), fading in over ~2s to
-//   ~12% volume. Browser autoplay rules are respected by construction.
+// - The track downloads as soon as the page loads, then starts on the
+//   visitor's first genuine interaction (a click, tap or key press; browsers
+//   allow nothing earlier, and scrolling does not count), fading in over about
+//   a second to ~12% volume. No splash screen.
 // - A floating Sound on / Sound off button (SoundButton); the choice is kept
 //   for the session.
 // - Only appears once a licensed track is configured at `sound.src`.
@@ -45,32 +46,43 @@ export function SoundProvider({ children }: { children: ReactNode }) {
     fade.current = requestAnimationFrame(step);
   }, []);
 
+  // Create the element and start downloading the track straight away, so the
+  // first click can play it at once instead of waiting on the network.
+  const ensure = useCallback((): HTMLAudioElement | null => {
+    if (!sound.src) return null;
+    if (!audio.current) {
+      const el = new Audio();
+      el.preload = "auto";
+      el.loop = true;
+      el.volume = 0;
+      // Pick up where the visitor left off after a reload or in a new tab.
+      el.addEventListener(
+        "loadedmetadata",
+        () => {
+          try {
+            const t = Number(sessionStorage.getItem(POS_KEY));
+            if (t > 0 && t < el.duration) el.currentTime = t;
+          } catch {}
+        },
+        { once: true },
+      );
+      el.addEventListener("timeupdate", () => {
+        try {
+          sessionStorage.setItem(POS_KEY, String(el.currentTime));
+        } catch {}
+      });
+      el.src = sound.src;
+      el.load();
+      audio.current = el;
+    }
+    return audio.current;
+  }, []);
+
   const play = useCallback(
     (): Promise<boolean> => {
-      if (!sound.src) return Promise.resolve(false);
-      if (!audio.current) {
-        const el = new Audio(sound.src);
-        el.loop = true;
-        el.volume = 0;
-        // Pick up where the visitor left off after a reload or in a new tab.
-        el.addEventListener(
-          "loadedmetadata",
-          () => {
-            try {
-              const t = Number(sessionStorage.getItem(POS_KEY));
-              if (t > 0 && t < el.duration) el.currentTime = t;
-            } catch {}
-          },
-          { once: true },
-        );
-        el.addEventListener("timeupdate", () => {
-          try {
-            sessionStorage.setItem(POS_KEY, String(el.currentTime));
-          } catch {}
-        });
-        audio.current = el;
-      }
-      return audio.current.play().then(
+      const el = ensure();
+      if (!el) return Promise.resolve(false);
+      return el.play().then(
         () => {
           setOn(true);
           ramp(sound.volume);
@@ -83,7 +95,7 @@ export function SoundProvider({ children }: { children: ReactNode }) {
         () => false,
       );
     },
-    [ramp],
+    [ramp, ensure],
   );
 
   const stop = useCallback(() => {
@@ -102,6 +114,7 @@ export function SoundProvider({ children }: { children: ReactNode }) {
       pref = sessionStorage.getItem(KEY);
     } catch {}
     if (pref === "off") return;
+    ensure();
     const events = ["pointerdown", "click", "touchend", "keydown"] as const;
     const remove = () => events.forEach((n) => window.removeEventListener(n, first));
     const first = (e: Event) => {
@@ -112,7 +125,7 @@ export function SoundProvider({ children }: { children: ReactNode }) {
     events.forEach((n) => window.addEventListener(n, first));
     if (pref === "on") play().then((ok) => ok && remove());
     return remove;
-  }, [available, play]);
+  }, [available, play, ensure]);
 
   // A Reel given its sound takes the room: the ambience fades out under it
   // and returns when the Reel falls silent. The visitor's own choice is untouched.

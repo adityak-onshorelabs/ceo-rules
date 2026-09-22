@@ -604,7 +604,7 @@ export const sound = {
   // Set to null to hide the Sound control and request nothing.
   src: "/audio/atelier.mp3" as string | null,
   volume: 0.12,
-  fadeMs: 2000,
+  fadeMs: 900,
 };
 
 // ---------------------------------------------------------------------------
