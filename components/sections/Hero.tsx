@@ -13,8 +13,12 @@ import { home, site } from "@/lib/content";
 //
 // Mobile: a portrait crop centred on the sign and the door, with the same
 // panel content set on House Ivory directly beneath (brief §21).
-export function Hero() {
-  const h = home.hero;
+//
+// The House page opens on the same hero with its own kicker and title.
+type HeroContent = { kicker: string; title: string; cta: string; image: string; alt: string; audit?: string };
+
+export function Hero({ content = home.hero }: { content?: HeroContent }) {
+  const h = content;
   return (
     <section
       id="top"

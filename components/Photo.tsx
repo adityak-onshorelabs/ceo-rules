@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { imagekitLoader, isImageKit } from "@/lib/imagekit";
 import { useRef } from "react";
 import { motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { AuditNote, type AuditPlacement } from "@/components/AuditNote";
@@ -107,6 +108,7 @@ export function Photo({
           <Image
             src={src}
             alt={alt}
+            loader={isImageKit(src) ? imagekitLoader : undefined}
             fill
             priority={priority}
             sizes={sizes}

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
-import { PageHero } from "@/components/PageHero";
+import { Hero } from "@/components/sections/Hero";
 import { Photo } from "@/components/Photo";
 import { Reveal } from "@/components/Reveal";
 import { Breath } from "@/components/sections/Breath";
@@ -20,15 +20,7 @@ export default function HousePage() {
     <>
       <Nav />
       <main>
-        <PageHero
-          kicker={house.hero.kicker}
-          title={house.hero.title}
-          image={house.hero.image}
-          alt={house.hero.alt}
-          position="32% 45%"
-          mobilePosition="45% 50%"
-          height="min-h-[82vh]"
-        />
+        <Hero content={house.hero} />
         <Breath title={house.breath.title} body={house.breath.body} />
 
         {/* The house in three frames, edge to edge (brief §2: the photograph is

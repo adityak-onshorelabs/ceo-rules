@@ -24,6 +24,7 @@ export default function BespokePage() {
           lede={bespoke.hero.lede}
           image={bespoke.hero.image}
           alt={bespoke.hero.alt}
+          audit={bespoke.hero.audit}
           position="50% 46%"
           titleWidth="max-w-[14ch]"
         />
