@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
-import { Hero } from "@/components/sections/Hero";
+import { HouseHero } from "@/components/sections/HouseHero";
 import { Photo } from "@/components/Photo";
 import { Reveal } from "@/components/Reveal";
 import { Breath } from "@/components/sections/Breath";
@@ -20,7 +20,7 @@ export default function HousePage() {
     <>
       <Nav />
       <main>
-        <Hero content={house.hero} />
+        <HouseHero />
         <Breath title={house.breath.title} body={house.breath.body} />
 
         {/* The house in three frames, edge to edge (brief §2: the photograph is

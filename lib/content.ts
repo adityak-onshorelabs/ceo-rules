@@ -213,12 +213,16 @@ export const home = {
 // ---------------------------------------------------------------------------
 export const house = {
   hero: {
-    kicker: "The House · Since 1881",
+    kicker: "The House",
+    place: "Est. 1881 · Crawford Market → Bandra West",
     title: "Six generations in cloth.",
-    // Same opener as the homepage: the daytime storefront and the blue CTA.
-    cta: "Book a Private Appointment",
     image: ik("WhatsApp Image 2026-09-21 at 11.21.22.jpeg"),
     alt: "The CEO Rules storefront by day, suits on the stands behind the glass",
+    lineage: [
+      { mark: "1881", line: "The House of Haji Soomar opens in Crawford Market, trading in cloth." },
+      { mark: "Six generations", line: "Cloth first, then the cut. The family has stayed in the trade ever since." },
+      { mark: "Today", line: "One room in Bandra West, still run by the family, with Anis at the table." },
+    ],
   },
   breath: {
     title: "A trade that became a craft.",
