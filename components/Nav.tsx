@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { BrandLogo } from "@/components/BrandLogo";
-import { SoundToggle } from "@/components/Sound";
 import { nav } from "@/lib/content";
 
 const linkCls =
@@ -73,8 +72,6 @@ export function Nav() {
         <nav aria-label="Primary" className="hidden flex-1 items-center gap-[clamp(20px,2.4vw,34px)] min-[1140px]:flex">
           {nav.left.map(renderLink)}
         </nav>
-        {/* Mobile: the sound control sits at the left of the bar. */}
-        <SoundToggle className="absolute left-[clamp(20px,4.2vw,64px)] top-1/2 -translate-y-1/2 min-[1140px]:hidden" />
 
         <Link href="/" aria-label="CEO Rules, home" className="mx-auto flex flex-none items-center">
           <BrandLogo tone="blue" priority className="h-[clamp(15px,1.45vw,20px)] w-auto" />
@@ -85,7 +82,6 @@ export function Nav() {
           className="hidden flex-1 items-center justify-end gap-[clamp(20px,2.4vw,34px)] min-[1140px]:flex"
         >
           {nav.right.map(renderLink)}
-          <SoundToggle className="text-[rgba(28,26,23,.7)] hover:text-ink" />
           <Link
             href={nav.cta.href}
             data-track="book_appointment_click"

@@ -3,20 +3,29 @@ import Link from "next/link";
 import { mills } from "@/lib/content";
 
 // The houses we keep: the mills' own marks, end to end, on the ivory ground
-// (client request). All eight are drawn in House Ink so no one mark shouts
-// over the others; `scale` in content evens out their optical weight.
+// (client request). Every mark is drawn in House Ink so no one shouts over the
+// others; `scale` in content evens out their optical weight. Mills whose logo
+// has not arrived yet are set as their name in the serif.
 export function Houses() {
   const set = (hidden: boolean) =>
     mills.map((m) => (
       <li key={`${m.name}-${hidden}`} aria-hidden={hidden || undefined} className="flex flex-none items-center px-[clamp(28px,3.4vw,56px)]">
-        <Image
-          src={m.logo}
-          alt={hidden ? "" : m.name}
-          width={300}
-          height={123}
-          className="h-[clamp(64px,7vw,96px)] w-auto opacity-[.86] [filter:brightness(0)]"
-          style={{ transform: `scale(${m.scale})` }}
-        />
+        {m.logo ? (
+          <Image
+            src={m.logo}
+            alt={hidden ? "" : m.name}
+            width={300}
+            height={123}
+            unoptimized={m.logo.endsWith(".svg")}
+            className="h-[clamp(64px,7vw,96px)] w-auto opacity-[.86] [filter:brightness(0)]"
+            style={{ transform: `scale(${m.scale ?? 1})` }}
+          />
+        ) : (
+          // No mark supplied yet: the name, set in the serif at the logos' height.
+          <span className="flex h-[clamp(64px,7vw,96px)] items-center whitespace-nowrap font-serif text-[clamp(22px,2.2vw,32px)] font-light tracking-[-0.01em] text-ink opacity-[.86]">
+            {m.name}
+          </span>
+        )}
       </li>
     ));
   return (

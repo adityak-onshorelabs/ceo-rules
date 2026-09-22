@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Photo } from "@/components/Photo";
 import { Reveal } from "@/components/Reveal";
 import { BookingFlow } from "@/components/BookingFlow";
+import { CalendlyEmbed } from "@/components/CalendlyEmbed";
 import { VisitDetails } from "@/components/sections/Visit";
 import { appointment as a } from "@/lib/content";
 
@@ -14,9 +15,10 @@ export const metadata: Metadata = {
 };
 
 // The appointment experience (brief §12): the house's branding at the top, a
-// short introduction, then the booking itself in the house's own design,
-// backed by Anis's Calendly through its Scheduling API: no iframe, no
-// Calendly-hosted page. Every header and homepage CTA routes here.
+// short introduction, then the booking: Calendly's inline widget for now, or
+// the house's own flow on the Scheduling API once a token is in place
+// (`appointment.booking` in lib/content.ts). Every header and homepage CTA
+// routes here.
 export default function AppointmentPage() {
   return (
     <>
@@ -49,7 +51,7 @@ export default function AppointmentPage() {
           <p className="body mt-[clamp(22px,3.4vh,32px)] max-w-[46ch] text-[rgba(28,26,23,.76)]">{a.body}</p>
 
           <div className="mt-[clamp(32px,5vh,48px)]">
-            <BookingFlow />
+            {a.booking === "themed" ? <BookingFlow /> : <CalendlyEmbed url={a.calendly} />}
           </div>
 
           <div className="mt-[clamp(48px,7vh,80px)]">

@@ -1,19 +1,23 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import { sound } from "@/lib/content";
 
 // Optional atelier ambience (brief §16).
-// - Lives in the root layout, so it carries on across page changes.
+// - Lives in the root layout, so it carries on across page changes; loops
+//   endlessly, and resumes from the same moment after a reload or in a new tab.
 // - Starts only after the visitor's first genuine interaction (a click, tap or
 //   key press; never on scroll, never a splash screen), fading in over ~2s to
 //   ~12% volume. Browser autoplay rules are respected by construction.
-// - A discreet Sound on / Sound off control; the choice is kept for the session.
+// - A floating Sound on / Sound off button (SoundButton); the choice is kept
+//   for the session.
 // - Only appears once a licensed track is configured at `sound.src`.
 
 type Ctx = { available: boolean; on: boolean; toggle: () => void };
 const SoundContext = createContext<Ctx>({ available: false, on: false, toggle: () => {} });
 const KEY = "ceo-sound";
+const POS_KEY = "ceo-sound-t";
 
 export function SoundProvider({ children }: { children: ReactNode }) {
   const audio = useRef<HTMLAudioElement | null>(null);
@@ -41,28 +45,56 @@ export function SoundProvider({ children }: { children: ReactNode }) {
     fade.current = requestAnimationFrame(step);
   }, []);
 
-  const play = useCallback(() => {
-    if (!sound.src) return;
-    if (!audio.current) {
-      audio.current = new Audio(sound.src);
-      audio.current.loop = true;
-      audio.current.volume = 0;
-    }
-    audio.current.play().then(
-      () => {
-        setOn(true);
-        ramp(sound.volume);
-      },
-      () => {},
-    );
-  }, [ramp]);
+  const play = useCallback(
+    (): Promise<boolean> => {
+      if (!sound.src) return Promise.resolve(false);
+      if (!audio.current) {
+        const el = new Audio(sound.src);
+        el.loop = true;
+        el.volume = 0;
+        // Pick up where the visitor left off after a reload or in a new tab.
+        el.addEventListener(
+          "loadedmetadata",
+          () => {
+            try {
+              const t = Number(sessionStorage.getItem(POS_KEY));
+              if (t > 0 && t < el.duration) el.currentTime = t;
+            } catch {}
+          },
+          { once: true },
+        );
+        el.addEventListener("timeupdate", () => {
+          try {
+            sessionStorage.setItem(POS_KEY, String(el.currentTime));
+          } catch {}
+        });
+        audio.current = el;
+      }
+      return audio.current.play().then(
+        () => {
+          setOn(true);
+          ramp(sound.volume);
+          // Playing counts as choosing it, so a reload tries to carry on.
+          try {
+            sessionStorage.setItem(KEY, "on");
+          } catch {}
+          return true;
+        },
+        () => false,
+      );
+    },
+    [ramp],
+  );
 
   const stop = useCallback(() => {
     setOn(false);
     ramp(0, () => audio.current?.pause());
   }, [ramp]);
 
-  // First genuine interaction: fade in, unless the visitor has turned it off.
+  // Start as soon as the browser allows: straight away if the visitor already
+  // chose Sound on earlier in the session (some browsers permit this after a
+  // reload), otherwise on their first genuine interaction. Never if they
+  // turned it off.
   useEffect(() => {
     if (!available) return;
     let pref: string | null = null;
@@ -70,18 +102,15 @@ export function SoundProvider({ children }: { children: ReactNode }) {
       pref = sessionStorage.getItem(KEY);
     } catch {}
     if (pref === "off") return;
+    const events = ["pointerdown", "click", "touchend", "keydown"] as const;
+    const remove = () => events.forEach((n) => window.removeEventListener(n, first));
     const first = (e: Event) => {
       // The sound control handles itself.
-      if ((e.target as HTMLElement | null)?.closest?.("[data-sound-toggle]")) return;
-      play();
-      remove();
+      if ((e.target as HTMLElement | null)?.closest?.("[data-sound-toggle]")) return remove();
+      play().then((ok) => ok && remove());
     };
-    const remove = () => {
-      window.removeEventListener("pointerdown", first);
-      window.removeEventListener("keydown", first);
-    };
-    window.addEventListener("pointerdown", first);
-    window.addEventListener("keydown", first);
+    events.forEach((n) => window.addEventListener(n, first));
+    if (pref === "on") play().then((ok) => ok && remove());
     return remove;
   }, [available, play]);
 
@@ -115,30 +144,58 @@ export function SoundProvider({ children }: { children: ReactNode }) {
     window.dispatchEvent(new CustomEvent("ceo:track", { detail: { name: next ? "sound_on" : "sound_off" } }));
   }, [on, play, stop]);
 
-  return <SoundContext.Provider value={{ available, on, toggle }}>{children}</SoundContext.Provider>;
+  return <SoundContext.Provider value={{ available, on, toggle }}>
+      {children}
+      <SoundButton />
+    </SoundContext.Provider>;
 }
 
-export function SoundToggle({ className = "" }: { className?: string }) {
+// The sound control: a small round button that floats at the bottom right of
+// every page. Before the visitor has chosen, a soft gold ring breathes around
+// it to draw the eye; while music plays its bars move. On hover (or keyboard
+// focus) it opens into a pill that names the state. Hidden on /kazim, which is
+// a standalone contact card.
+export function SoundButton() {
   const { available, on, toggle } = useContext(SoundContext);
-  if (!available) return null;
+  const pathname = usePathname();
+  const [chosen, setChosen] = useState(true);
+
+  useEffect(() => {
+    try {
+      setChosen(sessionStorage.getItem(KEY) !== null);
+    } catch {
+      setChosen(false);
+    }
+  }, []);
+
+  if (!available || pathname?.startsWith("/kazim")) return null;
+
+  const onClick = () => {
+    setChosen(true);
+    toggle();
+  };
+
   return (
     <button
       type="button"
       data-sound-toggle
-      onClick={toggle}
+      onClick={onClick}
       aria-pressed={on}
-      className={`inline-flex min-h-11 items-center gap-2.5 whitespace-nowrap text-[12px] uppercase tracking-[0.2em] ${className}`}
+      aria-label={on ? "Sound on. Turn the music off" : "Sound off. Turn the music on"}
+      className="sound-fab group fixed bottom-[clamp(16px,3vw,32px)] right-[clamp(16px,3vw,32px)] z-50 flex h-14 min-w-14 items-center justify-center rounded-full border border-gold bg-ink-deep px-[18px] text-cream shadow-[0_12px_32px_-10px_rgba(20,18,15,.6),0_0_0_4px_rgba(168,130,60,.14)] transition-[padding,background-color] duration-500 ease-out hover:bg-ink focus-visible:bg-ink"
+      data-state={on ? "on" : "off"}
+      data-invite={!chosen && !on ? "" : undefined}
     >
-      <span aria-hidden className="flex h-3 items-end gap-[2px]">
-        {[0.5, 1, 0.7].map((h, i) => (
-          <span
-            key={i}
-            className="w-px bg-current transition-transform duration-300"
-            style={{ height: "100%", transform: `scaleY(${on ? h : 0.25})`, transformOrigin: "bottom" }}
-          />
+      <span aria-hidden className="sound-bars flex h-5 w-[18px] items-end justify-between">
+        {[0.55, 1, 0.75, 0.4].map((h, i) => (
+          <span key={i} className="block w-[2.5px] rounded-full bg-gold" style={{ height: `${h * 100}%` }} />
         ))}
       </span>
-      {on ? "Sound on" : "Sound off"}
+      <span className="grid grid-cols-[minmax(0,0fr)] transition-[grid-template-columns] duration-500 ease-out group-hover:grid-cols-[minmax(0,1fr)] group-focus-visible:grid-cols-[minmax(0,1fr)]">
+        <span className="min-w-0 overflow-hidden whitespace-nowrap pl-3 text-[11px] uppercase tracking-[0.22em]">
+          {on ? "Sound on" : "Sound off"}
+        </span>
+      </span>
     </button>
   );
 }

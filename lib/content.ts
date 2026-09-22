@@ -49,18 +49,25 @@ export const theEye = {
   cta: "Sit with Anis",
 };
 
-// The houses we keep. Logos supplied by the client (public/brand/mills),
-// transparent PNGs, 300×123. `scale` evens out optical weight: each file has
-// different padding around its mark, so thin wordmarks are drawn larger.
-export const mills = [
-  { name: "Loro Piana", logo: "/brand/mills/loro-piana.png", scale: 1.3 },
-  { name: "Zegna", logo: "/brand/mills/zegna.png", scale: 1.5 },
+// The houses we keep: the client's list (2026-09-22), in their order. Logos
+// supplied by the client live in public/brand/mills (transparent PNGs,
+// 300×123); `scale` evens out optical weight, since each file has different
+// padding around its mark. A mill without `logo` is set as its name in the
+// serif until its mark arrives.
+export const mills: { name: string; logo?: string; scale?: number }[] = [
+  { name: "Ermenegildo Zegna", logo: "/brand/mills/zegna.png", scale: 1.5 },
   { name: "Scabal", logo: "/brand/mills/scabal.png", scale: 1 },
-  { name: "ALUMO", logo: "/brand/mills/alumo.png", scale: 1.05 },
-  { name: "Canclini", logo: "/brand/mills/canclini.png", scale: 1.15 },
+  { name: "Loro Piana", logo: "/brand/mills/loro-piana.png", scale: 1.3 },
+  { name: "Marzoni", logo: "/brand/mills/marzoni.png", scale: 0.9 },
+  { name: "Palladino" },
+  { name: "Piacenza", logo: "/brand/mills/piacenza.png", scale: 1.45 },
+  { name: "Huddersfield", logo: "/brand/mills/huddersfield.png", scale: 1.3 },
+  { name: "Vitale Barberis Canonico", logo: "/brand/mills/vitale-barberis-canonico.png", scale: 1.35 },
+  { name: "David & John Anderson" },
   { name: "S.I.C. Tess", logo: "/brand/mills/sic-tess.png", scale: 1 },
-  { name: "Roger La Viale", logo: "/brand/mills/roger-la-viale.png", scale: 1.05 },
-  { name: "Raymond", logo: "/brand/mills/raymond.png", scale: 0.95 },
+  { name: "Söktaş", logo: "/brand/mills/soktas.png", scale: 1.1 },
+  { name: "ALUMO", logo: "/brand/mills/alumo.png", scale: 1.05 },
+  { name: "Albini", logo: "/brand/mills/albini.svg", scale: 0.8 },
 ];
 
 // ---------------------------------------------------------------------------
@@ -356,7 +363,7 @@ export const wardrobe = {
     {
       label: "02 / Shirts",
       title: "Where fit is noticed first.",
-      body: "Collar, cuff and yoke drafted to you. ALUMO, Canclini and S.I.C. Tess cottons.",
+      body: "Collar, cuff and yoke drafted to you. Albini, ALUMO, S.I.C. Tess and Söktaş cottons.",
       image: "/images/stock/shirts.jpg",
       audit: "Stock placeholder · replace with CEO Rules photography before launch (brief §4, §28)",
       alt: "White and pale blue shirts on wooden hangers",
@@ -417,6 +424,11 @@ export const appointment = {
   title: "Come sit with us.",
   body: "Appointments are held one at a time, so the room is yours. Tell us roughly what you have in mind and we will hold the hour.",
   fallback: "Message us on WhatsApp with a day and time that suits you, and we will confirm the hour.",
+  // Which booking the page shows. "iframe" = Calendly's inline widget (works
+  // on any plan, no token). "themed" = the house's own flow on the Calendly
+  // Scheduling API (needs CALENDLY_TOKEN; see lib/calendly.ts).
+  booking: "iframe" as "iframe" | "themed",
+  calendly: "https://calendly.com/anis-ceorules/30min",
 };
 
 // ---------------------------------------------------------------------------
@@ -433,14 +445,19 @@ export const cloth = {
   housesLabel: "The houses we keep",
   // Provenance kept to what is certain; lines are provisional copy for sign-off.
   houses: [
-    { name: "Loro Piana", place: "Italy", line: "The finest wool and cashmere, kept for what it does in the hand." },
-    { name: "Zegna", place: "Italy", line: "Suiting milled from the longest fibres, for cloth that holds its line." },
+    { name: "Ermenegildo Zegna", place: "Italy", line: "Suiting milled from the longest fibres, for cloth that holds its line." },
     { name: "Scabal", place: "Brussels", line: "Suiting worn like jewellery. The Noble Diamond book lives on our desk." },
-    { name: "ALUMO", place: "Switzerland", line: "Swiss two-ply cottons: the shirting that holds a collar all day." },
-    { name: "Canclini", place: "Italy", line: "Italian shirting in weaves that read from across a room." },
+    { name: "Loro Piana", place: "Italy", line: "The finest wool and cashmere, kept for what it does in the hand." },
+    { name: "Marzoni", place: "", line: "Suiting with a softer hand, for the jacket you reach for most." },
+    { name: "Palladino", place: "", line: "Cloth for the occasions that ask a little more of a man." },
+    { name: "Piacenza", place: "Italy · since 1733", line: "Among the oldest woollen mills in the world, and it wears like it." },
+    { name: "Huddersfield", place: "England", line: "Yorkshire worsted: the cloth that taught the world what a suit should be." },
+    { name: "Vitale Barberis Canonico", place: "Italy · since 1663", line: "Three and a half centuries of suiting, woven for a working day." },
+    { name: "David & John Anderson", place: "Shirting", line: "The finest shirting cottons, for a collar you will not think about." },
     { name: "S.I.C. Tess", place: "Italy · since 1924", line: "Italian shirting cloth, a century in the making." },
-    { name: "Roger La Viale", place: "Since 1932", line: "Shirting with a quiet pattern and a long memory." },
-    { name: "Raymond", place: "India", line: "The house cloth of India, for everyday suiting done properly." },
+    { name: "Söktaş", place: "Turkey", line: "Aegean cottons, woven close for shirts that stay crisp in the heat." },
+    { name: "ALUMO", place: "Switzerland", line: "Swiss two-ply cottons: the shirting that holds a collar all day." },
+    { name: "Albini", place: "Italy · since 1876", line: "Italian shirting, from the everyday poplin to the rarest cottons." },
   ].map((h) => ({ ...h, logo: mills.find((m) => m.name === h.name)?.logo ?? "" })),
   teach: {
     kicker: "Why it matters",
@@ -567,10 +584,12 @@ export const insights = {
 // (public/audio). Until one is supplied the control stays hidden.
 // ---------------------------------------------------------------------------
 export const sound = {
-  // Set to the licensed track once supplied, e.g. "/audio/atelier.mp3"
-  // (file in public/audio). While null, nothing is requested and the Sound
-  // control stays hidden.
-  src: null as string | null,
+  // "Saxophone Jazz Restaurant" by alex-morgan, Pixabay Content License
+  // (commercial web use, no attribution required). Pixabay marks it AI
+  // generated; chosen deliberately. Source:
+  // https://pixabay.com/music/modern-jazz-saxophone-jazz-restaurant-567542/
+  // Set to null to hide the Sound control and request nothing.
+  src: "/audio/atelier.mp3" as string | null,
   volume: 0.12,
   fadeMs: 2000,
 };

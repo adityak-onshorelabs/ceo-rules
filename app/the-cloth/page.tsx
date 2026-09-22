@@ -10,7 +10,7 @@ import { cloth } from "@/lib/content";
 export const metadata: Metadata = {
   title: "The Cloth — CEO Rules",
   description:
-    "The cloth remembers where it came from. The houses we keep — Loro Piana, Zegna, Scabal, ALUMO, Canclini and more — cut in Bandra.",
+    "The cloth remembers where it came from. The houses we keep — Loro Piana, Zegna, Scabal, Vitale Barberis Canonico and more — cut in Bandra.",
 };
 
 export default function TheClothPage() {
