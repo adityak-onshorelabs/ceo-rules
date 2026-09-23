@@ -316,7 +316,7 @@ export const bespoke = {
       title: "Fitting & Reshaping",
       when: "At the fittings",
       body: "A basted garment first, held together loosely so it can be opened and moved. You walk in it, sit in it, reach in it. It is reshaped on you until the line is right.",
-      image: ik("rules/fitting and reshaping.jpg"),
+      image: ik("rules/reshaping.jpg"),
       alt: "A tailor chalking the shoulder of a basted navy pinstripe jacket",
       position: "55% 35%",
     },
