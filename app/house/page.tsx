@@ -44,7 +44,6 @@ export default function HousePage() {
           image={house.portrait.image}
           alt={house.portrait.alt}
           position={house.portrait.position}
-          audit={house.portrait.audit}
         />
 
         <section className="section bg-cream">

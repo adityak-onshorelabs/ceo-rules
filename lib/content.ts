@@ -263,10 +263,9 @@ export const house = {
     ],
   },
   portrait: {
-    image: "/images/principals-portrait.png",
+    image: "https://ik.imagekit.io/adityakamarouthu/Onshorelabs/CEO%20rules/assets/house/cropped.png",
     alt: "Anis Soomar in the atelier",
-    position: "56% 24%",
-    audit: "Replace · 545×612 — confirm which figure is Anis; need a 3000px portrait, warm atelier light.",
+    position: "57% 40%",
   },
 };
 
