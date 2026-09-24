@@ -58,7 +58,7 @@ export function Visit() {
   const v = home.visit;
   return (
     <section id="visit" className="split on-dark relative bg-ink">
-      <div className="flex flex-col justify-center px-[clamp(24px,6vw,110px)] py-[clamp(110px,17vh,210px)]">
+      <div className="flex flex-col justify-center px-[clamp(24px,6vw,110px)] py-[clamp(110px,17vh,210px)] max-md:py-[var(--section-y)]">
         <p className="kicker text-[rgba(244,241,234,.6)]">{v.kicker}</p>
         <Reveal as="h2" className="max-w-[14ch] text-[clamp(34px,4.4vw,72px)] leading-[1.03] tracking-[-0.026em]">
           {v.title}

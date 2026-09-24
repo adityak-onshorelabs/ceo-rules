@@ -28,7 +28,7 @@ export function Wardrobe() {
         <Reveal as="h2" className="h-section !max-w-[18ch]">
           {w.title}
         </Reveal>
-        <div className="mt-[clamp(34px,5vh,54px)] flex flex-wrap items-baseline gap-x-12 gap-y-[22px] border-t border-[rgba(244,241,234,.2)] pt-[30px]">
+        <div className="mt-[clamp(34px,5vh,54px)] grid grid-cols-2 gap-x-8 gap-y-[22px] sm:flex sm:flex-wrap sm:items-baseline sm:gap-x-12 border-t border-[rgba(244,241,234,.2)] pt-[30px]">
           {w.categories.map((c) => (
             <span key={c} className="text-[clamp(13px,1.05vw,15px)] uppercase tracking-[0.14em] text-cream">
               {c}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
@@ -28,8 +29,10 @@ export default function TheClothPage() {
           titleWidth="max-w-[16ch]"
         />
 
-        {/* The houses, as a ledger: name and provenance. Names are proof, not a
-            wall of logos (brief §6, §28). */}
+        {/* The houses, as a ledger: each mill's own mark, its line and its
+            provenance (client request). Marks are drawn in House Ink, as on the
+            home page strip; `scale` sets each one's height so their optical
+            weight evens out. A mill without a mark is set as its name. */}
         <section className="section bg-cream">
           <div className="mx-auto max-w-wide">
             <p className="kicker text-[rgba(28,26,23,.55)]">{cloth.housesLabel}</p>
@@ -38,9 +41,23 @@ export default function TheClothPage() {
                 <Reveal
                   as="li"
                   key={h.name}
-                  className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] items-baseline gap-x-[var(--breath-gap)] gap-y-3 border-b border-[rgba(28,26,23,.18)] py-[clamp(32px,5vh,56px)]"
+                  className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] items-center gap-x-[var(--breath-gap)] gap-y-3 border-b border-[rgba(28,26,23,.18)] py-[clamp(32px,5vh,56px)]"
                 >
-                  <h2 className="text-[clamp(26px,2.6vw,40px)] leading-[1.1] tracking-[-0.03em]">{h.name}</h2>
+                  <h2 className="text-[clamp(26px,2.6vw,40px)] leading-[1.1] tracking-[-0.03em]">
+                    {h.logo ? (
+                      <Image
+                        src={h.logo}
+                        alt={h.name}
+                        width={300}
+                        height={123}
+                        unoptimized={h.logo.endsWith(".svg")}
+                        className="w-auto max-w-full object-contain object-left opacity-[.86] [filter:brightness(0)]"
+                        style={{ height: `calc(clamp(52px,4.6vw,76px) * ${h.scale})` }}
+                      />
+                    ) : (
+                      h.name
+                    )}
+                  </h2>
                   <p className="body text-[rgba(28,26,23,.72)]">{h.line}</p>
                   <p className="label text-[rgba(28,26,23,.5)] min-[900px]:text-right">{h.place}</p>
                 </Reveal>

@@ -63,7 +63,7 @@ export const mills: { name: string; logo?: string; scale?: number }[] = [
   { name: "Marzoni", logo: "/brand/mills/marzoni.png", scale: 0.9 },
   { name: "Palladino" },
   { name: "Piacenza", logo: "/brand/mills/piacenza.png", scale: 1.45 },
-  { name: "Huddersfield", logo: "/brand/mills/huddersfield.png", scale: 1.3 },
+  { name: "Huddersfield", logo: "/brand/mills/huddersfield.svg", scale: 0.75 },
   { name: "Vitale Barberis Canonico", logo: "/brand/mills/vitale-barberis-canonico.png", scale: 1.35 },
   { name: "David & John Anderson" },
   { name: "S.I.C. Tess", logo: "/brand/mills/sic-tess.png", scale: 1 },
@@ -294,7 +294,7 @@ export const bespoke = {
       body: "We talk before we measure. What rooms you walk into, what your week looks like, what you already own and never wear. Anis will tell you what to commission and, more usefully, what not to.",
       image: "/images/eye-poster.jpg",
       alt: "Anis Soomar at his desk with a length of suiting",
-      position: "30% 50%",
+      position: "22% 50%",
     },
     {
       title: "Fabric Selection",
@@ -467,7 +467,10 @@ export const cloth = {
     { name: "Söktaş", place: "Turkey", line: "Aegean cottons, woven close for shirts that stay crisp in the heat." },
     { name: "ALUMO", place: "Switzerland", line: "Swiss two-ply cottons: the shirting that holds a collar all day." },
     { name: "Albini", place: "Italy · since 1876", line: "Italian shirting, from the everyday poplin to the rarest cottons." },
-  ].map((h) => ({ ...h, logo: mills.find((m) => m.name === h.name)?.logo ?? "" })),
+  ].map((h) => {
+    const mill = mills.find((m) => m.name === h.name);
+    return { ...h, logo: mill?.logo ?? "", scale: mill?.scale ?? 1 };
+  }),
   teach: {
     kicker: "Why it matters",
     title: "Weight, weave and season matter more than the name on the selvedge.",

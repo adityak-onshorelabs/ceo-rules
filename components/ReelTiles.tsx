@@ -132,22 +132,10 @@ export function ReelFilm({
       <button
         type="button"
         onClick={toggleSound}
-        aria-pressed={sound}
-        aria-label={sound ? `Mute: ${line}` : reduce && !playing ? `Play with sound: ${line}` : `Sound on: ${line}`}
+        aria-label={sound ? `Turn sound off: ${line}` : reduce && !playing ? `Play with sound: ${line}` : `Turn sound on: ${line}`}
         className={`${ctrl} absolute bottom-5 right-5 z-20 gap-2 bg-[rgba(14,13,11,.35)]`}
       >
-        <span className="flex items-center gap-2.5">
-          <span aria-hidden className="flex h-3 items-end gap-[2px]">
-            {[0.5, 1, 0.7].map((h, i) => (
-              <span
-                key={i}
-                className="w-px bg-current transition-transform duration-300"
-                style={{ height: "100%", transform: `scaleY(${sound ? h : 0.25})`, transformOrigin: "bottom" }}
-              />
-            ))}
-          </span>
-          {sound ? "Sound on" : "Sound off"}
-        </span>
+        {sound ? "Turn sound off" : "Turn sound on"}
       </button>
     </div>
   );

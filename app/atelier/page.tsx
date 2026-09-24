@@ -27,6 +27,7 @@ export default function AtelierPage() {
           position="32% 45%"
           mobilePosition="45% 50%"
           height="min-h-[82vh]"
+          clearNav
         />
         <Breath title={atelier.breath.title} body={atelier.breath.body} />
 

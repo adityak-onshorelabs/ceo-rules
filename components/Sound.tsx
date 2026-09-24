@@ -167,11 +167,15 @@ export function SoundProvider({ children }: { children: ReactNode }) {
 // every page. Before the visitor has chosen, a soft gold ring breathes around
 // it to draw the eye; while music plays its bars move. On hover (or keyboard
 // focus) it opens into a pill that names the state. Hidden on /kazim, which is
-// a standalone contact card.
+// a standalone contact card. On a phone it would sit over whatever link or
+// button scrolls beneath it (the hero CTA, the carousel arrows), so it steps
+// aside while one is there and returns once the page moves on.
 export function SoundButton() {
   const { available, on, toggle } = useContext(SoundContext);
   const pathname = usePathname();
   const [chosen, setChosen] = useState(true);
+  const [covering, setCovering] = useState(false);
+  const button = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     try {
@@ -180,6 +184,41 @@ export function SoundButton() {
       setChosen(false);
     }
   }, []);
+
+  useEffect(() => {
+    let frame = 0;
+    const check = () => {
+      frame = 0;
+      const el = button.current;
+      if (!el || el.contains(document.activeElement)) return setCovering(false);
+      const r = el.getBoundingClientRect();
+      const points = [
+        [r.left + 8, r.top + 8],
+        [r.right - 8, r.top + 8],
+        [r.left + 8, r.bottom - 8],
+        [r.right - 8, r.bottom - 8],
+        [r.left + r.width / 2, r.top + r.height / 2],
+      ];
+      setCovering(
+        points.some(([x, y]) =>
+          document
+            .elementsFromPoint(x, y)
+            .some((hit) => !el.contains(hit) && hit.closest("a, button, input, select, textarea, iframe, [role='button']")),
+        ),
+      );
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(check);
+    };
+    schedule();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
+  }, [pathname]);
 
   if (!available || pathname?.startsWith("/kazim")) return null;
 
@@ -191,11 +230,12 @@ export function SoundButton() {
   return (
     <button
       type="button"
+      ref={button}
       data-sound-toggle
+      data-covering={covering ? "" : undefined}
       onClick={onClick}
-      aria-pressed={on}
-      aria-label={on ? "Sound on. Turn the music off" : "Sound off. Turn the music on"}
-      className="sound-fab group fixed bottom-[clamp(16px,3vw,32px)] right-[clamp(16px,3vw,32px)] z-50 flex h-14 min-w-14 items-center justify-center rounded-full border border-gold bg-ink-deep px-[18px] text-cream shadow-[0_12px_32px_-10px_rgba(20,18,15,.6),0_0_0_4px_rgba(168,130,60,.14)] transition-[padding,background-color] duration-500 ease-out hover:bg-ink focus-visible:bg-ink"
+      aria-label={on ? "Turn sound off" : "Turn sound on"}
+      className="sound-fab group fixed bottom-[clamp(16px,3vw,32px)] right-[clamp(16px,3vw,32px)] z-50 flex h-14 min-w-14 items-center justify-center rounded-full border border-gold bg-ink-deep px-[18px] text-cream shadow-[0_12px_32px_-10px_rgba(20,18,15,.6),0_0_0_4px_rgba(168,130,60,.14)] transition-[padding,background-color,opacity] duration-500 ease-out hover:bg-ink focus-visible:bg-ink data-[covering]:pointer-events-none data-[covering]:opacity-0"
       data-state={on ? "on" : "off"}
       data-invite={!chosen && !on ? "" : undefined}
     >
@@ -206,7 +246,7 @@ export function SoundButton() {
       </span>
       <span className="grid grid-cols-[minmax(0,0fr)] transition-[grid-template-columns] duration-500 ease-out group-hover:grid-cols-[minmax(0,1fr)] group-focus-visible:grid-cols-[minmax(0,1fr)]">
         <span className="min-w-0 overflow-hidden whitespace-nowrap pl-3 text-[11px] uppercase tracking-[0.22em]">
-          {on ? "Sound on" : "Sound off"}
+          {on ? "Turn sound off" : "Turn sound on"}
         </span>
       </span>
     </button>

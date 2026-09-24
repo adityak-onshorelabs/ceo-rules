@@ -16,6 +16,7 @@ export function PageHero({
   mobilePosition,
   height = "min-h-[78vh]",
   titleWidth = "max-w-[15ch]",
+  clearNav = false,
   audit,
 }: {
   kicker: string;
@@ -28,6 +29,9 @@ export function PageHero({
   /** Desktop minimum height, e.g. "min-h-[82vh]". */
   height?: string;
   titleWidth?: string;
+  /** Mobile: start the photograph below the nav bar, for frames whose subject
+   *  sits at the very top (the storefront sign) and would read through the glass. */
+  clearNav?: boolean;
   audit?: string;
 }) {
   const heroH = height.match(/\[(.+)\]/)?.[1] ?? "78vh";
@@ -36,6 +40,7 @@ export function PageHero({
       className="on-dark relative overflow-hidden bg-ink-deep lg:flex lg:min-h-[var(--hero-h)] lg:items-end"
       style={{ "--hero-h": heroH } as React.CSSProperties}
     >
+      {clearNav ? <div aria-hidden className="h-[var(--nav-h)] bg-cream lg:hidden" /> : null}
       <div className="relative h-[52svh] min-h-[300px] lg:absolute lg:inset-0 lg:h-auto lg:min-h-0">
         <Photo
           src={image}

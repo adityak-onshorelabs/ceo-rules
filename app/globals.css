@@ -34,6 +34,15 @@
   }
 }
 
+/* Phones: the desktop rhythm left a third of the screen empty between
+   sections. DESIGN.md's floor (6rem), accent sections a step airier. */
+@media (max-width: 767px) {
+  :root {
+    --section-y: clamp(96px, 12vh, 120px);
+    --section-y-accent: clamp(112px, 14vh, 144px);
+  }
+}
+
 @layer base {
   html {
     -webkit-font-smoothing: antialiased;

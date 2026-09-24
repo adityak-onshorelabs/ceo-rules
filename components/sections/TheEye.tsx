@@ -31,7 +31,7 @@ export function TheEye({
           <Photo src={image} alt={alt} position={position} mobilePosition={mobilePosition} grade="plate" motion="reveal" sizes={sizes} audit={audit} auditAt="bl" />
         )}
       </div>
-      <div className="flex flex-col justify-center px-[clamp(24px,6vw,110px)] py-[clamp(100px,15vh,200px)]">
+      <div className="flex flex-col justify-center px-[clamp(24px,6vw,110px)] py-[clamp(100px,15vh,200px)] max-md:py-[var(--section-y)]">
         <p className="kicker text-[rgba(244,241,234,.6)]">{theEye.kicker}</p>
         <Reveal as="h2" className="text-[clamp(32px,3.6vw,58px)] leading-[1.04] tracking-[-0.024em]">
           {theEye.name}
