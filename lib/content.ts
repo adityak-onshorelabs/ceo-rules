@@ -70,6 +70,7 @@ export const mills: { name: string; logo?: string; scale?: number }[] = [
   { name: "Söktaş", logo: "/brand/mills/soktas.png", scale: 1.1 },
   { name: "ALUMO", logo: "/brand/mills/alumo.png", scale: 1.05 },
   { name: "Albini", logo: "/brand/mills/albini.svg", scale: 0.8 },
+  { name: "Carlo Riva", logo: "/brand/mills/carlo-riva.png", scale: 1 },
 ];
 
 // ---------------------------------------------------------------------------
@@ -466,6 +467,7 @@ export const cloth = {
     { name: "Söktaş", place: "Turkey", line: "Aegean cottons, woven close for shirts that stay crisp in the heat." },
     { name: "ALUMO", place: "Switzerland", line: "Swiss two-ply cottons: the shirting that holds a collar all day." },
     { name: "Albini", place: "Italy · since 1876", line: "Italian shirting, from the everyday poplin to the rarest cottons." },
+    { name: "Carlo Riva", place: "Italy", line: "Shirting woven slowly on old looms, with a hand like nothing else." },
   ].map((h) => {
     const mill = mills.find((m) => m.name === h.name);
     return { ...h, logo: mill?.logo ?? "", scale: mill?.scale ?? 1 };
