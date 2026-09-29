@@ -10,7 +10,7 @@ export const site = {
   mapHref:
     "https://www.google.com/maps/search/?api=1&query=CEO+Rules+Shabistan+CHSL+Dr+Ambedkar+Road+Bandra+West+Mumbai",
   address: ["Shabistan CHSL, 319/A", "Dr Ambedkar Road, Bandra West", "Mumbai 400 050"],
-  hours: ["Every day", "10:30 am – 9:00 pm"],
+  hours: ["Every day", "11:00 am – 9:00 pm"],
   appointment: "/appointment",
 };
 
@@ -47,7 +47,7 @@ export const theEye = {
   kicker: "The Eye",
   name: "Anis Soomar",
   pull: "Anyone can sell you expensive cloth. Judgement is the part you cannot buy by the metre.",
-  body: "Proportion, fit, cloth, occasion, personality, and how a man should actually wear the thing. Thirty years of deciding those six things correctly, for one man at a time.",
+  body: "Proportion, fit, cloth, occasion, personality, and how a man should actually wear the thing. Forty-three years of deciding those six things correctly, for one man at a time.",
   cta: "Sit with Anis",
 };
 
