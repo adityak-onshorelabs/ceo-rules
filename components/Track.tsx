@@ -48,7 +48,9 @@ export function Track() {
     };
     const onCustom = (e: Event) => {
       const d = (e as CustomEvent<Detail>).detail;
-      if (d?.name) push(d.name, { path: window.location.pathname });
+      if (!d?.name) return;
+      const { name, ...params } = d;
+      push(name, { ...params, path: window.location.pathname });
     };
     document.addEventListener("click", onClick);
     window.addEventListener("ceo:track", onCustom);

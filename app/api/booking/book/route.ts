@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { book, CalendlyError, isConfigured } from "@/lib/calendly";
+import { book, CalendlyError, eventSlug, isConfigured } from "@/lib/calendly";
 
 export const dynamic = "force-dynamic";
 
@@ -16,6 +16,7 @@ export async function POST(req: Request) {
   }
   const s = (k: string, max = 500) => (typeof b[k] === "string" ? (b[k] as string).trim().slice(0, max) : "");
   const input = {
+    slug: eventSlug(b.duration),
     start: s("start", 40),
     name: s("name", 120),
     email: s("email", 200),

@@ -7,12 +7,19 @@
 // Environment (set in Vercel, never committed):
 //   CALENDLY_TOKEN       Personal Access Token from Anis's Calendly account.
 //                        The Scheduling API needs a paid Calendly plan.
-//   CALENDLY_EVENT_SLUG  Event type slug; defaults to "30min"
-//                        (calendly.com/anis-ceorules/30min).
 //   CALENDLY_MOCK=1      Local development only: fake slots and bookings so the
 //                        flow can be built and tested without the live account.
 
+// Event types come from appointment.durations in lib/content.ts: one per
+// appointment length (calendly.com/anis-ceorules/<slug>).
+
+import { appointment } from "@/lib/content";
+
 const API = "https://api.calendly.com";
+
+// The slug asked for, if it is one we offer; otherwise the default length.
+export const eventSlug = (slug: unknown) =>
+  appointment.durations.find((d) => d.slug === slug)?.slug ?? appointment.durations[0].slug;
 
 export type Slot = { start: string };
 export type EventInfo = {
@@ -51,21 +58,21 @@ async function call<T>(path: string, init?: RequestInit): Promise<T> {
   return (await res.json()) as T;
 }
 
-let cached: { at: number; info: EventInfo } | null = null;
+const cached = new Map<string, { at: number; info: EventInfo }>();
 
-// Resolve the event type once (then every 10 minutes): its URI, length,
+// Resolve an event type once (then every 10 minutes): its URI, length,
 // location and any custom intake questions set up in Calendly.
-export async function getEventInfo(): Promise<EventInfo> {
+export async function getEventInfo(slug: string): Promise<EventInfo> {
   if (isMock()) {
     return {
-      uri: "mock",
-      duration: 60,
+      uri: `mock:${slug}`,
+      duration: slug === "120min" ? 120 : 60,
       location: { kind: "physical", location: "CEO Rules, Shabistan CHSL, Bandra West" },
       questions: [],
     };
   }
-  if (cached && Date.now() - cached.at < 10 * 60 * 1000) return cached.info;
-  const slug = process.env.CALENDLY_EVENT_SLUG || "30min";
+  const hit = cached.get(slug);
+  if (hit && Date.now() - hit.at < 10 * 60 * 1000) return hit.info;
   const me = await call<{ resource: { uri: string } }>("/users/me");
   const list = await call<{
     collection: {
@@ -85,11 +92,11 @@ export async function getEventInfo(): Promise<EventInfo> {
     location: et.locations?.[0] ?? null,
     questions: (et.custom_questions ?? []).filter((q) => q.enabled).map((q) => ({ name: q.name, position: q.position })),
   };
-  cached = { at: Date.now(), info };
+  cached.set(slug, { at: Date.now(), info });
   return info;
 }
 
-export async function getSlots(startISO: string, endISO: string): Promise<Slot[]> {
+export async function getSlots(slug: string, startISO: string, endISO: string): Promise<Slot[]> {
   if (isMock()) {
     const out: Slot[] = [];
     const start = new Date(startISO);
@@ -104,13 +111,14 @@ export async function getSlots(startISO: string, endISO: string): Promise<Slot[]
     }
     return out.filter((s) => s.start < endISO);
   }
-  const info = await getEventInfo();
+  const info = await getEventInfo(slug);
   const q = new URLSearchParams({ event_type: info.uri, start_time: startISO, end_time: endISO });
   const res = await call<{ collection: { status: string; start_time: string }[] }>(`/event_type_available_times?${q}`);
   return res.collection.filter((s) => s.status === "available").map((s) => ({ start: s.start_time }));
 }
 
 export type BookingInput = {
+  slug: string;
   start: string;
   name: string;
   email: string;
@@ -139,7 +147,7 @@ export async function book(b: BookingInput) {
     if (b.email.includes("taken")) throw new CalendlyError(404, "Slot no longer available");
     return { cancelUrl: "#", rescheduleUrl: "#" };
   }
-  const info = await getEventInfo();
+  const info = await getEventInfo(b.slug);
   const [first, ...rest] = b.name.trim().split(/\s+/);
   const phone = b.phone.replace(/[^\d+]/g, "");
   const body: Record<string, unknown> = {

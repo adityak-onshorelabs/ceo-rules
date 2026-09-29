@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
-import { site } from "@/lib/content";
+import { appointment, site } from "@/lib/content";
+import { DurationSelect } from "@/components/DurationSelect";
 
 // The appointment booking, in the house's own design (brief §12: no iframe).
 // Availability and bookings go through our /api/booking routes to Anis's
 // Calendly (Scheduling API); the Calendly UI never appears.
 //
-// Choose a day → choose a time → your details → the hour is held.
+// Choose a length → a day → a time → your details → the hour is held.
 // Times are shown in India Standard Time, where the house is.
 
 type Slot = { start: string };
@@ -26,6 +27,7 @@ const field =
 
 export function BookingFlow() {
   const [phase, setPhase] = useState<Phase>("loading");
+  const [slug, setSlug] = useState(appointment.durations[0].slug);
   const [slots, setSlots] = useState<Slot[]>([]);
   const [duration, setDuration] = useState<number | null>(null);
   const [day, setDay] = useState<string | null>(null);
@@ -40,7 +42,7 @@ export function BookingFlow() {
 
   const load = async () => {
     try {
-      const r = await fetch("/api/booking/slots", { cache: "no-store" });
+      const r = await fetch(`/api/booking/slots?d=${encodeURIComponent(slug)}`, { cache: "no-store" });
       const j = await r.json();
       if (!j.configured || j.error || !Array.isArray(j.slots)) {
         setPhase("offline");
@@ -54,9 +56,12 @@ export function BookingFlow() {
     }
   };
 
+  // A new length has its own open times: fetch them and start the choice again.
   useEffect(() => {
+    setDay(null);
+    setTime(null);
     load();
-  }, []);
+  }, [slug]);
 
   // Next 21 days, each with its open times (empty days stay visible, disabled).
   const days = useMemo(() => {
@@ -89,6 +94,7 @@ export function BookingFlow() {
     if (!time) return;
     const fd = new FormData(e.currentTarget);
     const body = {
+      duration: slug,
       start: time,
       name: String(fd.get("name") ?? ""),
       email: String(fd.get("email") ?? ""),
@@ -109,7 +115,7 @@ export function BookingFlow() {
       if (r.ok && j.ok) {
         setResult({ name: body.name.split(" ")[0], email: body.email, start: time, cancelUrl: j.cancelUrl, rescheduleUrl: j.rescheduleUrl });
         setPhase("done");
-        window.dispatchEvent(new CustomEvent("ceo:track", { detail: { name: "calendly_booking_complete" } }));
+        window.dispatchEvent(new CustomEvent("ceo:track", { detail: { name: "calendly_booking_complete", duration: slug } }));
         return;
       }
       if (j.error === "slot_taken") {
@@ -149,7 +155,9 @@ export function BookingFlow() {
   if (phase === "offline") {
     return (
       <div className="border-t border-[rgba(28,26,23,.16)] pt-8">
-        <p className="max-w-[44ch] text-[16px] leading-[1.7] text-[rgba(28,26,23,.8)]">
+        {/* Kept here so a length that cannot be booked online can be switched back. */}
+        <DurationSelect value={slug} onChange={setSlug} />
+        <p className="mt-8 max-w-[44ch] text-[16px] leading-[1.7] text-[rgba(28,26,23,.8)]">
           Tell us a day that suits you and we will hold the hour.
         </p>
         <div className="mt-6">{whatsapp}</div>
@@ -190,8 +198,10 @@ export function BookingFlow() {
         </p>
       ) : null}
 
+      <DurationSelect value={slug} onChange={setSlug} />
+
       {/* 1 · Day */}
-      <fieldset className="min-w-0">
+      <fieldset className="min-w-0 mt-10">
         <legend className={label}>
           <span className="tabular-nums">01</span> · Choose a day
         </legend>

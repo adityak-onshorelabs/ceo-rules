@@ -437,7 +437,13 @@ export const appointment = {
   // on any plan, no token). "themed" = the house's own flow on the Calendly
   // Scheduling API (needs CALENDLY_TOKEN; see lib/calendly.ts).
   booking: "iframe" as "iframe" | "themed",
-  calendly: "https://calendly.com/anis-ceorules/30min",
+  calendly: "https://calendly.com/anis-ceorules",
+  // Appointment lengths offered, each its own Calendly event type (by slug).
+  // The first is the default.
+  durations: [
+    { label: "1 hour", slug: "30min" },
+    { label: "2 hours", slug: "120min" },
+  ],
 };
 
 // ---------------------------------------------------------------------------
