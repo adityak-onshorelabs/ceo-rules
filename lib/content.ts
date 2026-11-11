@@ -631,3 +631,12 @@ export const kazim = {
   // The site root, so the card works on whatever domain the site ships on.
   website: "/",
 };
+
+// /anees: the founder's card. His own number (+91 98200 94048).
+export const anees = {
+  name: "Anis Soomar",
+  place: "CEO Rules · Mumbai",
+  whatsapp: "https://wa.me/919820094048",
+  instagram: site.instagram,
+  website: "/",
+};

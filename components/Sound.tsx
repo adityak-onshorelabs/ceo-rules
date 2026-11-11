@@ -166,8 +166,8 @@ export function SoundProvider({ children }: { children: ReactNode }) {
 // The sound control: a small round button that floats at the bottom right of
 // every page. Before the visitor has chosen, a soft gold ring breathes around
 // it to draw the eye; while music plays its bars move. On hover (or keyboard
-// focus) it opens into a pill that names the state. Hidden on /kazim, which is
-// a standalone contact card. On a phone it would sit over whatever link or
+// focus) it opens into a pill that names the state. Hidden on /kazim and /anees,
+// the standalone contact cards. On a phone it would sit over whatever link or
 // button scrolls beneath it (the hero CTA, the carousel arrows), so it steps
 // aside while one is there and returns once the page moves on.
 export function SoundButton() {
@@ -220,7 +220,7 @@ export function SoundButton() {
     };
   }, [pathname]);
 
-  if (!available || pathname?.startsWith("/kazim")) return null;
+  if (!available || pathname?.startsWith("/kazim") || pathname?.startsWith("/anees")) return null;
 
   const onClick = () => {
     setChosen(true);
