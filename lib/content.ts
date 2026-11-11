@@ -626,7 +626,6 @@ export const sound = {
 // ---------------------------------------------------------------------------
 export const kazim = {
   name: "Kazim Soomar",
-  place: "CEO Rules · Mumbai",
   whatsapp: "https://wa.me/919833817791",
   // The site root, so the card works on whatever domain the site ships on.
   website: "/",
@@ -635,7 +634,6 @@ export const kazim = {
 // /anees: the founder's card. His own number (+91 98200 94048).
 export const anees = {
   name: "Anis Soomar",
-  place: "CEO Rules · Mumbai",
   whatsapp: "https://wa.me/919820094048",
   instagram: site.instagram,
   website: "/",

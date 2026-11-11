@@ -12,7 +12,6 @@ export default function KazimPage() {
   return (
     <ContactCard
       name={kazim.name}
-      place={kazim.place}
       actions={[
         { label: "WhatsApp", href: kazim.whatsapp, external: true },
         { label: "Website", href: kazim.website },

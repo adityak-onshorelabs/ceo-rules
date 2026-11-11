@@ -12,7 +12,6 @@ export default function AneesPage() {
   return (
     <ContactCard
       name={anees.name}
-      place={anees.place}
       actions={[
         { label: "WhatsApp", href: anees.whatsapp, external: true },
         { label: "Instagram", href: anees.instagram, external: true },
